@@ -1,4 +1,6 @@
 <template>
+    <div>
+      <Header></Header>
     <main>
 
 <div class="container title">
@@ -134,13 +136,20 @@
         </li>
     </ul>
 </section>
-  </main>
+    </main>
+    <Footer></Footer>  
+    </div>
+    
 </template>
 
 <script>
 
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
+
 
 export default {
   name: 'HomePage',
+  components: {Header, Footer}
 }
 </script>
