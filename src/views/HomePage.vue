@@ -56,6 +56,8 @@
 
         <!-- Слайдер -->
 
+        
+
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -74,7 +76,7 @@
                         alt="Курсы для педагогов">
                 </div>
             </div>
-        </div>
+        </div> 
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
@@ -146,10 +148,28 @@
 
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
-
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
 export default {
   name: 'HomePage',
-  components: {Header, Footer}
+  components: {Header, Footer, Swiper, SwiperSlide},
+
+  setup() {
+      const onSwiper = (swiper) => {
+        console.log(swiper);
+      };
+      const onSlideChange = () => {
+        console.log('slide change');
+      };
+      return {
+        onSwiper,
+        onSlideChange,
+        modules: [Navigation],
+      };
+    },
+
+    
+
 }
 </script>
