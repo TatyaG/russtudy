@@ -1,0 +1,226 @@
+.back {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: 120%;
+color: rgba(10, 43, 73, 0.60);
+}
+
+.title {
+    text-align: center;
+    font-family: Perun;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.title-block {
+    display: flex;
+    justify-content: center;
+}
+
+.banner {
+    padding-bottom: 60px;
+}
+
+.banner__title {
+    max-width: 1220px;
+}
+
+
+.banner__text {
+    margin-bottom: 25px;
+    padding: 10px 20px;
+    max-width: max-content;
+    font-size: 76px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    background-color: rgba(255, 255, 255, 0.60);
+    border-radius: var(--border-radius);
+
+}
+
+.banner__text--rotate {
+    margin-bottom: 15px;
+    background-color: transparent;
+    border: 2px solid var(--body-color);
+    transform: rotate(2deg);
+}
+
+.banner__container {
+    padding: 43px 25px;
+    padding-top: 45px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    border-radius: var(--border-radius);
+    background-image: url(../img/book-banner.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.banner__content {
+    padding-left: 130px;
+}
+
+.banner__level {
+    margin-bottom: 50px;
+    padding: 10px 14px;
+    max-width: max-content;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    background-color: rgba(151, 235, 242, 0.60);
+    border-radius: var(--border-radius);
+}
+
+.banner__programm {
+    margin-bottom: 60px;
+    max-width: max-content;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+
+}
+
+.banner__programm span {
+    display: block;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    max-width: max-content;
+    border-bottom: 1px solid var(--body-color);
+}
+
+.banner__btn {
+    display: flex;
+    align-items: center;
+    padding: 20px 40px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    color: white;
+    background: linear-gradient(92deg, #056BF0 1.05%, #D547BA 100%);
+    border-radius: var(--border-radius);
+}
+
+.about {
+    padding: 60px 0;
+}
+
+.about__container {
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.about__left {
+    border-radius: 32px;
+    background: url(../img/about.webp), linear-gradient(288deg, rgba(213, 71, 186, 0.30) 0%, rgba(5, 107, 240, 0.50) 100%);
+    background-position: bottom center;
+    background-repeat: no-repeat;
+}
+
+.about__right {
+    padding: 60px 80px;
+    border-radius: 32px;
+    background: linear-gradient(271deg, rgba(110, 152, 244, 0.38) -9.63%, #C5D3FF 93.38%);
+}
+
+.section__title {
+    margin-bottom: 60px;
+    padding: 20px 40px;
+    max-width: max-content;
+    font-family: Perun;
+font-size: 40px;
+font-style: normal;
+font-weight: 700;
+line-height: 120%;
+    border: 2px solid #0A2B49;
+    border-radius: var(--border-radius);
+}
+
+.about__text {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; 
+}
+
+.about__text:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+
+.about__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.about__item {
+    
+    border-radius: 28px;
+}
+
+.about__item:nth-child(n) {
+    background-color: rgba(83, 213, 225, 0.30);
+}
+
+.about__item:nth-child(2n) {
+    background-color: rgba(213, 71, 186, 0.30);
+}
+
+.about__item:nth-child(3n) {
+    background-color: rgba(87, 36, 167, 0.30);
+}
+
+.about__item:nth-child(4n) {
+    background-color: rgba(5, 107, 240, 0.30);
+}
+
+.about__link {
+    padding: 40px 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.about__link svg {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+}
+
+.book__title {
+    margin-bottom: 10px;
+    font-family: Perun;
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 120%;
+}
+
+.book__level {
+    font-size: 24px;
+font-style: normal;
+font-weight: 400;
+line-height: 120%;
+}
+
+.book__level span {
+    margin-left: 10px;
+    padding: 0 6px;
+    border: 1px solid var(--body-color);
+    border-radius: 6px;
+}
+

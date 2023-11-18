@@ -154,10 +154,28 @@
 
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
-
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
 export default {
-    name: 'HomePage',
-    components: { Header, Footer }
+  name: 'HomePage',
+  components: {Header, Footer, Swiper, SwiperSlide},
+
+  setup() {
+      const onSwiper = (swiper) => {
+        console.log(swiper);
+      };
+      const onSlideChange = () => {
+        console.log('slide change');
+      };
+      return {
+        onSwiper,
+        onSlideChange,
+        modules: [Navigation],
+      };
+    },
+
+    
+
 }
 </script>

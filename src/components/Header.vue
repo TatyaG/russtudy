@@ -20,9 +20,9 @@
                 <nav class="nav header__nav">
                     <ul class="nav__list list-reset flex">
                         <li class="nav__item">
-                            <a href="№" class="nav__link">
+                            <router-link :to="{name: 'book'}" href="" class="nav__link">
                                 Учебник
-                            </a>
+                            </router-link>
                         </li>
                         <li class="nav__item">
                             <a href="#" class="nav__link">
