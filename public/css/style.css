@@ -127,10 +127,6 @@ body {
   display: none;
 }
 
-.logo__img-tablet {
-  display: none;
-}
-
 .logo {
   align-items: center;
   cursor: pointer;
@@ -330,12 +326,8 @@ body {
 }
 
 .card-list {
-  padding-left: 9px;
+  padding-left: 4px;
   max-width: 382px;
-}
-
-.card-img_tablet {
-  display: none;
 }
 
 .btn {
@@ -472,13 +464,9 @@ body {
   z-index: 0;
 }
 
-.right-background-tablet {
-  display: none;
-}
-
 .card-name {
   position: absolute;
-  top: 3%;
+  top: 1.5%;
   left: 3.5%;
   color: #0a2b49;
   z-index: 3;
