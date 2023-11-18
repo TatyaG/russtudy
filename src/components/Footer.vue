@@ -1,8 +1,9 @@
 <template>
-     <footer class="container footer flex">
+
+<footer class="container footer flex">
         <div class="footer_left flex">
             <a href="#" class="footer__logo">
-                <img src="img/logo_footer.png" alt="logo">
+                <img src="img/logo_footer.svg" alt="logo">
             </a>
             <div class="flex">
                 <small class="footer_small small_data">&copy;&nbsp;2023</small>
@@ -28,7 +29,7 @@
         </div>
 
         <div class="footer__right">
-            <a class="footer__logo_link" href=""> <img src="img/logo_tablet.png" alt="logo"></a>
+            <a class="footer__logo_link" href=""> <img src="img/logo_tablet.svg" alt="logo"></a>
             <ul class="footer_list footer_contacts list-reset">
                 <li class="footer__item flex">
                     <a class="footer_link flex" href="tel:=+79993333303"><svg width="22" height="23" viewBox="0 0 22 23"
@@ -78,6 +79,7 @@
 
         </div>
     </footer>
+
 </template>
 
 <script>
