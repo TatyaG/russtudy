@@ -1,23 +1,28 @@
 <template>
-        <header class="header">
+       
+       <header class="header">
         <div class="flex header__container container">
             <a href="#" class="logo flex">
-                <img class="logo__img" src="img/logo.png" alt="Logo">
-                <img class="logo__img-tablet" src="img/logo_tablet.png" alt="Logo">
+                <picture>
+                    <source srcset="img/logo_tablet.svg" media="(max-width: 1024px)">
+                    <img class="logo__img" src="img/logo.svg" alt="Logo">
+                </picture>
             </a>
 
             <div class="menu">
                 <a href="#" class="logo_burger logo flex">
-                    <img class="logo__img" src="img/logo.png" alt="Logo">
-                    <img class="logo__img-tablet" src="img/logo_tablet.png" alt="Logo">
+                    <picture>
+                        <source srcset="img/logo_tablet.svg" media="(max-width: 1024px)">
+                        <img class="logo__img" src="img/logo.svg" alt="Logo">
+                    </picture>
                 </a>
 
                 <nav class="nav header__nav">
                     <ul class="nav__list list-reset flex">
                         <li class="nav__item">
-                            <a href="№" class="nav__link">
+                            <router-link :to="{name: 'book'}" href="" class="nav__link">
                                 Учебник
-                            </a>
+                            </router-link>
                         </li>
                         <li class="nav__item">
                             <a href="#" class="nav__link">
@@ -64,6 +69,7 @@
 
         </div>
     </header>
+
 </template>
 
 <script>
