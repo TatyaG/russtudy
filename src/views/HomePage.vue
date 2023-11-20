@@ -60,7 +60,24 @@
 
                     <!-- Слайдер -->
 
-                    <div class="swiper mySwiper">
+                    <Swiper navigation :pagination="{ clickable: true }" @swiper="onSwiper" @slideChange="onSlideChange" :modules="modules">
+                        <swiper-slide>
+                            <picture>
+                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
+                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
+                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
+                                </picture>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <picture>
+                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
+                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
+                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
+                                </picture>
+                        </swiper-slide>
+                    </Swiper>
+
+                    <!-- <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <picture>
@@ -87,7 +104,7 @@
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
+                    <div class="swiper-pagination"></div> -->
 
                     <!-- ------- -->
 
@@ -147,6 +164,7 @@
                 </ul>
             </section>
         </main>
+        <Footer></Footer>
     </div>
 </template>
 
@@ -171,7 +189,7 @@ export default {
       return {
         onSwiper,
         onSlideChange,
-        modules: [Navigation],
+        modules: [Navigation, Pagination],
       };
     },
 
