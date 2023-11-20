@@ -41,7 +41,7 @@
         </div>
 
 
-        <div onclick="window.open('#','_newtab');" class="promo-center">
+        <div  class="promo-center">
           <div class="card-content center_content">
             <h2 class="card-title">Сервисы РКИ</h2>
             <ul class="card-list list-reset">
