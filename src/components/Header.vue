@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="menu-btn">
+            <div class="menu-btn" @click.prevent="burger">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -73,5 +73,15 @@
 </template>
 
 <script>
-
+    export default {
+        methods: {
+            burger() {
+                let menuBtn = document.querySelector(".menu-btn");
+                let menu = document.querySelector(".menu");
+                menuBtn.classList.toggle("active");
+                menu.classList.toggle("active");
+                document.body.classList.toggle("noscroll");
+            }
+        }
+    }
 </script>

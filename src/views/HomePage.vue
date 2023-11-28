@@ -178,7 +178,7 @@
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import {Swiper, SwiperSlide} from 'swiper/vue';
-import {Navigation} from 'swiper/modules';
+import {Navigation, Pagination} from 'swiper/modules';
 
 export default {
   name: 'HomePage',
