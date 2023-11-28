@@ -1,28 +1,43 @@
 <template>
-       <swiper :modules="modules" navigation :slides-per-view="4" class="swiper authors-slider" @swiper="onSwiper" @slideChange="onSlideChange">
+       <swiper 
+       :space-between="20" 
+       :modules="modules" 
+       navigation 
+       :slides-per-view="4" class="authors-slider" 
+       @swiper="onSwiper" 
+       @slideChange="onSlideChange"
+       :breakpoints="{
+            320:{ slidesPerView:1 },
+            768:{ slidesPerView:2 },
+            993:{ slidesPerView:2.5 },
+            1025:{ slidesPerView:4 },
+        }"
+        >
     
         <swiper-slide class="author" v-for="author in authors" :key="author.id" :authors="authors">
-        <img class="author__img" :src="author.src" :alt="author.name">
-        <p class="author__name">{{ author.name }}</p>
-        <p class="author__info">{{ author.info }}</p>
+        <div class="author__content">
+          <img class="author__img" :src="author.url" :alt="author.name">
+          <p class="author__name">{{ author.name }}</p>
+          <p class="author__info">{{ author.info }}</p>
+        </div>
     </swiper-slide>
         </swiper>
 </template>
 
 <script>
-import AuthorSliderItem from './AuthorSliderItem.vue';
+
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import 'swiper/css';
     export default {
         props: ['authors'],
-        components: {AuthorSliderItem, Swiper, SwiperSlide},
+        components: {Swiper, SwiperSlide},
         setup() {
       const onSwiper = (swiper) => {
-        console.log(swiper);
+        // console.log(swiper);
       };
       const onSlideChange = () => {
-        console.log('slide change');
+        // console.log('slide change');
       };
       return {
         onSwiper,
@@ -30,5 +45,6 @@ import 'swiper/css';
         modules: [Navigation],
       };
     },
+
     }
 </script>
