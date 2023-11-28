@@ -23,6 +23,11 @@ h3 {
 :root {
   --body-color: #0A2B49;
   --border-radius: 26px;
+  --error: #eb3a45;
+  /* отступ */
+  --gap: 20px;
+  --violet: #5724A7;
+  --cyan: #CCE0FF;
 }
 
 @font-face {
@@ -69,11 +74,6 @@ body {
 
 /* global */
 
-:root {
-  --error: #eb3a45;
-  /* отступ */
-  --gap: 20px;
-}
 
 .list-reset {
   list-style-type: none;

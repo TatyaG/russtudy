@@ -17,6 +17,7 @@
                     <div class="banner__container">
                    
                     <div class="banner__content">
+                        <div>
                       <p class="banner__text">22 ярких урока</p>
                     <p class="banner__text banner__text--rotate">571 упражнение</p>  
                     <p class="banner__level">*А1 + А2</p>
@@ -27,7 +28,13 @@
                         </svg>
                     </button>
                     </div>
-                    <img src="img/books.webp" alt="">
+                    </div>
+                    <picture>
+                        <source srcset="img/books-1024.webp" media="(max-width:1024px)">
+                        <img src="img/books.webp" alt="Картинка учебников">
+                    </picture>
+                    
+                    
                     </div>
                 </div>               
             </section>
@@ -36,7 +43,7 @@
                 <div class="about__container">
                     <div class="about__left"></div>
                     <div class="about__right">
-                        <h2 class="section__title">Об учебнике</h2>
+                        <h2 class="section-title">Об учебнике</h2>
                         <h3 class="section__subtitle">
                         <p class="about__text">В основе сюжета — жизнь и общение преподавателя русского языка и группы студентов из разных стран мира.</p>
                         <p class="about__text">Они начинают общаться онлайн, а затем студенты приезжают в Россию, посещают города и интересные места, знакомятся с разными людьми и продолжают изучение русского языка в России.</p>
@@ -52,12 +59,422 @@
 
             <section class="authors">
                 <div class="container">
-                    <div class="authors__container">
-                        <h2 class="section__title">Авторы</h2>
+                    <div class="authors__container">                       
                         <div class="authors__content">
-                            <h3 class="authors__text">Авторы создали динамичный и занимательный учебник. Мы уверены, что герои наших уроков помогут преподавателям эффективно обучать иностранных студентов русскому языку и познакомят их с современной Россией и её особенностями.</h3>
-                            <AuthorsSlider :authors="authors"/>
+                            <h2 class="section-title">Авторы</h2>
+                            <h3 class="authors__text">Авторы создали динамичный и занимательный учебник. Мы уверены, что герои наших уроков помогут преподавателям эффективно обучать иностранных студентов русскому языку и познакомят их с современной Россией и её особенностями.</h3>                                                 
+                        </div>
+                        <AuthorsSlider :authors="authors"/>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cards">
+                <div class="container">
+                    <ul class="cards__num num list-reset">
+                        <li class="num__item">
+                            <p class="num__count">500&nbsp;+</p>
+                            <p class="num__text">Упражнений</p>
+                        </li>
+                        <li class="num__item">
+                            <p class="num__count">6&nbsp;000&nbsp;+</p>
+                            <p class="num__text">Проданных учебников</p>
+                        </li>
+                        <li class="num__item">
+                            <p class="num__count">5&nbsp;000&nbsp;+</p>
+                            <p class="num__text">Педагогов уже занимаются</p>
+                        </li>
+                        <li class="num__item">
+                            <p class="num__count">67&nbsp;+</p>
+                            <p class="num__text">Стран пользователей</p>
+                        </li>
+                        <li class="num__item">
+                            <p class="num__count">220&nbsp;+</p>
+                            <p class="num__text">Академических часов</p>
+                        </li>
+                    </ul>
+
+                    <div class="advantages__block">
+                    <ul class="cards__advantages advantages list-reset">
+                        <li class="advantages__item">
+                            <p class="advantages__title">Увлекательность</p>
+                            <p class="advantages__text">оригинальные иллюстрации и захватывающий сюжет в каждом уроке</p>
+                        </li>
+                        <li class="advantages__item">
+                            <p class="advantages__title">Удобство</p>
+                            <p class="advantages__text">интерактивный онлайн и физический учебник</p>
+                        </li>
+                        <li class="advantages__item">
+                            <p class="advantages__title">Актуальность</p>
+                            <p class="advantages__text">интересные факты и глубокое понимание современной России</p>
+                        </li>
+                        <li class="advantages__item">
+                            <p class="advantages__title">Уникальность</p>
+                            <p class="advantages__text">интерактивный учебник с захватывающим сюжетом и неповторимыми героями</p>
+                        </li>
+                        <li class="advantages__item">
+                            <p class="advantages__title">Результат</p>
+                            <p class="advantages__text">интерактивные задания и тестирование на каждом этапе обучения</p>
+                        </li>
+                        <li class="advantages__item">
+                            <p class="advantages__title">Практичность</p>
+                            <p class="advantages__text">оптимизирует процесс обучения и экономит ваше время</p>
+                        </li>
+                        <li class="advantages__item">
+                            <p class="advantages__title">Методика</p>
+                            <p class="advantages__text">объединены функциональная, интерактивная и коммуникативная методики РКИ</p>
+                        </li>
+                    </ul>
+                    <ul class="cards__advantages advantages list-reset">
+                        <li class="advantages__item">
+                            <p class="advantages__title">Увлекательность</p>
+                            <p class="advantages__text">оригинальные иллюстрации и захватывающий сюжет в каждом уроке</p>
+                        </li>
+                        <li class="advantages__item">
+                            <p class="advantages__title">Удобство</p>
+                            <p class="advantages__text">интерактивный онлайн и физический учебник</p>
+                        </li>
+                        <li class="advantages__item">
+                            <p class="advantages__title">Актуальность</p>
+                            <p class="advantages__text">интересные факты и глубокое понимание современной России</p>
+                        </li>
+                        <li class="advantages__item">
+                            <p class="advantages__title">Уникальность</p>
+                            <p class="advantages__text">интерактивный учебник с захватывающим сюжетом и неповторимыми героями</p>
+                        </li>
+                        <li class="advantages__item">
+                            <p class="advantages__title">Результат</p>
+                            <p class="advantages__text">интерактивные задания и тестирование на каждом этапе обучения</p>
+                        </li>
+                        <li class="advantages__item">
+                            <p class="advantages__title">Практичность</p>
+                            <p class="advantages__text">оптимизирует процесс обучения и экономит ваше время</p>
+                        </li>
+                        <li class="advantages__item">
+                            <p class="advantages__title">Методика</p>
+                            <p class="advantages__text">объединены функциональная, интерактивная и коммуникативная методики РКИ</p>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="game">
+                <div class="container">
+                    <h2 class="section-title game__title">Примеры заданий</h2>
+                    <div class="game__container">
+                        <div class="game__block game__left">
+                            <div class="game__question">
+                                <picture>
+                                    <source srcset="img/game-1-1024.webp" media="(max-width:1600px)">
+                                    <img src="img/game-1.webp" class=""> 
+                                </picture>
+                                
+                                <div class="block_message">
+                                    <p class="question-text">- Здра́́вствуйте! [здра́ствуйт'и]<br>
+                                        Меня́ зову́т Ни́на Ива́новна.&nbsp;<br>
+                                        Я преподава́тель. <br>А кто́ вы́? Ка́к ва́с зову́т?</p> 
+                                        <div class="game__audio">
+                                        <audio controls="controls">
+                                            <source src="audio/1.mp3" type="audio/mpeg"> Тег audio не поддерживается вашим браузером. 
+                                            <a href="audio/1.mp3">Скачайте музыку</a>.
+                                        </audio>
+                                        </div>
+                                    </div>
+                                    
+                            </div>
+                            <div class="game__question game__question--violet">
+                                <picture>
+                                    <source srcset="img/game-2-1024.webp" media="(max-width:1600px)">
+                                    <img src="img/game-2.webp" class=""> 
+                                </picture>
+                            <div class="block_message">
+                                <p class="question-text">- Меня́ зову́т Кла́ус.</p>
+                            </div>
+                            </div>
+                            <div class="game__question">
+                                <picture>
+                                    <source srcset="img/game-1-1024.webp" media="(max-width:1600px)">
+                                    <img src="img/game-1.webp" class=""> 
+                                </picture>
+                                <div class="block_message">
+                                    <p class="question-text">- О́чень прия́тно.</p>
+                                <div class="game__audio">
+                                <audio controls="">
+                                    <source src="audio/2.mp3" type="audio/mpeg"> Тег audio не поддерживается вашим браузером. 
+                                    <a href="audio/2.mp3">Скачайте музыку</a>.
+                                </audio>   
+                                </div>                       
+                            </div>
+                            </div>
+                            <div class="game__question game__question--violet">
+                                <picture>
+                                    <source srcset="img/game-2-1024.webp" media="(max-width:1600px)">
+                                    <img src="img/game-2.webp" class=""> 
+                                </picture>
+                                <div class="block_message">
+                                    <p class="question-text">- О́чень прия́тно.</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="game__block game__top">
                          
+                        <div class="game__question">
+                            <div class="top-audio">
+                              <span class="game__number">1</span>
+                            <p class="question__title">Слушайте и отмечайте то, что слышите</p>  
+                            </div>
+                            
+                            <div class="game__audio">
+                            <audio controls="">
+                                <source src="audio/3.mp3" type="audio/mpeg"> Тег audio не поддерживается вашим браузером.
+                                <a href="audio/3.mp3">Скачайте музыку.</a>
+                            </audio>
+                            </div>
+                        </div>
+                        <div class="game__question">
+                            <div class="game__box">
+                                <p class="input-block">
+                                    <label class="game__label">                                        
+                                        <input type="checkbox" name="name1" class="failed game__input visually-hidden">
+                                        <span class="game__checkbox"></span>
+                                    </label>
+                                    
+                                    <label class="question-text">ты-ти</label>
+                                    <label class="game__label">
+                                        <input type="checkbox" name="name2" class="success game__input visually-hidden">
+                                        <span class="game__checkbox"></span>
+                                    </label>
+                                    
+                                </p>
+                                <p class="input-block">
+                                    <label class="game__label">
+                                      <input type="checkbox" name="name3" class="failed game__input visually-hidden">
+                                      <span class="game__checkbox"></span>  
+                                    </label>
+                                    
+                                    <label class="question-text">ди-зи</label>
+                                    <label class="game__label">
+                                       <input type="checkbox" name="name4" class="success game__input visually-hidden">
+                                       <span class="game__checkbox"></span> 
+                                    </label>
+                                    
+                                </p>
+                            </div>
+                            <div class="game__box">
+                                <p class="input-block">
+                                    <label class="game__label">
+                                       <input type="checkbox" name="name7" class="success game__input visually-hidden">
+                                       <span class="game__checkbox"></span> 
+                                    </label>
+                                    
+                                    <label class="question-text">вы-ви</label>
+                                    <label class="game__label">
+                                       <input type="checkbox" name="name8" class="failed game__input visually-hidden">
+                                       <span class="game__checkbox"></span> 
+                                    </label>
+                                    
+                                </p>
+                                <p class="input-block">
+                                    <label class="game__label">
+                                        <input type="checkbox" name="name9" class="success game__input visually-hidden">
+                                        <span class="game__checkbox"></span>
+                                    </label>
+                                    
+                                    <label class="question-text" >ну-ню</label>
+                                    <label class="game__label">
+                                        <input type="checkbox" name="name10" class="failed game__input visually-hidden">
+                                        <span class="game__checkbox"></span>
+                                    </label>
+                                    
+                                </p>
+                            </div>
+                            <div class="game__box">
+                                <p class="input-block">
+                                    <label class="game__label">
+                                       <input type="checkbox" name="name11" class="failed game__input visually-hidden">
+                                       <span class="game__checkbox"></span> 
+                                    </label>
+                                    
+                                    <label class="question-text">ма-мя</label>
+                                    <label class="game__label">
+                                      <input type="checkbox" name="name12" class="success game__input visually-hidden">
+                                      <span class="game__checkbox"></span>  
+                                    </label>
+                                    
+                                </p>
+                                <p class="input-block">
+                                    <label class="game__label">
+                                      <input type="checkbox" name="name15" class="failed game__input visually-hidden">
+                                      <span class="game__checkbox"></span>  
+                                    </label>
+                                    
+                                    <label class="question-text">лэ-ле</label>
+                                    <label class="game__label">
+                                       <input type="checkbox" name="name16" class="success game__input visually-hidden">
+                                       <span class="game__checkbox"></span> 
+                                    </label>
+                                    
+                                </p>
+                            </div>
+                            <div class="game__box">
+                                <p class="input-block">
+                                    <label class="game__label">
+                                       <input type="checkbox" name="name19" class="failed game__input visually-hidden">
+                                       <span class="game__checkbox"></span> 
+                                    </label>
+                                    
+                                    <label class="question-text">мам-мяч</label>
+                                    <label class="game__label">
+                                       <input type="checkbox" name="name20" class="success game__input visually-hidden">
+                                       <span class="game__checkbox"></span> 
+                                    </label>
+                                    
+                                </p>
+                                <p class="input-block">
+                                    <label class="game__label">
+                                        <input type="checkbox" name="name21" class="success game__input visually-hidden">
+                                        <span class="game__checkbox"></span>
+                                    </label>
+                                    
+                                    <label class="question-text">мост-место</label>
+                                    <label class="game__label">
+                                      <input type="checkbox" name="name22" class="failed game__input visually-hidden">
+                                      <span class="game__checkbox"></span>  
+                                    </label>
+                                    
+                                </p>
+                            </div>
+                        </div>
+                 
+                        </div>
+                        <div class="game__block game__middle">
+                            <div class="block_question block_question3">
+                        <div class="game__question">
+                            <span class="game__number">3</span>
+                            <p class="question__title">Посмотрите на рисунки. Вы видите лису с сыром или ворону с сыром? Лягушку или лошадь?</p>
+                        </div>
+                        <div class="game__images images flex">
+                            <picture>
+                                <source srcset="img/game-3-1024.webp" media="(max-width:1024px)">
+                                <img alt="Картинка лошади" class="images-1" src="img/game-3.webp">
+                            </picture>
+                            <picture>
+                                <source srcset="img/game-4-1024.webp" media="(max-width:1024px)">
+                                <img alt="Картинка вороны с сыром" class="images-2" src="img/game-4.webp">
+                            </picture>
+                            
+                        </div>
+                    </div>
+                        </div>
+                        <div class="game__block game__bottom">
+                            <div class="">
+                        <div class="game__question">
+                            <span class="game__number">2</span>
+                            <p class="question__title">Составьте слова из этих букв и напишите их.</p>
+                        </div>
+                 
+                            <div class="">
+                                <div class="flex question">
+                                    <div class="question__block flex">
+                                        <img alt="" pastename="img1" src="img/game-5.webp" class="question__img">
+                                        <div class="game__words">
+                                            <p class="">
+                                                В
+                                                <input class="imageText" id="img1" maxlength="2" type="text">
+                                                А
+                                            </p>
+                                            <div class="game__audio">
+                                            <audio controls="">
+                                                <source src="audio/4.mpga" type="audio/mpeg"> 
+                                                Тег audio не поддерживается вашим браузером.
+                                                <a href="audio/4.mpga">Скачайте музыку.</a>
+                                            </audio>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="question__block flex">
+                                        <img alt="" pastename="img2" src="img/game-7.webp" class="question__img">
+                                        <div class="game__words">
+                                            <p class="">
+                                                В
+                                                <input class="imageText" id="img2" maxlength="2" type="text">
+                                                А
+                                            </p>
+                                            <div class="game__audio">
+                                            <audio controls="">
+                                                <source src="audio/5.mpga" type="audio/mpeg">
+                                                 Тег audio не поддерживается вашим браузером.
+                                                 <a href="audio/5.mpga">Скачайте музыку.</a>
+                                                </audio>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                       
+                                <div class="flex question">
+                                    <div class="question__block flex">
+                                        <img alt="" pastename="img4" src="img/game-6.webp" class="question__img">
+                                        <div class="game__words">
+                                            <p class="">
+                                                З
+                                                <input class="imageText" id="img4" maxlength="2" type="text">
+                                                Т
+                                            </p>
+                                            <div class="game__audio">
+                                            <audio controls="">
+                                                <source src="audio/6.mpga" type="audio/mpeg">
+                                                 Тег audio не поддерживается вашим браузером.
+                                                 <a href="audio/6.mpga">Скачайте музыку.</a>
+                                                </audio>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="question__block flex">
+                                        <img alt="" pastename="img5" src="img/game-8.webp" class="question__img">
+                                        <div class="game__words">
+                                            <p class="">
+                                                М
+                                                <input class="imageText" id="img5" maxlength="3" type="text">
+                                                З</p>
+                                            <div class="game__audio">
+                                            <audio controls="">
+                                                <source src="audio/7.mpga" type="audio/mpeg">
+                                                 Тег audio не поддерживается вашим браузером.
+                                                 <a href="audio/7.mpga">Скачайте музыку.</a>
+                                                </audio>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                     
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="reviews">
+                <div class="container">
+                    <h2 class="section-title game__title">Отзывы учителей</h2>
+
+                    <ReviewsSlider :reviews="reviews"></ReviewsSlider>
+                </div>
+            </section>
+
+
+            <section class="faq">
+                <div class="container">
+                    <div class="faq__container">
+                        <div class="faq__left">
+                            <img src="img/faq.webp" alt="">
+                        </div>
+                        <div class="faq__right">
+                            <FAQList></FAQList>
                         </div>
                     </div>
                 </div>
@@ -68,16 +485,19 @@
 </template>
 
 <script>
+
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import BookList from '@/components/BookList.vue';
 import AuthorsSlider from '@/components/AuthorsSlider.vue';
+import ReviewsSlider from '@/components/ReviewsSlider.vue';
+import FAQList from '@/components/FAQList.vue';
 import router from '@/router';
 
 
     export default {
         name: 'BookPage',
-        components: { Header, Footer, BookList, AuthorsSlider, router },
+        components: { Header, Footer, BookList, AuthorsSlider, ReviewsSlider, FAQList, router },
         data() {
             return {
                 books: [
@@ -101,34 +521,141 @@ import router from '@/router';
                 name: 'Онлайн-учебник',
                 level: 'А2'
             },
-        ],
+                ],
 
                 authors: [
                     {
                         id: 1,
                         name: 'Нахабина Майя Михайловна',
-                        info: 'Кандидат педагогических наук, доцент кафедры РЯиК, заслуженный преподаватель МГУ им. М.В. Ломоносова, ведущий теоретик учебника РКИ, создатель российской государственной системы тестирования РКИ'
+                        info: 'Кандидат педагогических наук, доцент кафедры РЯиК, заслуженный преподаватель МГУ им. М.В. Ломоносова, ведущий теоретик учебника РКИ, создатель российской государственной системы тестирования РКИ',
+                        url: 'img/author-1.webp'
                     },
                     {
                         id: 2,
                         name: 'Степаненко Вера Александровна',
                         info: 'Доктор педагогических наук, профессор Центр международного образования, Московский государственный областной университет',
+                        url: 'img/author-2.webp'
                     },
                     {
                         id: 3,
                         name: 'Кольовска Елена Георгиевна',
                         info: 'Кандидат педагогических наук, доцент Центр международного образования, Московский государственный областной университет',
+                        url: 'img/author-3.webp'
                     },
                     {
                         id: 4,
                         name: 'Плотникова Ольга Витальевна',
                         info: 'Магистр лингвистики, преподаватель в Дублинском университете, создатель портала «RKI.Today»',
+                        url: 'img/author-4.webp'
                     },
-                ]
+                    {
+                        id: 5,
+                        name: 'Плотникова Ольга Витальевна',
+                        info: 'Магистр лингвистики, преподаватель в Дублинском университете, создатель портала «RKI.Today»',
+                        url: 'img/author-4.webp'
+                    },
+                    {
+                        id: 6,
+                        name: 'Плотникова Ольга Витальевна',
+                        info: 'Магистр лингвистики, преподаватель в Дублинском университете, создатель портала «RKI.Today»',
+                        url: 'img/author-4.webp'
+                    },
+                ],
+
+                reviews: [
+                    {
+                        id: 1,
+                        name: 'Канарский Кирилл',
+                        review: '',
+                        info: 'Польша, Директор языковой школы XYZ',
+                        image: 'img/review-1.webp',
+                        tablet: 'img/review-1-1024.webp',
+                        video: '',                 
+                    }, 
+                    {
+                        id: 2,
+                        name: 'Карпенко Марина',
+                        review: '',
+                        info: 'Италия, Преподаватель РКИ',
+                        image: 'img/review-2.webp',
+                        tablet: 'img/review-2-1024.webp',
+                        video: '',                 
+                    }, 
+                    {
+                        id: 3,
+                        name: 'Кроер Юлиана',
+                        review: '',
+                        info: 'Австрия, Преподаватель РКИ',
+                        image: 'img/review-3.webp',
+                        tablet: 'img/review-3-1024.webp',
+                        video: '',                 
+                    }, 
+                    {
+                        id: 4,
+                        name: 'Милова Светлана ',
+                        review: '',
+                        info: 'Турция, Преподаватель курсов РКИ',
+                        image: 'img/review-4.webp',
+                        tablet: 'img/review-4-1024.webp',
+                        video: '',                 
+                    }, 
+                    {
+                        id: 5,
+                        name: 'Милова Светлана ',
+                        review: '',
+                        info: 'Турция, Преподаватель курсов РКИ',
+                        image: 'img/review-4.webp',
+                        tablet: 'img/review-4-1024.webp',
+                        video: '',                 
+                    }, 
+                    {
+                        id: 6,
+                        name: 'Милова Светлана ',
+                        review: '',
+                        info: 'Турция, Преподаватель курсов РКИ',
+                        image: 'img/review-4.webp',
+                        tablet: 'img/review-4-1024.webp',
+                        video: '',                 
+                    }, 
+                ],
+
+              
             }
         },
        
         
     }
 </script>
+
+<style>
+    body {
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 120%;
+    }
+
+    h3 {
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    @media (max-width: 1400px) {
+        body {
+        font-size: 16px;
+    }
+
+        .title {
+            margin-bottom: 40px;
+        }
+
+        h3 {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+    }
+    }
+
+</style>
 
