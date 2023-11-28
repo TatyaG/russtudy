@@ -65,34 +65,51 @@
 
           <!-- Слайдер -->
 
-          <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <picture>
-                  <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
-                  <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
-                  <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
-                </picture>
-              </div>
-              <div class="swiper-slide">
-                <picture>
-                  <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
-                  <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
-                  <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
-                </picture>
-              </div>
-              <div class="swiper-slide">
-                <picture>
-                  <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
-                  <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
-                  <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
-                </picture>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+                    <Swiper navigation :pagination="{ clickable: true }" @swiper="onSwiper" @slideChange="onSlideChange" :modules="modules">
+                        <swiper-slide>
+                            <picture>
+                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
+                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
+                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
+                                </picture>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <picture>
+                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
+                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
+                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
+                                </picture>
+                        </swiper-slide>
+                    </Swiper>
+
+                    <!-- <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <picture>
+                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
+                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
+                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
+                                </picture>
+                            </div>
+                            <div class="swiper-slide">
+                                <picture>
+                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
+                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
+                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
+                                </picture>
+                            </div>
+                            <div class="swiper-slide">
+                                <picture>
+                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
+                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
+                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
+                                </picture>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div> -->
 
           <!-- ------- -->
 
@@ -124,35 +141,36 @@
         </div>
       </section>
 
-      <section class="container partners flex">
-        <ul class="partners__list list-reset flex">
-          <li class="partners__item">
-            <a class="partners__link flex" href="http:obr.so/" target="_blank"><img src="img/обрсоюз.png"
-                                                                                    alt="обрсоюз"></a>
-          </li>
-          <li class="partners__item">
-            <a class="partners__link flex" href="http:amities-russes.jimdofree.com/" target="_blank"><img
-                src="img/partner.png" alt="Amities Russes"></a>
-          </li>
-          <li class="partners__item">
-            <a class="partners__link flex" href="#"> <img src="img/partner_szkola.png" alt="Szkola"></a>
-          </li>
-          <li class="partners__item">
-            <a class="partners__link flex" href="http:www.rki.today/?m=1" target="_blank"><img
-                src="img/РКИ today.png" alt="РКИ"></a>
-          </li>
-          <li class="partners__item">
-            <a class="partners__link flex" href="http:www.arbat.gr/" target="_blank"> <img src="img/арбат.png"
-                                                                                           alt="Арбат"></a>
-          </li>
-          <li class="partners__item">
-            <a class="partners__link flex" href="http:totaldict.ru/" target="_blank"><img src="img/диктант.png"
-                                                                                          alt="Тотальный диктант"></a>
-          </li>
-        </ul>
-      </section>
-    </main>
-  </div>
+            <section class="container partners flex">
+                <ul class="partners__list list-reset flex">
+                    <li class="partners__item">
+                        <a class="partners__link flex" href="http:obr.so/" target="_blank"><img src="img/обрсоюз.png"
+                                alt="обрсоюз"></a>
+                    </li>
+                    <li class="partners__item">
+                        <a class="partners__link flex" href="http:amities-russes.jimdofree.com/" target="_blank"><img
+                                src="img/partner.png" alt="Amities Russes"></a>
+                    </li>
+                    <li class="partners__item">
+                        <a class="partners__link flex" href="#"> <img src="img/partner_szkola.png" alt="Szkola"></a>
+                    </li>
+                    <li class="partners__item">
+                        <a class="partners__link flex" href="http:www.rki.today/?m=1" target="_blank"><img
+                                src="img/РКИ today.png" alt="РКИ"></a>
+                    </li>
+                    <li class="partners__item">
+                        <a class="partners__link flex" href="http:www.arbat.gr/" target="_blank"> <img src="img/арбат.png"
+                                alt="Арбат"></a>
+                    </li>
+                    <li class="partners__item">
+                        <a class="partners__link flex" href="http:totaldict.ru/" target="_blank"><img src="img/диктант.png"
+                                alt="Тотальный диктант"></a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+        <Footer></Footer>
+    </div>
 </template>
 
 <script>
@@ -167,18 +185,18 @@ export default {
   components: {Header, Footer, Swiper, SwiperSlide},
 
   setup() {
-    const onSwiper = (swiper) => {
-      console.log(swiper);
-    };
-    const onSlideChange = () => {
-      console.log('slide change');
-    };
-    return {
-      onSwiper,
-      onSlideChange,
-      modules: [Navigation],
-    };
-  },
+      const onSwiper = (swiper) => {
+        console.log(swiper);
+      };
+      const onSlideChange = () => {
+        console.log('slide change');
+      };
+      return {
+        onSwiper,
+        onSlideChange,
+        modules: [Navigation, Pagination],
+      };
+    },
 
 
 }
