@@ -1,3 +1,6 @@
+picture {
+    display: flex;
+}
 
 .visually-hidden {
     position: absolute !important;
@@ -311,6 +314,11 @@
     font-family: Perun;
     font-size: 32px;
     font-weight: 700;
+    text-align: left;
+}
+
+.author__info {
+    text-align: left;
 }
 
 .authors-slider .swiper-button-next,
@@ -525,6 +533,7 @@
 
 
 .game__audio {
+    display: flex;
     padding: 5px 20px;
     max-width: max-content;
     background-color: white;
@@ -748,6 +757,10 @@ audio::-webkit-media-controls-panel {
     font-weight: 700;
 }
 
+.review__image {
+    width: 100%;
+}
+
 .review__info {
     position: absolute;
     top: 30px;
@@ -833,6 +846,10 @@ audio::-webkit-media-controls-panel {
     font-weight: 700;
     text-align: left;
 
+}
+
+.faq__question svg {
+    flex-shrink: 0;
 }
 
 .faq__answer {
@@ -1015,6 +1032,11 @@ audio::-webkit-media-controls-panel {
         gap: 16px;
     }
 
+    .modal__window {
+        max-width: 100%;
+        left: 0;
+    }
+
 }
 
 @media (max-width: 1024px) {
@@ -1105,10 +1127,12 @@ audio::-webkit-media-controls-panel {
 @media (max-width: 992px) {
     .swiper.reviews-slider {
         overflow: hidden !important;
+        text-align: center;
     }
 
     .swiper.authors-slider {
         overflow: hidden !important;
+        text-align: center;
     }
 
     .cards__num {
@@ -1131,5 +1155,131 @@ audio::-webkit-media-controls-panel {
 
     .game__block:not(:last-child) {
         margin-bottom: 20px;
+    }
+
+    .back {
+        margin-bottom: 20px;
+    }
+
+    .banner__container {
+        display: block;
+        text-align: center;
+    }
+
+    .banner__content {
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .banner__content div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .banner__btn {
+        display: none;
+    }
+
+    .banner__btn--phone {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .banner__container img {
+        margin-bottom: 20px;
+    }
+
+    .about__left {
+        display: none;
+    }
+
+    .about__right {
+        grid-column: 2 span;
+    }
+
+    .about__list {
+        grid-template-columns: 1fr;
+    }
+
+    .num__count {
+        font-size: 28px;
+    }
+
+    .advantages__item {
+        padding: 20px;
+        max-width: 235px;
+    }
+
+    .game__audio {
+        padding: 0 8px;
+        border-radius: 16px;
+    }
+
+    audio {
+        max-width: 194px;
+    }
+
+    .author__img {
+        height: 400px;
+        object-fit: cover;
+    }
+
+    .authors-slider .swiper-button-next, .authors-slider .swiper-button-prev {
+        top: 35%;
+    }
+
+    .cards__num {
+        margin-bottom: 20px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .game__block.game__bottom {
+        padding: 20px;
+    }
+
+    .book__title,
+    .book__level {
+        font-size: 16px;
+    }
+
+    .modal {
+        padding: 20px;
+    }
+
+    .modal__close svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .modal {
+        background: linear-gradient(288deg, rgba(83, 213, 225, 0.20) 0%, rgba(5, 107, 240, 0.20) 100%), #FFF;
+    }
+
+    .modal-slider .review__card {
+        flex-direction: column;
+        background: transparent;
+    }
+
+    .modal__window {
+        transform: translateY(8%);
+    }
+
+    #review.modal {
+        overflow: scroll;
+    }
+
+    .modal-slider .swiper-slide {
+        padding: 0;
+    }
+}
+
+@media (max-width:700px) {
+    .advantages__block {
+        margin-right: -20px;
     }
 }
