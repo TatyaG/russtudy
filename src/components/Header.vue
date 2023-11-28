@@ -2,12 +2,12 @@
        
        <header class="header">
         <div class="flex header__container container">
-            <a href="#" class="logo flex">
+            <router-link :to="{name: 'home'}" href="#" class="logo flex">
                 <picture>
                     <source srcset="img/logo_tablet.svg" media="(max-width: 1024px)">
                     <img class="logo__img" src="img/logo.svg" alt="Logo">
                 </picture>
-            </a>
+            </router-link>
 
             <div class="menu">
                 <a href="#" class="logo_burger logo flex">
@@ -80,7 +80,7 @@
                 let menu = document.querySelector(".menu");
                 menuBtn.classList.toggle("active");
                 menu.classList.toggle("active");
-                document.body.classList.toggle("noscroll");
+                // document.body.classList.toggle("noscroll");
             }
         }
     }
