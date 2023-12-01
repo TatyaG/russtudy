@@ -1,7 +1,7 @@
 <template>
     <li class="about__item">
         <a href="" class="about__link book">
-            <img src="img/book-1.webp" alt="">
+            <img :src="book.image" :alt="book.name">
             <div class="about__content">
             <p class="book__title">{{ book.name }}</p>
             <p class="book__level">уровень <span>{{ book.level }}</span></p>
@@ -14,8 +14,44 @@
     </li>
 </template>
 
-<script>
-    export default {
-        props: ['book'],
-    }
+<script setup>
+import { onMounted } from "vue";
+import gsap from 'gsap';
+const props = defineProps({
+    book: Object,
+});
+
+
+onMounted(() => {
+    const items = document.querySelectorAll('.about__item');
+var tl = gsap.timeline({ repeat: -1, defaults: { duration: 0.3, yoyo: -1, repeat: 1, ease: 'sine' } });
+
+
+items.forEach(item => {
+    tl.from(item, { 
+        y: '0',
+    }) 
+    tl.to(item, { 
+        y: '-3',
+        boxShadow: '0px 13px 12px 0px rgba(87, 36, 167, 0.50)',
+        
+    }) 
+
+
+    
+
+})
+
+
+
+})
+
+
+
+
+
+
+
+
+ 
 </script>
