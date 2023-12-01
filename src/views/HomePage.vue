@@ -13,7 +13,7 @@
             <div class="card-content">
               <h2 class="card-title">Привет, Россия!</h2>
               <p class="card-text">Обучение русскому языку как&nbsp;иностранному</p>
-              <p class="card-info">печатные и онлайн учебники</p>
+              <p class="card-info">печатные и онлайн-учебники</p>
 
               <picture>
                 <source srcset="img/books_tablet.png" media="(max-width: 1415px)">
@@ -148,7 +148,6 @@ import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import {Navigation, Pagination} from 'swiper/modules';
-
 
 export default {
   name: 'HomePage',
