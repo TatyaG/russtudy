@@ -1,13 +1,18 @@
 <template>
     <ul class="about__list list-reset">
-        <BookItem v-for="book in books" :key="book.id" :book="book"></BookItem>
+        <component :is="BookItem" v-for="book in books" :key="book.id" :book="book"></component>
     </ul>
 </template>
 
-<script>
+<script setup>
+
+
 import BookItem from './BookItem.vue';
-    export default {
-        props: ['books'],
-        components: {BookItem}
-    }
+
+const props = defineProps({
+    books: Array,
+});
+
+
 </script>
+

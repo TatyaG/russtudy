@@ -22,7 +22,7 @@
 
             </div>
 
-            <button class="promo__btn btn btn-reset">Подробнее</button>
+            <router-link :to="{name: 'book'}" class="promo__btn btn btn-reset">Подробнее</router-link>
           </div>
 
           <div onclick="window.open('#','_newtab');" class="promo-bottom">
@@ -65,7 +65,7 @@
 
           <!-- Слайдер -->
 
-                    <Swiper navigation :pagination="{ clickable: true }" @swiper="onSwiper" @slideChange="onSlideChange" :modules="modules">
+                    <Swiper navigation :pagination="{ clickable: true }" :modules="modules">
                         <swiper-slide>
                             <picture>
                                     <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
@@ -81,37 +81,6 @@
                                 </picture>
                         </swiper-slide>
                     </Swiper>
-
-                    <!-- <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <picture>
-                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
-                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
-                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
-                                </picture>
-                            </div>
-                            <div class="swiper-slide">
-                                <picture>
-                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
-                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
-                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
-                                </picture>
-                            </div>
-                            <div class="swiper-slide">
-                                <picture>
-                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
-                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
-                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
-                                </picture>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div> -->
-
-          <!-- ------- -->
 
           <a class="card-link flex" href="#">
             Все новости
@@ -184,16 +153,11 @@ export default {
   name: 'HomePage',
   components: {Header, Footer, Swiper, SwiperSlide},
 
+  
+
   setup() {
-      const onSwiper = (swiper) => {
-        console.log(swiper);
-      };
-      const onSlideChange = () => {
-        console.log('slide change');
-      };
+
       return {
-        onSwiper,
-        onSlideChange,
         modules: [Navigation, Pagination],
       };
     },
