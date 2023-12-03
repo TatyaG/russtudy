@@ -479,7 +479,8 @@ body {
   z-index: 3;
 }
 
-.promo-right::before {
+
+.promo-right .swiper-slide::before {
   content: "";
   z-index: 2;
   width: 100%;
