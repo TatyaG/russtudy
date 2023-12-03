@@ -21,9 +21,9 @@
                 <span><a class="footer_text-link" href="mailto:mail@concord.education">mail@concord.education</a></span>
             </p>
             <ul class="list-reset footer__personal">
-                <li class="personal_item"><a class="footer_link link_personal" href="../../public/docs/Согласие_на_обработку_ПДн_на_сайте_учебник.docx" target="blank" download="">Пользовательское соглашение</a>
+                <li class="personal_item"><a class="footer_link link_personal" href="../../public/docs/Согласие_на_обработку_ПДн_на_сайте_учебник.pdf" target="blank" download="">Пользовательское соглашение</a>
                 </li>
-                <li class="personal_item"><a class="footer_link link_personal" href="../../public/docs/политика_обработки_ПДн_на_сайте_учебник.docx" target="blank" download="">Политика о персональных
+                <li class="personal_item"><a class="footer_link link_personal" href="../../public/docs/политика_обработки_ПДн_на_сайте_учебник.pdf" target="blank" download="">Политика о персональных
                         данных</a></li>
             </ul>
         </div>
