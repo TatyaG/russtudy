@@ -486,7 +486,7 @@
             </section>
 
 
-            <section class="faq">
+            <section class="faq hide-on-scroll">
                 <div class="container">
                     <div class="faq__container">
                         <div class="faq__left">
@@ -533,38 +533,60 @@ import ReviewsSlider from '@/components/ReviewsSlider.vue';
 import FAQList from '@/components/FAQList.vue';
 import router from '@/router';
 
+window.addEventListener('scroll', () => {
+    const element = document.querySelector('.hide-on-scroll');
+    const position = element.getBoundingClientRect();
+    const fixed = document.querySelector('.fixed');
 
+    if (position.bottom < window.innerHeight) {
+        fixed.style.opacity = '0'
+    } else  fixed.style.opacity = '1'
+})
 
     export default {
         name: 'BookPage',
         components: { Header, Footer, BookList, AuthorsSlider, ReviewsSlider, FAQList, router, Order },
+
+        
   
         data() {
             return {
                 books: [
             {
                 id: 1,
-                name: 'Бумажный учебник',
+                name: 'Привет, Россия!',
+                type: 'Бумажный учебник',
                 level: 'А1',
                 image: 'img/book-1.webp',
+                isOnline: false,
+                price: 1500,
             },
             {
                 id: 2,
-                name: 'Онлайн-учебник',
+                name: 'Привет, Россия!',
+                type: 'Онлайн-учебник',
                 level: 'А1',
                 image: 'img/book-1.webp',
+                isOnline: true,
+                price: 900,
             },
             {
                 id: 3,
-                name: 'Бумажный учебник',
+                name: 'Привет, Россия!',
+                type: 'Бумажный учебник',
                 level: 'А2',
                 image: 'img/book-2.webp',
+                isOnline: false,
+                price: 1500,
             },
             {
                 id: 4,
-                name: 'Онлайн-учебник',
+                name: 'Привет, Россия!',
+                type: 'Онлайн-учебник',
                 level: 'А2',
                 image: 'img/book-2.webp',
+                isOnline: true,
+                price: 900,
             },
                 ],
 
@@ -679,11 +701,10 @@ import router from '@/router';
                 this.showOrder = false;
                 document.body.style.overflow = 'auto'
             }
-        }
-       
-        
+        }        
     }
 </script>
+
 
 <style>
     body {

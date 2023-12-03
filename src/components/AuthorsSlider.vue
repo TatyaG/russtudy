@@ -8,8 +8,7 @@
        @slideChange="onSlideChange"
        :breakpoints="{
             320:{ slidesPerView:1 },
-            768:{ slidesPerView:2 },
-            993:{ slidesPerView:2.5 },
+            769:{ slidesPerView:2.5 },
             1025:{ slidesPerView:4 },
         }"
         >

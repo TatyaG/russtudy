@@ -5,12 +5,9 @@
         :slides-per-view="4"
         :space-between="20"
         navigation
-        @swiper="onSwiper"
-        @slideChange="onSlideChange"
         :breakpoints="{
             320:{ slidesPerView:1 },
-            768:{ slidesPerView:2 },
-            993:{ slidesPerView:2.5 },
+            768:{ slidesPerView:2.5 },
             1025:{ slidesPerView:4 },
         }"
         >
@@ -43,18 +40,8 @@ import 'swiper/css';
         props: ['reviews'],
         components: {Swiper, SwiperSlide, ReviewsModal},
         setup() {
-            const onSwiper = (swiper) => {
-            // console.log(swiper.activeIndex);
-   
-            };
-        const onSlideChange = () => {
-        // console.log('slide change');
-      };
-
 
       return {
-        onSwiper,
-        onSlideChange,
         modules: [Navigation],
       };
     },
@@ -71,8 +58,6 @@ import 'swiper/css';
             this.currentActiveSlide = id;
             this.showModal = true;
             document.body.style.overflow = 'hidden';
-            console.log(this.currentActiveSlide)
-     
         },
 
         closeModal() {
