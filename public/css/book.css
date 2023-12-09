@@ -633,6 +633,7 @@ font-weight: 600;
     padding: 20px;
     background-color: white;
     border-radius: 20px;
+    z-index: 4;
 }
 
 .game__question--violet .block_message .question-text {
@@ -648,6 +649,8 @@ font-weight: 600;
     height: 32px;
     z-index: -1;
     background-image: url(../img/message.svg);
+    background-repeat: no-repeat;
+    background-position: bottom;
 }
 
 .game__question img {
@@ -731,7 +734,7 @@ font-weight: 600;
     border: none;
     border-bottom: 1px solid var(--body-color);
     outline: none;
-    width: 30px;
+    width: 47px;
 }
 
 .question__block:nth-child(4) .imageText {
@@ -1172,6 +1175,14 @@ audio::-moz-media-controls-panel {
     .modal__window {
         max-width: 100%;
         left: 0;
+    }
+
+    .block_message .question-text::before {
+        background-image: url(../img/message-1024.svg);
+    }
+
+    .game__question--violet .question-text::before {
+        background-image: url(../img/message-violet-1024.svg);
     }
 
 }
