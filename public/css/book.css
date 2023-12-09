@@ -192,7 +192,7 @@ font-weight: 600;
     line-height: 120%;
     color: white;
     background: linear-gradient(92deg, #056BF0 1.05%, #D547BA 100%);
-    border-radius: var(--border-radius);
+    border-radius: 16px;
 }
 
 .banner__btn svg {

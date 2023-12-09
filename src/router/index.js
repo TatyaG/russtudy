@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from '../views/HomePage.vue'
-import BookPage from '../views/BookPage.vue'
-import testPage from '../views/v-testPage.vue'
+import HomePage from '@/views/HomePage.vue'
+import BookPage from '@/views/BookPage.vue'
+import testPage from '@/views/v-testPage.vue'
 
 const routes = [
   {
@@ -10,14 +10,9 @@ const routes = [
     component: HomePage
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import( '../views/AboutView.vue')
-  },
-  {
     path: '/service',
     name: 'service',
-    component: () => import('../views/v-service.vue')
+    component: () => import('@/views/v-service.vue')
   },
   {
     path: '/testPage/:testId',
@@ -33,7 +28,8 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  // history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes
 })
 

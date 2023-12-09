@@ -57,9 +57,9 @@
                                 <div v-if="!book.isOnline" class="product__count count">
                                     <p class="count__text">Количество</p>
                                     <div class="count__block">
-                                        <button @click.prevent="decrementProduct()" class="btn-reset product__btn product__btn--decrement"></button>
+                                        <button @click.prevent="decrementProduct" class="btn-reset product__btn product__btn--decrement"></button>
                                         <input type="number" class="count__num" v-model.number="productAmount" :name="'count['+ book.id +']'">
-                                        <button @click.prevent="incrementProduct()" class="btn-reset product__btn product__btn--increment"></button>
+                                        <button @click.prevent="incrementProduct" class="btn-reset product__btn product__btn--increment"></button>
                                     </div>
                                 </div>
 
