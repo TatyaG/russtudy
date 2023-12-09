@@ -393,7 +393,7 @@
                                         <div class="game__words">
                                             <p class="">
                                                 В
-                                                <input class="imageText" id="img1" maxlength="2" type="text">
+                                                <input class="imageText" @input="isWater" v-model="valueWater" id="img1" maxlength="2" type="text">
                                                 А
                                             </p>
                                             <div class="game__audio">
@@ -413,7 +413,7 @@
                                         <div class="game__words">
                                             <p class="">
                                                 В
-                                                <input class="imageText" id="img2" maxlength="2" type="text">
+                                                <input @input="isVase" v-model="valueVase" class="imageText" id="img2" maxlength="2" type="text">
                                                 А
                                             </p>
                                             <div class="game__audio">
@@ -436,7 +436,7 @@
                                         <div class="game__words">
                                             <p class="">
                                                 З
-                                                <input class="imageText" id="img4" maxlength="2" type="text">
+                                                <input @input="isUmbrella" v-model="valueUmbrella" class="imageText" id="img4" maxlength="2" type="text">
                                                 Т
                                             </p>
                                             <div class="game__audio">
@@ -456,7 +456,7 @@
                                         <div class="game__words">
                                             <p class="">
                                                 М
-                                                <input class="imageText" id="img5" maxlength="3" type="text">
+                                                <input @input="isFrost" v-model="valueFrost" class="imageText" id="img5" maxlength="3" type="text">
                                                 З</p>
                                             <div class="game__audio">
                                             <audio controls="">
@@ -687,6 +687,11 @@ window.addEventListener('scroll', () => {
                 ],
                 
                 showOrder: false,
+                valueWater: '',
+                valueVase: '',
+                valueUmbrella: '',
+                valueFrost: ''
+
               
             }
         },
@@ -700,7 +705,56 @@ window.addEventListener('scroll', () => {
             closeOrder() {
                 this.showOrder = false;
                 document.body.style.overflow = 'auto'
-            }
+            },
+
+            isWater(e) {
+                if ((this.valueWater == 'од' || this.valueWater == 'ОД') && this.valueWater.length == 2) {
+                    e.target.style.color = 'green'
+                } else
+                if ((this.valueWater != 'од' || this.valueWater != 'ОД') && this.valueWater.length == 2) 
+                {
+                    e.target.style.color = 'red'
+                }
+                else if (this.valueWater.length < 2) e.target.style.color = 'inherit'
+                
+            },
+
+            isVase(e) {
+                if ((this.valueVase == 'аз' || this.valueVase == 'АЗ') && this.valueVase.length == 2) {
+                    e.target.style.color = 'green'
+                } else
+                if ((this.valueVase != 'аз' || this.valueVase != 'АЗ') && this.valueVase.length == 2) 
+                {
+                    e.target.style.color = 'red'
+                }
+                else if (this.valueVase.length < 2) e.target.style.color = 'inherit'
+                
+            },
+
+            isUmbrella(e) {
+                if ((this.valueUmbrella == 'он' || this.valueUmbrella == 'ОН') && this.valueUmbrella.length == 2) {
+                    e.target.style.color = 'green'
+                } else
+                if ((this.valueUmbrella != 'он' || this.valueUmbrella != 'ОН') && this.valueUmbrella.length == 2) 
+                {
+                    e.target.style.color = 'red'
+                }
+                else if (this.valueUmbrella.length < 2) e.target.style.color = 'inherit'
+                
+            },
+
+            isFrost(e) {
+                if ((this.valueFrost == 'оро' || this.valueFrost == 'ОРО') && this.valueFrost.length == 3) {
+                    e.target.style.color = 'green'
+                } else
+                if ((this.valueFrost != 'оро' || this.valueFrost != 'ОРО') && this.valueFrost.length == 3) 
+                {
+                    e.target.style.color = 'red'
+                }
+                else if (this.valueFrost.length < 3) e.target.style.color = 'inherit'
+                
+            },
+
         }        
     }
 </script>
