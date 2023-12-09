@@ -95,7 +95,7 @@
             и&nbsp;обновлений? Подпишитесь на&nbsp;рассылку
             и&nbsp;станьте частью нашего образовательного сообщества.</p>
 
-          <Form @submit.prevent="onSubmit" id="form" class="form flex">
+          <Form @InvalidSubmit="onInvalidSubmit"  id="form" class="form flex">
             <label class="form_item flex">
               <span class="form_name">E-mail</span>
               <Field  id="emailForma" type="email" name="email" placeholder="Введите E-mail" class="form__input" @input="inputChange" v-model="email" :rules="validateEmail"/>
@@ -149,39 +149,6 @@ import { Navigation, Pagination } from 'swiper/modules';
 import { Form, Field, ErrorMessage   } from 'vee-validate';
 
 
-
-// Очистка
-
-function updateButtonVisibility(input) {
-  const button = input.nextElementSibling;
-  if (input.value.length === 0) {
-    button.classList.add("hidden");
-  } else {
-    button.classList.remove("hidden");
-  }
-}
-
-const inputWithClear = document.querySelectorAll(".form__input");
-
-if (inputWithClear) {
-  inputWithClear.forEach((item) => {
-
-  const clearButton = item.nextElementSibling;
-  clearButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    clearField(item);
-    if (
-      item.value.length == 0 &&
-      item.classList.contains("just-validate-error-field")
-    ) {
-      item.style.backgroundImage = "url(../img/error.svg)";
-    }
-  });
-});
-}
-
-
-
 export default {
   name: 'HomePage',
   components: { Header, Footer, Swiper, SwiperSlide, Form, Field, ErrorMessage  },
@@ -200,15 +167,12 @@ export default {
 
     methods: {
       inputChange(e) {
-        updateButtonVisibility(e.target);
-
-    if (!document.querySelector(".modal__btn").classList.contains("hidden")) {
-      document.getElementById("emailForma").style.backgroundImage = "none";
+        const btn = e.target.nextSibling.nextSibling;
+    if (!btn.classList.contains("hidden")) {
       this.errorIcon = false
     }
-    if (document.querySelector(".modal__btn").classList.contains("hidden") && this.email !== '') {
-      document.getElementById("emailForma").style.backgroundImage = "none";
-      document.querySelector(".modal__btn").classList.remove('hidden')
+    if (btn.classList.contains("hidden") && this.email !== '') {
+      btn.classList.remove('hidden')
       this.errorIcon = false
     }
       },
@@ -218,14 +182,14 @@ export default {
         e.target.classList.add('hidden');
         if (this.email == '') {
           this.errorIcon = true
-          // document.getElementById('emailForma').style.backgroundImage = "url(../img/error.svg)";
         }
       },
 
-
-      onSubmit(e) {
-        console.log(e.target);
-        
+      onInvalidSubmit(e) {        
+        if (e.errors) {
+          console.log(e.errors)
+          this.errorIcon = true
+        }
       },
 
 
