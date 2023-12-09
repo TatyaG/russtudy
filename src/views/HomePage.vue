@@ -95,14 +95,16 @@
             и&nbsp;обновлений? Подпишитесь на&nbsp;рассылку
             и&nbsp;станьте частью нашего образовательного сообщества.</p>
 
-          <form action="#" method="post" id="form" class="form flex">
+          <Form @submit.prevent="onSubmit" id="form" class="form flex">
             <label class="form_item flex">
               <span class="form_name">E-mail</span>
-              <input id="emailForma" type="email" name="e-mail" placeholder="Введите E-mail" required class="form__input">
-              <button class="modal__btn hidden"></button>
+              <Field  id="emailForma" type="email" name="email" placeholder="Введите E-mail" class="form__input" @input="inputChange" v-model="email" :rules="validateEmail"/>
+              <ErrorMessage class="form__error" name="email" />
+              <button class="modal__btn hidden" @click.prevent="clearInput"></button>
+              <span v-show="errorIcon" class="error__icon"></span>
             </label>
             <button class="btn-reset btn form-btn" type="submit">Подписаться</button>
-          </form>
+          </Form>
         </div>
       </section>
 
@@ -144,20 +146,103 @@ import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination } from 'swiper/modules';
+import { Form, Field, ErrorMessage   } from 'vee-validate';
+
+
+
+// Очистка
+
+function updateButtonVisibility(input) {
+  const button = input.nextElementSibling;
+  if (input.value.length === 0) {
+    button.classList.add("hidden");
+  } else {
+    button.classList.remove("hidden");
+  }
+}
+
+const inputWithClear = document.querySelectorAll(".form__input");
+
+if (inputWithClear) {
+  inputWithClear.forEach((item) => {
+
+  const clearButton = item.nextElementSibling;
+  clearButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    clearField(item);
+    if (
+      item.value.length == 0 &&
+      item.classList.contains("just-validate-error-field")
+    ) {
+      item.style.backgroundImage = "url(../img/error.svg)";
+    }
+  });
+});
+}
+
+
 
 export default {
   name: 'HomePage',
-  components: { Header, Footer, Swiper, SwiperSlide },
-
-  
-
+  components: { Header, Footer, Swiper, SwiperSlide, Form, Field, ErrorMessage  },
+  data() {
+ 
+    return {
+      email: '',
+      errorIcon: false,
+    }
+  },
   setup() {
-
       return {
         modules: [Navigation, Pagination],
       };
     },
 
+    methods: {
+      inputChange(e) {
+        updateButtonVisibility(e.target);
+
+    if (!document.querySelector(".modal__btn").classList.contains("hidden")) {
+      document.getElementById("emailForma").style.backgroundImage = "none";
+      this.errorIcon = false
+    }
+    if (document.querySelector(".modal__btn").classList.contains("hidden") && this.email !== '') {
+      document.getElementById("emailForma").style.backgroundImage = "none";
+      document.querySelector(".modal__btn").classList.remove('hidden')
+      this.errorIcon = false
+    }
+      },
+
+      clearInput(e) {
+        this.email = '';
+        e.target.classList.add('hidden');
+        if (this.email == '') {
+          this.errorIcon = true
+          // document.getElementById('emailForma').style.backgroundImage = "url(../img/error.svg)";
+        }
+      },
+
+
+      onSubmit(e) {
+        console.log(e.target);
+        
+      },
+
+
+
+    validateEmail(value) {
+      if (!value) {
+        return 'Введите E-mail!';
+      }
+      const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+      if (!regex.test(value)) {
+        return 'Введите корректный E-mail!';
+      }
+
+      return true;
+    },
+    
+  }
 
 }
 </script>
