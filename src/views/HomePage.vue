@@ -63,20 +63,14 @@
           <!-- Слайдер -->
 
                     <Swiper navigation :pagination="{ clickable: true }" :modules="modules">
-                        <swiper-slide>
-                            <picture>
-                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
-                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
-                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
+                        <swiper-slide v-for="item in affiche" :key="item.id">
+                                <picture>
+                                    <source :srcset="item.phone" media="(max-width: 576px)">
+                                    <source :srcset="item.tablet" media="(max-width: 1180px)">
+                                    <img class="right-background" :src="item.image" alt="Курсы для педагогов">
                                 </picture>
                         </swiper-slide>
-                        <swiper-slide>
-                            <picture>
-                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
-                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
-                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
-                                </picture>
-                        </swiper-slide>
+             
                     </Swiper>
 
           <a class="card-link flex" href="#">
@@ -108,11 +102,11 @@
 
       <section class="container partners flex">
         <ul class="partners__list list-reset flex">
-          <li class="partners__item">
+          <li v-for="partner in partners" :key="partner.id" class="partners__item">
             <a class="partners__link flex" href="http:obr.so/" target="_blank"><img src="img/обрсоюз.png"
                 alt="обрсоюз"></a>
           </li>
-          <li class="partners__item">
+          <!-- <li class="partners__item">
             <a class="partners__link flex" href="http:amities-russes.jimdofree.com/" target="_blank"><img
                 src="img/partner.png" alt="Amities Russes"></a>
           </li>
@@ -130,7 +124,7 @@
           <li class="partners__item">
             <a class="partners__link flex" href="http:totaldict.ru/" target="_blank"><img src="img/диктант.png"
                 alt="Тотальный диктант"></a>
-          </li>
+          </li> -->
         </ul>
       </section>
     </main>
@@ -149,7 +143,33 @@ export default {
   name: 'HomePage',
   components: { Header, Footer, Swiper, SwiperSlide },
 
-  
+  data() {
+    return {
+      affiche: [
+        {
+          id: 1,
+          image: 'img/card-right.webp',
+          tablet: 'img/right-card-tablet.webp',
+          phone: 'img/right-card-mobile.webp'
+        },
+        {
+          id: 2,
+          image: 'img/card-right.webp',
+          tablet: 'img/right-card-tablet.webp',
+          phone: 'img/right-card-mobile.webp'
+        },
+
+      ],
+
+      partners: [
+        {
+          id: 1,
+          image: '',
+          link: ''
+        },
+      ]
+    }
+  },
 
   setup() {
 
