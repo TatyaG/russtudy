@@ -48,6 +48,13 @@
     padding: 12px;
     border-radius: 16px;
     background-color: var(--blue);
+    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+    cursor: pointer;
+}
+
+.product.active {
+    background-color: var(--violet);
+    color: white;
 }
 
 .order__product {
@@ -62,6 +69,7 @@
 
 .currency__radio path {
     fill: var(--body-color);
+    transition: fill .3s ease-in-out;
 }
 
 .currency__radio {
@@ -73,6 +81,8 @@
     height: 36px;
     border-radius: 8px;
     border: 1px solid var(--body-color);
+    transition: background-color .3s ease-in-out;
+    cursor: pointer;
 }
 
 .currency__radio svg {
@@ -96,6 +106,16 @@
     padding-top: 60px;
 }
 
+.order__label {
+    position: relative;
+    padding-bottom: 27px;
+    margin-bottom: 7px;
+}
+
+.error.order__input {
+    outline: 1px solid #FF1E1E;
+}
+
 .product__checkbox {
     position: relative;
     display: block;
@@ -103,18 +123,13 @@
     height: 20px;
     border: 2px solid var(--body-color);
     border-radius: 50%;
+    transition: background-color .3s ease-in-out, background-image .3s ease-in-out, border-color .3s ease-in-out;
 }
 
-.product input:checked~.product__checkbox::before {
-    position: absolute;
-    content: '';
-    top: 3px;
-    left: 3px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: var(--body-color);
-
+.product input:checked~.product__checkbox {
+    background-image: url(../img/check.svg);
+    background-color: white;
+    border-color: white;
 }
 
 .product__count {
@@ -204,17 +219,17 @@
     height: 20px;
     border: 2px solid var(--body-color);
     border-radius: 50%;
+    transition: border-color .3s ease-in-out;
 }
 
-.sub__label input:checked ~ span::before {
-    position: absolute;
-    content: '';
-    top: 3px;
-    left: 3px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: var(--body-color);
+.active.product .sub__label span {
+    border-color: white;
+}
+
+.sub__label input:checked ~ span {
+    background-image: url(../img/check.svg);
+    background-color: white;
+    border-color: white;
 }
 
 .sub__block {
@@ -290,6 +305,11 @@ background-color: var(--violet);
 color: white;
 }
 
+.order__submit:disabled {
+    background-color: #87A1C3;
+    cursor: auto;
+}
+
 .order__agreement a {
     text-decoration: underline;
 }
@@ -324,7 +344,7 @@ color: white;
 .order__info {
     display: flex;
     flex-direction: column;
-    gap: 27px;
+    /* gap: 27px; */
 }
 
 .info-block {
