@@ -563,6 +563,7 @@ window.addEventListener('scroll', () => {
                 image: 'img/book-1.webp',
                 isOnline: false,
                 price: 1500,
+                amount: 0,
             },
             {
                 id: 2,
@@ -572,6 +573,7 @@ window.addEventListener('scroll', () => {
                 image: 'img/book-1.webp',
                 isOnline: true,
                 price: 900,
+                amount: 0,
             },
             {
                 id: 3,
@@ -581,6 +583,7 @@ window.addEventListener('scroll', () => {
                 image: 'img/book-2.webp',
                 isOnline: false,
                 price: 1500,
+                amount: 0,
             },
             {
                 id: 4,
@@ -590,6 +593,7 @@ window.addEventListener('scroll', () => {
                 image: 'img/book-2.webp',
                 isOnline: true,
                 price: 900,
+                amount: 0,
             },
                 ],
 

@@ -10,7 +10,7 @@
                 </button>
                
             
-                    <form class="order__form">
+                    <Form @InvalidSubmit="onInvalidSubmit" class="order__form">
                         <div class="flex currency-block">
                         <label class="order__label currency">
                             <input type="radio" class="visually-hidden" name="currency">
@@ -42,10 +42,11 @@
                         <div class="order__container">
 
                         <div class="order__left">
-                            <div class="products">
-                            <label v-for="book in books" :key="book.id" class="product">
+                            <div class="products" >
+                                <OrderItem v-for="book in books" :key="book.id" :book="book"/>
+                            <!-- <label :class="{active: selectedProducts.includes(book.id)}" v-for="book in books" :key="book.id" class="product">
                                 <div class="order__product">
-                                   <input type="checkbox" class="visually-hidden" name="product">
+                                   <input type="checkbox" class="visually-hidden product__input" name="product"  @change="addProduct(book.id)">
                                 <span class="product__checkbox"></span>
                                 <img :src="book.image" alt="">
                                 <div class="product__name">
@@ -57,9 +58,9 @@
                                 <div v-if="!book.isOnline" class="product__count count">
                                     <p class="count__text">Количество</p>
                                     <div class="count__block">
-                                        <button @click.prevent="decrementProduct" class="btn-reset product__btn product__btn--decrement"></button>
-                                        <input type="number" class="count__num" v-model.number="productAmount" :name="'count['+ book.id +']'">
-                                        <button @click.prevent="incrementProduct" class="btn-reset product__btn product__btn--increment"></button>
+                                        <button @click.prevent="decrementProduct(book.amount)" class="btn-reset product__btn product__btn--decrement"></button>
+                                        <input type="number" class="count__num" :name="'count['+ book.id +']'" :value="book.amount">
+                                        <button @click.prevent="incrementProduct(book.amount)" class="btn-reset product__btn product__btn--increment"></button>
                                     </div>
                                 </div>
 
@@ -87,25 +88,35 @@
                                     </div>
                                 </div>
                                 <p class="product__price">{{ book.price }} ₽</p>
-                            </label>
+                            </label> -->
                             </div>
                             <div class="order__info info">
                             <label for="" class="order__label">
                                 <span class="info__text">Ф.И.О *</span>
-                                <input class="order__input" type="text" placeholder="Введите Ф.И.О">
+                                <button class="modal__btn hidden" @click.prevent="clearInput"></button>
+                                <span v-show="errorFio" class="error__icon"></span>
+                                <Field :class="{error: errorFio}" class="order__input" name="fio" v-model="fio" type="text" placeholder="Введите Ф.И.О" :rules="validateFio" @input="inputChange" @keydown="deleteNumber"/>
+                                <ErrorMessage class="form__error" name="fio" />
                             </label>
                             <label for="" class="order__label">
                                 <span class="info__text">Страна</span>
-                                <input class="order__input" type="text" placeholder="Введите страну">
+                                <button class="modal__btn hidden" @click.prevent="clearInput"></button>
+                                <!-- <span v-show="errorCountry" class="error__icon"></span> -->
+                                <input class="order__input" name="country" v-model="country" type="text" placeholder="Введите страну" @keydown="deleteNumber"/>
+                                <!-- <ErrorMessage class="form__error" name="country" />                     -->
+                                
                             </label>
                             <div class="info-block">
                                 <label for="" class="order__label">
                                 <span class="info__text">Email *</span>
-                                <input class="order__input" type="text" placeholder="Введите email">
+                                <button v-show="!errorEmail" class="modal__btn hidden" @click.prevent="clearInput"></button>
+                                <span v-show="errorEmail" class="error__icon"></span>
+                                <Field :class="{error: errorEmail}" class="order__input" name="email" v-model="email" type="text" placeholder="Введите email" :rules="validateEmail" @input="inputChange" @keydown="deleteNumber"/>
+                                <ErrorMessage class="form__error" name="email" />  
                             </label>
                             <label for="" class="order__label">
                                 <span class="info__text">Телефон *</span>
-                                <vue-tel-input v-model="phone" @country-changed="countryChanged"></vue-tel-input>
+                                <vue-tel-input v-model="phone" @country-changed="countryChanged" @validate="customValidate" @keydown="deleteLetter"></vue-tel-input>
                           
                             </label>
                             </div>
@@ -133,7 +144,7 @@
                                 <div class="delivery__block">
                                     <div>
                                         <label class="delivery__label">
-                                    <input type="radio" class="visually-hidden" name="delivery">
+                                    <input type="radio" class="visually-hidden" name="delivery" value="pickup" @change="selectedDelivery == 'pickup'">
                                     <span></span>
                                     Самовывоз
                                 </label>
@@ -142,7 +153,7 @@
                                     
                                <div>
                                 <label class="delivery__label">
-                                    <input type="radio" class="visually-hidden" name="delivery">
+                                    <input type="radio" class="visually-hidden" name="delivery" value="pochta" @change="selectedDelivery == 'pochta'">
                                     <span></span>
                                     Доставка почтой России
                                 </label>
@@ -151,6 +162,9 @@
                                 
                                 </div>
                             </div>
+
+                            <Pochta/>
+
                         </div>
                         <div class="order__right">
                             <div class="order__block">
@@ -165,14 +179,14 @@
 
                                 <p class="order__text order__text--info">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-  <rect width="12" height="12" rx="6" fill="#B6D3FD"/>
-  <path d="M6 9.5V9.505M6 7.5V2.5" stroke="#0A2B49" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+                                    <rect width="12" height="12" rx="6" fill="#B6D3FD"/>
+                                    <path d="M6 9.5V9.505M6 7.5V2.5" stroke="#0A2B49" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                                     Мы свяжемся с вами, чтобы уточнить сроки и стоимость доставки.</p>
 
                                 <input class="order__input" type="text" placeholder="Промокод">
 
-                                <button class="btn-reset order__submit" type="submit">Заказать</button>
+                                <button :disabled="!validate" class="btn-reset order__submit" type="submit">Заказать</button>
 
                                 <p class="order__agreement">Нажимая на кнопку «Заказать», вы подтверждаете, что ознакомлены c <a href="">Пользовательским соглашением</a> и <a href="">Политикой о персональных данных</a></p>
                                 
@@ -185,10 +199,8 @@
                         </div>
 
                         </div>
-                    </form>
-         
-                
-           
+                    </Form>
+
             </div>
         </div>
     </div>
@@ -196,18 +208,28 @@
 
 <script>
 import { VueTelInput } from 'vue-tel-input';
+import { Form, Field, ErrorMessage   } from 'vee-validate';
+import OrderItem from './OrderItem.vue';
+import Pochta from './Pochta.vue';
 
     export default {
         props: ['books'],
-        components: {VueTelInput },
+        components: {VueTelInput, Form, Field, ErrorMessage, OrderItem, Pochta },
         data() {
             return {
                 phone: 0,
                 activeCountry: 0,
                 productAmount: 0,
+                fio: '',
+                country: '',
+                email: '',
+                errorFio: false,
+                errorEmail: false,
+                phoneValid: false,
+                selectedProducts: [],
+                selectedDelivery: ''
             }
         },
-
 
         methods: {
             countryChanged(country) {
@@ -215,17 +237,126 @@ import { VueTelInput } from 'vue-tel-input';
                 this.phone = `+ ${country.dialCode}`
             },
 
-            incrementProduct() {
-                this.productAmount += 1
+            // incrementProduct(value) {
+            //     console.log(value)
+            //     value += 1
+            // },
+
+            // decrementProduct(value) {
+            //     if (value > 1) {
+            //         value -= 1
+            //     }
+            // },
+
+            onInvalidSubmit(e) {
+                if (e.errors.fio) {
+                    this.errorFio = true
+                }
+
+                if (e.errors.country) {
+                    this.errorCountry = true
+                }
+
+                if (e.errors.email) {
+                    this.errorEmail = true
+                }
             },
 
-            decrementProduct() {
-                if (this.productAmount > 1) {
-                    this.productAmount -= 1
+            validateFio(value) {
+                if (!value) {
+                     return 'Введите Ф.И.О';
                 }
-            }
+
+                return true;
+            },
+
+
+            validateEmail(value) {
+                if (!value) {  
+                    return 'Введите E-mail!';
+                }
+                const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+                if (!regex.test(value)) {
+                    return 'Введите корректный E-mail!';
+                }
+
+            return true;
+            },
+
+            clearInput(e) {
+                e.target.classList.add('hidden');
+                console.log(e.target.nextSibling.nextSibling)
+                if (e.target.nextSibling.nextSibling.getAttribute('name') == 'fio')  {
+                    this.fio = '';
+                    this.errorFio = true
+                }
+                if (e.target.nextSibling.nextSibling.getAttribute('name') == 'country')  {
+                    this.country = '';
+                    this.errorCountry = true
+                }
+
+                if (e.target.nextSibling.nextSibling.getAttribute('name') == 'email')  {
+                    this.email = '';
+                    this.errorEmail = true
+                }
+
+          
+            },
+
+            inputChange(e) {
+                const btn = e.target.previousSibling.previousSibling;
+                if (e.target.getAttribute('name') == 'fio') {
+                    console.log(this.fio)
+                        this.errorFio = false
+                    }
+
+
+                if (e.target.getAttribute('name') == 'email') {
+                        this.errorEmail = false                   
+                    }
+
+
+                if (e.target.value != '') {
+                    btn.classList.remove('hidden') 
+
+                } else btn.classList.add('hidden') 
+
+            },
+
+            customValidate(value) {
+                if (value.valid == true) {
+                    console.log('aa')
+                   this.phoneValid = true
+                }  else this.phoneValid = false
+            },
+
+            deleteNumber(e) {
+                if( e.key.match(/[0-9]/) ) return e.preventDefault();
+            },
+
+            deleteLetter(e) {
+                if( e.key.match( /^[a-zA-Zа-яА-Я]$/) ) return e.preventDefault();
+            },
+
+            // addProduct(id) {
+            //     if (!this.selectedProducts.includes(id)) {
+            //         this.selectedProducts.push(id)
+            //     } else {
+            //        const index = this.selectedProducts.indexOf(id);
+            //        this.selectedProducts.splice(index, 1)
+            //     } 
+                
+            // }
+
         },
 
+        computed: {
+            validate() {
+                if (this.validateFio(this.fio) == true && this.validateEmail(this.email) == true && this.phoneValid == true) 
+                    return true
+                
+            }
+        }
         
     }
 </script>

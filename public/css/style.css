@@ -23,7 +23,7 @@ h3 {
 :root {
   --body-color: #0A2B49;
   --border-radius: 26px;
-  --error: #eb3a45;
+  --error: #FF1E1E;
   /* отступ */
   --gap: 20px;
   --violet: #5724A7;
@@ -69,6 +69,7 @@ h3 {
 .form__error {
   position: absolute;
   bottom: 0;
+  left: 0;
   font-size: 16px;
   color: var(--error);
 }
