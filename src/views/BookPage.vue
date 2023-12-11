@@ -45,7 +45,13 @@
             <section class="about">
                 <div class="container">
                 <div class="about__container">
-                    <div class="about__left"></div>
+                    <div class="about__left">
+                        <picture>
+                            <source srcset="img/about-1024.webp" media="(max-width: 1400px)"> 
+                            <img src="img/about.webp" alt="">
+                        </picture>
+                        
+                    </div>
                     <div class="about__right">
                         <h2 class="section-title">Об учебнике</h2>
                         <h3 class="section__subtitle">
@@ -562,7 +568,9 @@ window.addEventListener('scroll', () => {
                 level: 'А1',
                 image: 'img/book-1.webp',
                 isOnline: false,
-                price: 1500,
+                rub: 1500,
+                eur: 20,
+                usd: 15,
                 amount: 0,
             },
             {
@@ -572,7 +580,9 @@ window.addEventListener('scroll', () => {
                 level: 'А1',
                 image: 'img/book-1.webp',
                 isOnline: true,
-                price: 900,
+                rub: 900,
+                eur: 20,
+                usd: 15,
                 amount: 0,
             },
             {
@@ -582,7 +592,9 @@ window.addEventListener('scroll', () => {
                 level: 'А2',
                 image: 'img/book-2.webp',
                 isOnline: false,
-                price: 1500,
+                rub: 1500,
+                eur: 20,
+                usd: 15,
                 amount: 0,
             },
             {
@@ -592,7 +604,9 @@ window.addEventListener('scroll', () => {
                 level: 'А2',
                 image: 'img/book-2.webp',
                 isOnline: true,
-                price: 900,
+                rub: 900,
+                eur: 20,
+                usd: 15,
                 amount: 0,
             },
                 ],

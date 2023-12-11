@@ -13,20 +13,31 @@
                                 <div v-if="!book.isOnline" class="product__count count">
                                     <p class="count__text">Количество</p>
                                     <div class="count__block">
-                                        <button @click.prevent="decrementProduct(book.amount)" class="btn-reset product__btn product__btn--decrement"></button>
+                                        <button @click.prevent="decrementProduct(book.amount)" class="btn-reset product__btn product__btn--decrement" :disabled="!selectedProducts.includes(book.id)"></button>
                                         <input type="number" class="count__num" :name="'count['+ book.id +']'" v-model="amount">
-                                        <button @click.prevent="incrementProduct(book.amount)" class="btn-reset product__btn product__btn--increment"></button>
+                                        <button @click.prevent="incrementProduct(book.amount)" class="btn-reset product__btn product__btn--increment" :disabled="!selectedProducts.includes(book.id)"></button>
                                     </div>
                                 </div>
 
                                 <div v-else-if="book.isOnline" class="product__count sub">
-                                    <p class="sub__text">
-                                        Подписка
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-  <rect width="12" height="12" rx="6" fill="#B6D3FD"/>
-  <path d="M6 9.5V9.505M6 7.5V2.5" stroke="#0A2B49" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-                                    </p>
+                                    <div class="sub__text">
+                                        
+                                        
+                                        <div class="tooltip">
+                                            Подписка
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <rect width="12" height="12" rx="6"/>
+                                            <path d="M6 9.5V9.505M6 7.5V2.5" stroke="#0A2B49" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+
+                                            <div class="tooltip__block">
+                                                <p class="tooltip__title">Подписка на 1 год</p>
+                                                <p class="tooltip__text">Имеется спорная точка зрения, гласящая примерно следующее: непосредственные участники технического прогресса представляют собой не что иное.</p>
+                                                <p class="tooltip__title">Подписка навсегда</p>
+                                                <p class="tooltip__text">Однозначно, некоторые особенности внутренней политики неоднозначны и будут заблокированы в рамках своих собственных рациональных ограничений.</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="flex sub__block">
                                         <label class="sub__label">
                                             <input type="radio" class="visually-hidden" :name="'sub['+ book.id +']'" value="year" :disabled="!selectedProducts.includes(book.id)" :checked="selectedProducts.includes(book.id)">
@@ -42,7 +53,9 @@
                                         
                                     </div>
                                 </div>
-                                <p class="product__price">{{ book.price }} ₽</p>
+                                <p v-show="currencyValue == 'rub'" class="product__price">{{ book.rub }} ₽</p>
+                                <p v-show="currencyValue == 'usd'" class="product__price">{{ book.usd }} $</p>
+                                <p v-show="currencyValue == 'eur'" class="product__price">{{ book.eur }} €</p>
                             </label>
 </template>
 
@@ -51,11 +64,11 @@ import { Form, Field, ErrorMessage   } from 'vee-validate';
     export default {
         data() {
             return {
-                selectedProducts: []
+                // selectedProducts: []
             }
         },
 
-        props: ['book'],
+        props: ['book', 'currencyValue', 'selectedProducts'],
         components: {Form, Field, ErrorMessage },
 
         computed: {

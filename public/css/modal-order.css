@@ -1,3 +1,8 @@
+input:focus {
+    box-shadow: 2px 2px 8px 0px #CCE0FF, -2px -2px 8px 0px #CCE0FF;
+
+}
+
 .modal.order {
     overflow: auto;
     background-color: var(--cyan);
@@ -144,6 +149,7 @@
     height: 32px;
     background-color: white;
     border-radius: 6px;
+    transition: background-color .3s ease-in-out;
 }
 
 .count__block {
@@ -165,6 +171,7 @@
     background-color: white;
     border-radius: 6px;
     text-align: center;
+    transition: background-color .3s ease-in-out;
 }
 
 .count__num::-webkit-outer-spin-button,
@@ -226,8 +233,14 @@
     border-color: white;
 }
 
-.sub__label input:checked ~ span {
-    background-image: url(../img/check.svg);
+.sub__label input:checked ~ span::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
     background-color: white;
     border-color: white;
 }
@@ -242,6 +255,19 @@
 
 .sub__text svg {
     margin-left: 8px;
+}
+
+.sub__text rect {
+    fill: #B6D3FD;
+}
+
+.active.product .sub__text rect {
+    fill: white;
+}
+
+.active.product .product__btn,
+.active.product .count__num {
+    background-color: #E7F0FF;
 }
 
 .order__block {
@@ -455,6 +481,39 @@ color: white;
     font-weight: 600;
 }
 
+.tooltip {
+    position: relative;
+    max-width: max-content;
+}
+
+.tooltip svg:hover ~ .tooltip__block {
+    opacity: 1;
+    visibility: visible;
+}
+
+.product.active .tooltip__block {
+    color: initial;
+}
+
+.tooltip__block {
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 105%;
+    width: 190px;
+    font-size: 8px;
+    line-height: normal;
+    border-radius: 16px;
+    background-color: #D7E7FF;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+}
+
+.tooltip__title {
+    font-size: 10px;
+    font-weight: 500;
+}
 
 @media (max-width: 1400px) {
 
