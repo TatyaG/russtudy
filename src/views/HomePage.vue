@@ -13,7 +13,7 @@
             <div class="card-content">
               <h2 class="card-title">Привет, Россия!</h2>
               <p class="card-text">Обучение русскому языку как&nbsp;иностранному</p>
-              <p class="card-info">печатные и онлайн-учебники</p>
+              <p class="card-info">печатные и онлайн учебники</p>
 
               <picture>
                 <source srcset="img/books_tablet.png" media="(max-width: 1415px)">
@@ -21,8 +21,7 @@
               </picture>
 
             </div>
-
-            <router-link :to="{name: 'book'}" class="promo__btn btn btn-reset">Подробнее</router-link>
+            <button class="promo__btn btn btn-reset">Подробнее</button>
           </div>
 
           <div onclick="window.open('#','_newtab');" class="promo-bottom">
@@ -40,8 +39,7 @@
 
         </div>
 
-
-        <router-link to="/service" class="promo-center">
+        <div onclick="window.open('#','_newtab');" class="promo-center">
           <div class="card-content center_content">
             <h2 class="card-title">Сервисы РКИ</h2>
             <ul class="card-list list-reset">
@@ -55,29 +53,43 @@
             <path d="M1 1L22.6667 22.6667M22.6667 22.6667V1.86667M22.6667 22.6667H1.86667" stroke="white" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round" />
           </svg>
-        </router-link>
+        </div>
 
         <div class="promo-right">
           <h2 class="card-title card-name">Афиша</h2>
 
           <!-- Слайдер -->
 
-                    <Swiper navigation :pagination="{ clickable: true }" :modules="modules">
-                        <swiper-slide>
-                            <picture>
-                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
-                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
-                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
-                                </picture>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <picture>
-                                    <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
-                                    <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
-                                    <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
-                                </picture>
-                        </swiper-slide>
-                    </Swiper>
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <picture>
+                  <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
+                  <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
+                  <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
+                </picture>
+              </div>
+              <div class="swiper-slide">
+                <picture>
+                  <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
+                  <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
+                  <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
+                </picture>
+              </div>
+              <div class="swiper-slide">
+                <picture>
+                  <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
+                  <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
+                  <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
+                </picture>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+
+          <!-- ------- -->
 
           <a class="card-link flex" href="#">
             Все новости
@@ -92,7 +104,7 @@
       <section class="container subscription">
         <div class="subscription__content flex">
           <p class="subscription__text">Хотите быть в&nbsp;курсе наших мероприятий, новостей
-            и&nbsp;обновлений? Подпишитесь на&nbsp;рассылку
+            и&nbsp;обновлений?Подпишитесь на&nbsp;рассылку
             и&nbsp;станьте частью нашего образовательного сообщества.</p>
 
           <form action="#" method="post" id="form" class="form flex">
@@ -109,15 +121,15 @@
       <section class="container partners flex">
         <ul class="partners__list list-reset flex">
           <li class="partners__item">
-            <a class="partners__link flex" href="http:obr.so/" target="_blank"><img src="img/обрсоюз.png"
-                alt="обрсоюз"></a>
+            <router-link class="partners__link flex" to="http:obr.so/" target="_blank"><img src="img/обрсоюз.png"
+                alt="Обрсоюз"></router-link>
           </li>
           <li class="partners__item">
-            <a class="partners__link flex" href="http:amities-russes.jimdofree.com/" target="_blank"><img
-                src="img/partner.png" alt="Amities Russes"></a>
+            <a class="partners__link flex" href="http:amities-russes.jimdofree.com/" target="_blank"> 
+              <img src="img/partner.png" alt="Amities Russes"></a>
           </li>
           <li class="partners__item">
-            <a class="partners__link flex" href="#"> <img src="img/partner_szkola.png" alt="Szkola"></a>
+            <a class="partners__link flex" href="#" target="_blank"> <img src="img/partner_szkola.png" alt="Szkola"></a>
           </li>
           <li class="partners__item">
             <a class="partners__link flex" href="http:www.rki.today/?m=1" target="_blank"><img src="img/РКИ today.png"
@@ -134,7 +146,6 @@
         </ul>
       </section>
     </main>
-    <Footer></Footer>
   </div>
 </template>
 
@@ -143,21 +154,27 @@
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
 export default {
   name: 'HomePage',
   components: { Header, Footer, Swiper, SwiperSlide },
 
-  
-
   setup() {
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+    const onSlideChange = () => {
+      console.log('slide change');
+    };
+    return {
+      onSwiper,
+      onSlideChange,
+      modules: [Navigation],
+    };
+  },
+};
 
-      return {
-        modules: [Navigation, Pagination],
-      };
-    },
 
 
-}
 </script>
