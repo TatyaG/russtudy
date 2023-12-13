@@ -2,7 +2,7 @@
        
        <header class="header">
         <div class="flex header__container container">
-            <router-link :to="{name: 'home'}" href="#" class="logo flex">
+            <router-link :to="{name: 'home'}" class="logo flex">
                 <picture>
                     <source srcset="img/logo_tablet.svg" media="(max-width: 1024px)">
                     <img class="logo__img" src="img/logo.svg" alt="Logo">
@@ -10,24 +10,24 @@
             </router-link>
 
             <div class="menu">
-                <a href="#" class="logo_burger logo flex">
+                <router-link :to="{name: 'home'}" class="logo_burger logo flex">
                     <picture>
                         <source srcset="img/logo_tablet.svg" media="(max-width: 1024px)">
                         <img class="logo__img" src="img/logo.svg" alt="Logo">
                     </picture>
-                </a>
+                </router-link>
 
                 <nav class="nav header__nav">
                     <ul class="nav__list list-reset flex">
                         <li class="nav__item">
-                            <router-link :to="{name: 'book'}" href="" class="nav__link">
+                            <router-link to="/textbook" class="nav__link">
                                 Учебник
                             </router-link>
                         </li>
                         <li class="nav__item">
-                            <a href="#" class="nav__link">
+                            <router-link to="/service" class="nav__link">
                                 Сервисы РКИ
-                            </a>
+                            </router-link>
                         </li>
                         <li class="nav__item">
                             <a href="#" class="nav__link">

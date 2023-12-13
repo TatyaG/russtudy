@@ -21,7 +21,7 @@
               </picture>
 
             </div>
-            <button class="promo__btn btn btn-reset">Подробнее</button>
+            <router-link :to="{ name: 'book' }" class="promo__btn btn btn-reset">Подробнее</router-link>
           </div>
 
           <div onclick="window.open('#','_newtab');" class="promo-bottom">
@@ -39,7 +39,7 @@
 
         </div>
 
-        <div onclick="window.open('#','_newtab');" class="promo-center">
+        <router-link to="/service" class="promo-center">
           <div class="card-content center_content">
             <h2 class="card-title">Сервисы РКИ</h2>
             <ul class="card-list list-reset">
@@ -53,43 +53,23 @@
             <path d="M1 1L22.6667 22.6667M22.6667 22.6667V1.86667M22.6667 22.6667H1.86667" stroke="white" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round" />
           </svg>
-        </div>
+        </router-link>
 
         <div class="promo-right">
           <h2 class="card-title card-name">Афиша</h2>
 
           <!-- Слайдер -->
 
-          <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <picture>
-                  <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
-                  <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
-                  <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
-                </picture>
-              </div>
-              <div class="swiper-slide">
-                <picture>
-                  <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
-                  <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
-                  <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
-                </picture>
-              </div>
-              <div class="swiper-slide">
-                <picture>
-                  <source srcset="img/right-card-mobile.webp" media="(max-width: 576px)">
-                  <source srcset="img/right-card-tablet.webp" media="(max-width: 1180px)">
-                  <img class="right-background" src="img/card-right.webp" alt="Курсы для педагогов">
-                </picture>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+          <Swiper navigation :pagination="{ clickable: true }" :modules="modules">
+            <swiper-slide v-for="item in affiche" :key="item.id">
+              <picture>
+                <source :srcset="item.phone" media="(max-width: 576px)">
+                <source :srcset="item.tablet" media="(max-width: 1180px)">
+                <img class="right-background" :src="item.image" alt="Курсы для педагогов">
+              </picture>
+            </swiper-slide>
 
-          <!-- ------- -->
+          </Swiper>
 
           <a class="card-link flex" href="#">
             Все новости
@@ -103,49 +83,58 @@
 
       <section class="container subscription">
         <div class="subscription__content flex">
-          <p class="subscription__text">Хотите быть в&nbsp;курсе наших мероприятий, новостей
-            и&nbsp;обновлений?Подпишитесь на&nbsp;рассылку
-            и&nbsp;станьте частью нашего образовательного сообщества.</p>
+          <h3 class="subscription__text">Хотите быть в&nbsp;курсе наших мероприятий, новостей
+            и&nbsp;обновлений? Подпишитесь на&nbsp;рассылку
+            и&nbsp;станьте частью нашего образовательного сообщества.</h3>
 
-          <form action="#" method="post" id="form" class="form flex">
+          <Form @InvalidSubmit="onInvalidSubmit" id="form" class="form flex">
             <label class="form_item flex">
               <span class="form_name">E-mail</span>
-              <input id="emailForma" type="email" name="e-mail" placeholder="Введите E-mail" required class="form__input">
-              <button class="modal__btn hidden"></button>
+              <Field id="emailForma" type="email" name="email" placeholder="Введите E-mail" class="form__input"
+                @input="inputChange" v-model="email" :rules="validateEmail" />
+              <ErrorMessage class="form__error" name="email" />
+              <button class="modal__btn hidden" @click.prevent="clearInput"></button>
+              <span v-show="errorIcon" class="error__icon"></span>
             </label>
             <button class="btn-reset btn form-btn" type="submit">Подписаться</button>
-          </form>
+            <p class="form_agree">Нажимая на&nbsp;кнопку &laquo;Подписаться&raquo; я&nbsp;даю своё согласие
+              на&nbsp;обработку&nbsp;
+              <a class="form_link" href="docs/политика_обработки_ПДн_на_сайте_учебник.pdf"
+                target="_blank">персональных данных</a>
+            </p>
+          </Form>
         </div>
       </section>
 
       <section class="container partners flex">
         <ul class="partners__list list-reset flex">
           <li class="partners__item">
-            <router-link class="partners__link flex" to="http:obr.so/" target="_blank"><img src="img/обрсоюз.png"
-                alt="Обрсоюз"></router-link>
+            <a class="partners__link flex" href="http://obr.so/" target="_blank"><img src="img/обрсоюз.png"
+                alt="Обрсоюз"></a>
           </li>
           <li class="partners__item">
-            <a class="partners__link flex" href="http:amities-russes.jimdofree.com/" target="_blank"> 
+            <a class="partners__link flex" href="http://amities-russes.jimdofree.com/" target="_blank">
               <img src="img/partner.png" alt="Amities Russes"></a>
           </li>
           <li class="partners__item">
             <a class="partners__link flex" href="#" target="_blank"> <img src="img/partner_szkola.png" alt="Szkola"></a>
           </li>
           <li class="partners__item">
-            <a class="partners__link flex" href="http:www.rki.today/?m=1" target="_blank"><img src="img/РКИ today.png"
+            <a class="partners__link flex" href="http://www.rki.today/?m=1" target="_blank"><img src="img/РКИ today.png"
                 alt="РКИ"></a>
           </li>
           <li class="partners__item">
-            <a class="partners__link flex" href="http:www.arbat.gr/" target="_blank"> <img src="img/арбат.png"
+            <a class="partners__link flex" href="http://www.arbat.gr/" target="_blank"> <img src="img/арбат.png"
                 alt="Арбат"></a>
           </li>
           <li class="partners__item">
-            <a class="partners__link flex" href="http:totaldict.ru/" target="_blank"><img src="img/диктант.png"
+            <a class="partners__link flex" href="http://totaldict.ru/" target="_blank"><img src="img/диктант.png"
                 alt="Тотальный диктант"></a>
           </li>
         </ul>
       </section>
     </main>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -154,27 +143,92 @@
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
+import { Form, Field, ErrorMessage } from 'vee-validate';
+
 
 export default {
   name: 'HomePage',
-  components: { Header, Footer, Swiper, SwiperSlide },
+  components: { Header, Footer, Swiper, SwiperSlide, Form, Field, ErrorMessage },
+
+  data() {
+    return {
+      email: '',
+      errorIcon: false,
+      affiche: [
+        {
+          id: 1,
+          image: 'img/card-right.webp',
+          tablet: 'img/right-card-tablet.webp',
+          phone: 'img/right-card-mobile.webp'
+        },
+        {
+          id: 2,
+          image: 'img/card-right.webp',
+          tablet: 'img/right-card-tablet.webp',
+          phone: 'img/right-card-mobile.webp'
+        },
+
+      ],
+
+      partners: [
+        {
+          id: 1,
+          image: '',
+          link: ''
+        },
+      ]
+    }
+  },
 
   setup() {
-    const onSwiper = (swiper) => {
-      console.log(swiper);
-    };
-    const onSlideChange = () => {
-      console.log('slide change');
-    };
     return {
-      onSwiper,
-      onSlideChange,
-      modules: [Navigation],
+      modules: [Navigation, Pagination],
     };
   },
-};
+
+  methods: {
+    inputChange(e) {
+      const btn = e.target.nextSibling.nextSibling;
+      if (!btn.classList.contains("hidden")) {
+        this.errorIcon = false
+      }
+      if (btn.classList.contains("hidden") && this.email !== '') {
+        btn.classList.remove('hidden')
+        this.errorIcon = false
+      }
+    },
+
+    clearInput(e) {
+      this.email = '';
+      e.target.classList.add('hidden');
+      if (this.email == '') {
+        this.errorIcon = true
+      }
+    },
+
+    onInvalidSubmit(e) {
+      if (e.errors) {
+        console.log(e.errors)
+        this.errorIcon = true
+      }
+    },
 
 
+
+    validateEmail(value) {
+      if (!value) {
+        return 'Введите E-mail!';
+      }
+      const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+      if (!regex.test(value)) {
+        return 'Введите корректный E-mail!';
+      }
+
+      return true;
+    },
+
+  },
+}
 
 </script>

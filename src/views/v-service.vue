@@ -24,7 +24,7 @@
         <div class="" v-if="selectedService.name==='Game'">Game</div>
         <div class="test_box__wrap" v-if="selectedService.name==='Tests'">
           <test v-for="item of tests"
-                :nameTest="item"
+                :nameTest="item" :key="item.id"
           >
           </test>
         </div>

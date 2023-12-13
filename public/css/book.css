@@ -1,3 +1,28 @@
+*,
+html * /* override x.xhtml.ru style */ 
+{
+  scrollbar-width: thin;
+  scrollbar-color: var(--violet) rgba(87, 36, 167, 0.1);
+}
+
+*::-webkit-scrollbar,
+html *::-webkit-scrollbar {
+  height: 12px;
+  width: 6px;
+}
+*::-webkit-scrollbar-track,
+html *::-webkit-scrollbar-track {
+  background: rgba(87, 36, 167, 0.1);
+}
+*::-webkit-scrollbar-thumb,
+html *::-webkit-scrollbar-thumb {
+  background-color: var(--violet);
+  border-radius: 5px;
+  border: 3px solid rgba(87, 36, 167, 0.1);
+}
+
+
+
 .fixed {
     padding: 20px;
     position: fixed;
@@ -11,6 +36,7 @@
     background-color: var(--violet);
     color: white;
     z-index: 10;
+    transition: opacity .3s ease-in-out;
 }
 
 .fixed__btn {
@@ -166,7 +192,7 @@ font-weight: 600;
     line-height: 120%;
     color: white;
     background: linear-gradient(92deg, #056BF0 1.05%, #D547BA 100%);
-    border-radius: var(--border-radius);
+    border-radius: 16px;
 }
 
 .banner__btn svg {
@@ -193,10 +219,17 @@ font-weight: 600;
 }
 
 .about__left {
+    display: flex;
+    justify-content: center;
+    align-items: end;
     border-radius: 32px;
-    background: url(../img/about.webp), linear-gradient(288deg, rgba(213, 71, 186, 0.30) 0%, rgba(5, 107, 240, 0.50) 100%);
+    background: linear-gradient(288deg, rgba(213, 71, 186, 0.30) 0%, rgba(5, 107, 240, 0.50) 100%);
     background-position: bottom center;
     background-repeat: no-repeat;
+}
+
+.about__left picture {
+    display: flex;
 }
 
 .about__right {
@@ -233,61 +266,6 @@ font-weight: 600;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
-
-/* 
-@keyframes book-1 {
-    from {
-        box-shadow: none;
-        transform: none;
-    }
-
-    to {
-        transform: translateY(-3px);
-        box-shadow: 0px 13px 12px 0px rgba(83, 213, 225, 0.64), 0px 15px 14px 0px rgba(83, 213, 225, 0.06), 0px 8px 11px 0px rgba(83, 213, 225, 0.20), 0px 2px 8px 0px rgba(83, 213, 225, 0.34), 0px 2px 5px 0px rgba(83, 213, 225, 0.39);
-    }
-}
-
-@keyframes book-2 {
-    from {
-        box-shadow: none;
-        transform: none;
-    }
-
-    to {
-        transform: translateY(-3px);
-        box-shadow: 0px 13px 12px 0px rgba(213, 71, 186, 0.64), 0px 15px 14px 0px rgba(213, 71, 186, 0.06), 0px 8px 11px 0px rgba(213, 71, 186, 0.20), 0px 2px 8px 0px rgba(213, 71, 186, 0.34), 0px 2px 5px 0px rgba(213, 71, 186, 0.39);
-    }
-}
-
-@keyframes book-3 {
-    from {
-        box-shadow: none;
-        transform: none;
-    }
-
-    to {
-        transform: translateY(-3px);
-        box-shadow: 0px 13px 12px 0px rgba(87, 36, 167, 0.64), 0px 15px 14px 0px rgba(87, 36, 167, 0.06), 0px 8px 11px 0px rgba(87, 36, 167, 0.20), 0px 2px 8px 0px rgba(87, 36, 167, 0.34), 0px 2px 5px 0px rgba(87, 36, 167, 0.39);
-    }
-}
-
-@keyframes book-4 {
-    from {
-        box-shadow: none;
-        transform: none;
-    }
-
-    to {
-        transform: translateY(-3px);
-        box-shadow: 0px 13px 12px 0px rgba(5, 107, 240, 0.64), 0px 15px 14px 0px rgba(5, 107, 240, 0.06), 0px 8px 11px 0px rgba(5, 107, 240, 0.20), 0px 2px 8px 0px rgba(5, 107, 240, 0.34), 0px 2px 5px 0px rgba(5, 107, 240, 0.39);
-    }
-} */
-/* 
-.about__item {
-    animation: blink 2s linear infinite;
-    background: #000;
-  } */
-
 
 
 .about__item {
@@ -662,6 +640,7 @@ font-weight: 600;
     padding: 20px;
     background-color: white;
     border-radius: 20px;
+    z-index: 4;
 }
 
 .game__question--violet .block_message .question-text {
@@ -677,6 +656,8 @@ font-weight: 600;
     height: 32px;
     z-index: -1;
     background-image: url(../img/message.svg);
+    background-repeat: no-repeat;
+    background-position: bottom;
 }
 
 .game__question img {
@@ -760,7 +741,7 @@ font-weight: 600;
     border: none;
     border-bottom: 1px solid var(--body-color);
     outline: none;
-    width: 30px;
+    width: 47px;
 }
 
 .question__block:nth-child(4) .imageText {
@@ -837,6 +818,11 @@ audio::-webkit-media-controls-panel {
     color: white;
 }
 
+audio::-moz-media-controls-panel {
+    background-color: white;
+}
+
+
 .success:checked~.game__checkbox {
     background-color: rgba(83, 252, 128, 0.50);
 }
@@ -875,6 +861,7 @@ audio::-webkit-media-controls-panel {
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .swiper-slide:nth-child(n) .review__image,
@@ -1020,40 +1007,7 @@ audio::-webkit-media-controls-panel {
 }
 
 
-.modal.order {
-    background-color: var(--cyan);
-}
 
-.order .modal__window {
-    padding: 40px;
-    max-width: 1220px;
-    border-radius: 40px;
-    background-color: #F2F7FF;
-    transform: translateY(60px);
-}
-
-.order__container {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 20px;
-}
-
-.order__left {
-    grid-column: 1/6;
-}
-
-.order__right {
-    grid-column: 6/9;
-}
-
-.feedback svg {
-    fill: transparent;
-    transition: fill .3s ease-in-out;
-}
-
-.feedback:hover svg {
-    fill: rgba(255, 255, 255, 0.20);
-}
 
 @media (max-width: 1600px) {
     .game__block {
@@ -1230,6 +1184,14 @@ audio::-webkit-media-controls-panel {
         left: 0;
     }
 
+    .block_message .question-text::before {
+        background-image: url(../img/message-1024.svg);
+    }
+
+    .game__question--violet .question-text::before {
+        background-image: url(../img/message-violet-1024.svg);
+    }
+
 }
 
 @media (max-width: 1024px) {
@@ -1284,10 +1246,12 @@ audio::-webkit-media-controls-panel {
     }
 
     .about__left {
-        background: url(../img/about-1024.webp), linear-gradient(288deg, rgba(213, 71, 186, 0.30) 0%, rgba(5, 107, 240, 0.50) 100%);
+        background: linear-gradient(288deg, rgba(213, 71, 186, 0.30) 0%, rgba(5, 107, 240, 0.50) 100%);
         background-repeat: no-repeat;
         background-position: bottom center;
     }
+
+   
 
     .about__right {
         padding: 40px;
@@ -1337,15 +1301,7 @@ audio::-webkit-media-controls-panel {
 }
 
 @media (max-width: 992px) {
-    .swiper.reviews-slider {
-        overflow: hidden !important;
-        text-align: center;
-    }
-
-    .swiper.authors-slider {
-        overflow: hidden !important;
-        text-align: center;
-    }
+    
 
     .cards__num {
         display: flex;
@@ -1455,6 +1411,16 @@ audio::-webkit-media-controls-panel {
 
 @media (max-width: 768px) {
 
+    .swiper.reviews-slider {
+        overflow: hidden !important;
+        text-align: center;
+    }
+
+    .swiper.authors-slider {
+        overflow: hidden !important;
+        text-align: center;
+    }
+
     .game__block.game__bottom {
         padding: 20px;
     }
@@ -1469,8 +1435,8 @@ audio::-webkit-media-controls-panel {
     }
 
     .modal__close svg {
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
     }
 
     .modal {

@@ -15,7 +15,7 @@
     width: 40px;
     height: 40px;
     position: relative;
-    z-index: 4;
+    z-index: 11;
     overflow: hidden;
     cursor: pointer;
   }
@@ -58,7 +58,7 @@
 
   .menu.active {
     transform: translateX(0);
-    z-index: 4;
+    z-index: 11;
   }
 
   /* Меняем гамбургер иконку, когда меню открыто */
@@ -546,6 +546,10 @@
     padding: 11px 6px;
   }
 
+  .form_agree, .form_link {
+    font-size: 12px;
+  }
+
   .subscription {
     margin-bottom: 56px;
   }
@@ -756,6 +760,10 @@
 
   .modal__btn {
     bottom: 38px;
+  }
+
+  .form_agree, .form_link {
+    font-size: 14px;
   }
 }
 
