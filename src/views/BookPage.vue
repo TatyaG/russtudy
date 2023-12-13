@@ -546,8 +546,13 @@ window.addEventListener('scroll', () => {
     const fixed = document.querySelector('.fixed');
 
     if (position.bottom < window.innerHeight) {
-        fixed.style.opacity = '0'
-    } else  fixed.style.opacity = '1'
+        fixed.style.opacity = '0';
+        fixed.style.visibility = 'hidden'
+    } else {
+        fixed.style.opacity = '1';
+        fixed.style.visibility = 'visible'
+    } 
+
     }
   
 })
