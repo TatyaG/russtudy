@@ -13,7 +13,7 @@
             <div class="card-content">
               <h2 class="card-title">Привет, Россия!</h2>
               <p class="card-text">Обучение русскому языку как&nbsp;иностранному</p>
-              <p class="card-info">печатные и онлайн-учебники</p>
+              <p class="card-info">печатные и онлайн учебники</p>
 
               <picture>
                 <source srcset="img/books_tablet.png" media="(max-width: 1415px)">
@@ -21,8 +21,7 @@
               </picture>
 
             </div>
-
-            <router-link :to="{name: 'book'}" class="promo__btn btn btn-reset">Подробнее</router-link>
+            <router-link :to="{ name: 'book' }" class="promo__btn btn btn-reset">Подробнее</router-link>
           </div>
 
           <div onclick="window.open('#','_newtab');" class="promo-bottom">
@@ -39,7 +38,6 @@
           </div>
 
         </div>
-
 
         <router-link to="/service" class="promo-center">
           <div class="card-content center_content">
@@ -62,16 +60,16 @@
 
           <!-- Слайдер -->
 
-                    <Swiper navigation :pagination="{ clickable: true }" :modules="modules">
-                        <swiper-slide v-for="item in affiche" :key="item.id">
-                                <picture>
-                                    <source :srcset="item.phone" media="(max-width: 576px)">
-                                    <source :srcset="item.tablet" media="(max-width: 1180px)">
-                                    <img class="right-background" :src="item.image" alt="Курсы для педагогов">
-                                </picture>
-                        </swiper-slide>
-             
-                    </Swiper>
+          <Swiper navigation :pagination="{ clickable: true }" :modules="modules">
+            <swiper-slide v-for="item in affiche" :key="item.id">
+              <picture>
+                <source :srcset="item.phone" media="(max-width: 576px)">
+                <source :srcset="item.tablet" media="(max-width: 1180px)">
+                <img class="right-background" :src="item.image" alt="Курсы для педагогов">
+              </picture>
+            </swiper-slide>
+
+          </Swiper>
 
           <a class="card-link flex" href="#">
             Все новости
@@ -85,48 +83,54 @@
 
       <section class="container subscription">
         <div class="subscription__content flex">
-          <p class="subscription__text">Хотите быть в&nbsp;курсе наших мероприятий, новостей
+          <h3 class="subscription__text">Хотите быть в&nbsp;курсе наших мероприятий, новостей
             и&nbsp;обновлений? Подпишитесь на&nbsp;рассылку
-            и&nbsp;станьте частью нашего образовательного сообщества.</p>
+            и&nbsp;станьте частью нашего образовательного сообщества.</h3>
 
-          <Form @InvalidSubmit="onInvalidSubmit"  id="form" class="form flex">
+          <Form @InvalidSubmit="onInvalidSubmit" id="form" class="form flex">
             <label class="form_item flex">
               <span class="form_name">E-mail</span>
-              <Field  id="emailForma" type="email" name="email" placeholder="Введите E-mail" class="form__input" @input="inputChange" v-model="email" :rules="validateEmail"/>
+              <Field id="emailForma" type="email" name="email" placeholder="Введите E-mail" class="form__input"
+                @input="inputChange" v-model="email" :rules="validateEmail" />
               <ErrorMessage class="form__error" name="email" />
               <button class="modal__btn hidden" @click.prevent="clearInput"></button>
               <span v-show="errorIcon" class="error__icon"></span>
             </label>
             <button class="btn-reset btn form-btn" type="submit">Подписаться</button>
+            <p class="form_agree">Нажимая на&nbsp;кнопку &laquo;Подписаться&raquo; я&nbsp;даю своё согласие
+              на&nbsp;обработку&nbsp;
+              <a class="form_link" href="docs/политика_обработки_ПДн_на_сайте_учебник.pdf"
+                target="_blank">персональных данных</a>
+            </p>
           </Form>
         </div>
       </section>
 
       <section class="container partners flex">
         <ul class="partners__list list-reset flex">
-          <li v-for="partner in partners" :key="partner.id" class="partners__item">
-            <a class="partners__link flex" href="http:obr.so/" target="_blank"><img src="img/обрсоюз.png"
-                alt="обрсоюз"></a>
-          </li>
-          <!-- <li class="partners__item">
-            <a class="partners__link flex" href="http:amities-russes.jimdofree.com/" target="_blank"><img
-                src="img/partner.png" alt="Amities Russes"></a>
+          <li class="partners__item">
+            <a class="partners__link flex" href="http://obr.so/" target="_blank"><img src="img/обрсоюз.png"
+                alt="Обрсоюз"></a>
           </li>
           <li class="partners__item">
-            <a class="partners__link flex" href="#"> <img src="img/partner_szkola.png" alt="Szkola"></a>
+            <a class="partners__link flex" href="http://amities-russes.jimdofree.com/" target="_blank">
+              <img src="img/partner.png" alt="Amities Russes"></a>
           </li>
           <li class="partners__item">
-            <a class="partners__link flex" href="http:www.rki.today/?m=1" target="_blank"><img src="img/РКИ today.png"
+            <a class="partners__link flex" href="#" target="_blank"> <img src="img/partner_szkola.png" alt="Szkola"></a>
+          </li>
+          <li class="partners__item">
+            <a class="partners__link flex" href="http://www.rki.today/?m=1" target="_blank"><img src="img/РКИ today.png"
                 alt="РКИ"></a>
           </li>
           <li class="partners__item">
-            <a class="partners__link flex" href="http:www.arbat.gr/" target="_blank"> <img src="img/арбат.png"
+            <a class="partners__link flex" href="http://www.arbat.gr/" target="_blank"> <img src="img/арбат.png"
                 alt="Арбат"></a>
           </li>
           <li class="partners__item">
-            <a class="partners__link flex" href="http:totaldict.ru/" target="_blank"><img src="img/диктант.png"
+            <a class="partners__link flex" href="http://totaldict.ru/" target="_blank"><img src="img/диктант.png"
                 alt="Тотальный диктант"></a>
-          </li> -->
+          </li>
         </ul>
       </section>
     </main>
@@ -140,7 +144,7 @@ import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination } from 'swiper/modules';
-import { Form, Field, ErrorMessage   } from 'vee-validate';
+import { Form, Field, ErrorMessage } from 'vee-validate';
 
 
 export default {
@@ -178,37 +182,37 @@ export default {
   },
 
   setup() {
-      return {
-        modules: [Navigation, Pagination],
-      };
+    return {
+      modules: [Navigation, Pagination],
+    };
+  },
+
+  methods: {
+    inputChange(e) {
+      const btn = e.target.nextSibling.nextSibling;
+      if (!btn.classList.contains("hidden")) {
+        this.errorIcon = false
+      }
+      if (btn.classList.contains("hidden") && this.email !== '') {
+        btn.classList.remove('hidden')
+        this.errorIcon = false
+      }
     },
 
-    methods: {
-      inputChange(e) {
-        const btn = e.target.nextSibling.nextSibling;
-    if (!btn.classList.contains("hidden")) {
-      this.errorIcon = false
-    }
-    if (btn.classList.contains("hidden") && this.email !== '') {
-      btn.classList.remove('hidden')
-      this.errorIcon = false
-    }
-      },
+    clearInput(e) {
+      this.email = '';
+      e.target.classList.add('hidden');
+      if (this.email == '') {
+        this.errorIcon = true
+      }
+    },
 
-      clearInput(e) {
-        this.email = '';
-        e.target.classList.add('hidden');
-        if (this.email == '') {
-          this.errorIcon = true
-        }
-      },
-
-      onInvalidSubmit(e) {        
-        if (e.errors) {
-          console.log(e.errors)
-          this.errorIcon = true
-        }
-      },
+    onInvalidSubmit(e) {
+      if (e.errors) {
+        console.log(e.errors)
+        this.errorIcon = true
+      }
+    },
 
 
 
@@ -223,8 +227,8 @@ export default {
 
       return true;
     },
-    
-  }
 
+  },
 }
+
 </script>

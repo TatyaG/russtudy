@@ -546,6 +546,10 @@
     padding: 11px 6px;
   }
 
+  .form_agree, .form_link {
+    font-size: 12px;
+  }
+
   .subscription {
     margin-bottom: 56px;
   }
@@ -756,6 +760,10 @@
 
   .modal__btn {
     bottom: 38px;
+  }
+
+  .form_agree, .form_link {
+    font-size: 14px;
   }
 }
 
