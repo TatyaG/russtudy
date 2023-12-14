@@ -35,9 +35,9 @@
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="#" class="nav__link">
+                            <router-link to="/news" class="nav__link">
                                 Анонсы и новости
-                            </a>
+                            </router-link>
                         </li>
                     </ul>
                 </nav>

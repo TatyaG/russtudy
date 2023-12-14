@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '@/views/HomePage.vue'
 import BookPage from '@/views/BookPage.vue'
 import testPage from '@/views/v-testPage.vue'
+import NewsPage from '@/views/NewsPage.vue'
 
 const routes = [
   {
@@ -24,12 +25,17 @@ const routes = [
     path: '/textbook',
     name: 'book',
     component: BookPage
+  },
+  {
+    path: '/news',
+    name: 'news',
+    component: NewsPage
   }
 ]
 
 const router = createRouter({
-  // history: createWebHistory(process.env.BASE_URL),
-  history: createWebHistory(),
+  history: createWebHistory(process.env.BASE_URL),
+  // history: createWebHistory(),
   routes
 })
 
