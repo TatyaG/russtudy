@@ -30,13 +30,12 @@ const routes = [
     path: '/news',
     name: 'news',
     component: NewsPage
-  },
-
+  }
 ]
 
 const router = createRouter({
-  // history: createWebHistory(process.env.BASE_URL),
-  history: createWebHistory(),
+  history: createWebHistory(process.env.BASE_URL),
+  // history: createWebHistory(),
   routes
 })
 
