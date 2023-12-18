@@ -1,0 +1,48 @@
+.offer {
+    font-size: 20px;
+}
+
+.offer__tabs {
+    display: flex;
+    padding-top: 80px;
+    margin-bottom: 40px;
+}
+
+.modal.offer {
+    overflow: auto;
+    background-color: var(--cyan);
+}
+
+.offer .modal__window {
+    margin-bottom: 40px;
+    padding: 40px;
+    max-width: 1220px;
+    border-radius: 40px;
+    background-color: #F2F7FF;
+    transform: translateY(20px);
+}
+
+.offer .tabs__item {
+    width: 100%;
+}
+
+.offer__form {
+    width: 100%;
+}
+
+.offer .form__label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.offer .form__text {
+    margin-bottom: 8px;
+}
+
+.form__information {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+    
