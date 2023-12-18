@@ -49,14 +49,14 @@
                             <label for="" class="order__label">
                                 <span class="info__text">Ф.И.О *</span>
                                 <button class="modal__btn hidden" @click.prevent="clearInput"></button>
-                                <span v-show="errorFio" class="error__icon"></span>
+                                <span v-show="errorFio" class="error-icon"></span>
                                 <Field :class="{error: errorFio}" class="order__input" name="fio" v-model="fio" type="text" placeholder="Введите Ф.И.О" :rules="validateFio" @input="inputChange" @keydown="deleteNumber"/>
                                 <ErrorMessage class="form__error" name="fio" />
                             </label>
                             <label for="" class="order__label">
                                 <span class="info__text">Страна</span>
                                 <button class="modal__btn hidden" @click.prevent="clearInput"></button>
-                                <!-- <span v-show="errorCountry" class="error__icon"></span> -->
+                                <!-- <span v-show="errorCountry" class="error-icon"></span> -->
                                 <input class="order__input" name="country" v-model="country" type="text" placeholder="Введите страну" @keydown="deleteNumber"/>
                                 <!-- <ErrorMessage class="form__error" name="country" />                     -->
                                 
@@ -65,7 +65,7 @@
                                 <label for="" class="order__label">
                                 <span class="info__text">Email *</span>
                                 <button v-show="!errorEmail" class="modal__btn hidden" @click.prevent="clearInput"></button>
-                                <span v-show="errorEmail" class="error__icon"></span>
+                                <span v-show="errorEmail" class="error-icon"></span>
                                 <Field :class="{error: errorEmail}" class="order__input" name="email" v-model="email" type="text" placeholder="Введите email" :rules="validateEmail" @input="inputChange" @keydown="deleteNumber"/>
                                 <ErrorMessage class="form__error" name="email" />  
                             </label>

@@ -94,7 +94,7 @@
                 @input="inputChange" v-model="email" :rules="validateEmail" />
               <ErrorMessage class="form__error" name="email" />
               <button class="modal__btn hidden" @click.prevent="clearInput"></button>
-              <span v-show="errorIcon" class="error__icon"></span>
+              <span v-show="errorIcon" class="error-icon"></span>
             </label>
             <button class="btn-reset btn form-btn" type="submit">Подписаться</button>
             <p class="form_agree">Нажимая на&nbsp;кнопку &laquo;Подписаться&raquo; я&nbsp;даю своё согласие

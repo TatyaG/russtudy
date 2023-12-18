@@ -3,6 +3,7 @@ import HomePage from '@/views/HomePage.vue'
 import BookPage from '@/views/BookPage.vue'
 import testPage from '@/views/v-testPage.vue'
 import NewsPage from '@/views/NewsPage.vue'
+import NewsModal from '@/components/NewsModal.vue'
 
 const routes = [
   {
@@ -30,6 +31,13 @@ const routes = [
     path: '/news',
     name: 'news',
     component: NewsPage
+  },
+
+  {
+    path: '/news/:id',
+    name: 'newItem',
+    component: NewsModal,
+    props: true
   }
 ]
 
