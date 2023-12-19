@@ -68,7 +68,6 @@
                 <img class="right-background" :src="item.image" alt="Курсы для педагогов">
               </picture>
             </swiper-slide>
-
           </Swiper>
 
           <a class="card-link flex" href="#">
@@ -99,45 +98,33 @@
             <button class="btn-reset btn form-btn" type="submit">Подписаться</button>
             <p class="form_agree">Нажимая на&nbsp;кнопку &laquo;Подписаться&raquo; я&nbsp;даю своё согласие
               на&nbsp;обработку&nbsp;
-              <a class="form_link" href="docs/политика_обработки_ПДн_на_сайте_учебник.pdf"
-                target="_blank">персональных данных</a>
+              <a class="form_link" href="docs/политика_обработки_ПДн_на_сайте_учебник.pdf" target="_blank">персональных
+                данных</a>
             </p>
           </Form>
         </div>
       </section>
 
       <section class="container partners flex">
-        <ul class="partners__list list-reset flex">
-          <li class="partners__item">
-            <a class="partners__link flex" href="http://obr.so/" target="_blank"><img src="img/обрсоюз.png"
-                alt="Обрсоюз"></a>
-          </li>
-          <li class="partners__item">
-            <a class="partners__link flex" href="http://amities-russes.jimdofree.com/" target="_blank">
-              <img src="img/partner.png" alt="Amities Russes"></a>
-          </li>
-          <li class="partners__item">
-            <a class="partners__link flex" href="#" target="_blank"> <img src="img/partner_szkola.png" alt="Szkola"></a>
-          </li>
-          <li class="partners__item">
-            <a class="partners__link flex" href="http://www.rki.today/?m=1" target="_blank"><img src="img/РКИ today.png"
-                alt="РКИ"></a>
-          </li>
-          <li class="partners__item">
-            <a class="partners__link flex" href="http://www.arbat.gr/" target="_blank"> <img src="img/арбат.png"
-                alt="Арбат"></a>
-          </li>
-          <li class="partners__item">
-            <a class="partners__link flex" href="http://totaldict.ru/" target="_blank"><img src="img/диктант.png"
-                alt="Тотальный диктант"></a>
-          </li>
-        </ul>
+        <Swiper navigation :modules="modules" class="partners__list flex" :slides-per-view="6" :space-between="20"
+          :breakpoints="{
+            320: { slidesPerView: 2 },
+            576: { slidesPerView: 3 },
+            950: { slidesPerView: 6 },
+          }">
+          <swiper-slide v-for="  partner   in   partners  " :key="partner.id" class="partners_slide">
+            <div class="partners__item">
+              <a class="partners__link flex" :href="partner.link" target="_blank"><img :src="partner.image"
+                  alt="Обрсоюз"></a>
+            </div>
+          </swiper-slide>
+        </Swiper>
+
       </section>
     </main>
     <Footer></Footer>
   </div>
 </template>
-
 <script>
 
 import Header from '@/components/Header.vue';
@@ -174,8 +161,48 @@ export default {
       partners: [
         {
           id: 1,
-          image: '',
-          link: ''
+          image: 'img/обрсоюз.png',
+          link: 'http://obr.so/',
+        },
+        {
+          id: 2,
+          image: 'img/partner.png',
+          link: 'http://amities-russes.jimdofree.com/',
+        },
+        {
+          id: 3,
+          image: 'img/partner_szkola.png',
+          link: '#',
+        },
+        {
+          id: 4,
+          image: 'img/РКИ today.png',
+          link: 'http://www.rki.today/?m=1',
+        },
+        {
+          id: 5,
+          image: 'img/арбат.png',
+          link: 'http://www.arbat.gr/',
+        },
+        {
+          id: 6,
+          image: 'img/диктант.png',
+          link: 'http://totaldict.ru/',
+        },
+        {
+          id: 7,
+          image: 'img/диктант.png',
+          link: 'http://totaldict.ru/',
+        },
+        {
+          id: 8,
+          image: 'img/диктант.png',
+          link: 'http://totaldict.ru/',
+        },
+        {
+          id: 9,
+          image: 'img/диктант.png',
+          link: 'http://totaldict.ru/',
         },
       ]
     }
