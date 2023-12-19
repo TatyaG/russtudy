@@ -580,6 +580,7 @@ body {
 .form__input {
   margin-bottom: 26px;
   padding: 12px 24px;
+  padding-right: 44px;
   border-radius: 12px;
   border: none;
   background: #fff;
@@ -592,7 +593,7 @@ body {
 .error-icon {
   position: absolute;
   right: 24px;
-  top: 44%;
+  top: 12px;
   width: 20px;
   height: 20px;
   background-image: url(../img/error.svg);
@@ -614,7 +615,7 @@ body {
   border: none;
   position: absolute;
   right: 24px;
-  bottom: 39px;
+  top: 12px;
   width: 20px;
   height: 20px;
   background-color: transparent;

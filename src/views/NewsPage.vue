@@ -14,7 +14,7 @@
                     <div class="title-block"><h1 class="title news__title">Анонсы и новости</h1></div>
                     <div class="news__top">
                     <ul class="news__tabs tabs list-reset">
-                        <li v-for="tab in tabs" :key="tab.id" class="tabs__item" @click.prevent="changeTab(tab.name, tab.component)" :class="{active: activeTab == tab.name}">
+                        <li v-for="tab in tabs" :key="tab.id" class="tabs__item" @click.prevent="changeTab(tab.name)" :class="{active: activeTab == tab.name}">
                             <a href="" class="tabs__link">{{ tab.name }}</a>
                         </li>
                     </ul>
@@ -26,9 +26,7 @@
                         <News :filteredNews="filteredNews"></News>
                 </div>
 
-                <div v-for="item in allNews" :key="item.id"></div>
-
-                <OfferNewsModal v-if="showModal"></OfferNewsModal>
+                <OfferNewsModal v-if="showModal" @close-modal="closeModal()"></OfferNewsModal>
             </section>
             
         </main>
@@ -70,7 +68,6 @@ import OfferNewsModal from '@/components/OfferNewsModal.vue';
                         component: 'Events',
                     },
                 ],
-                activeNewsBlock: 'AllNews',
                 showModal: false,
             }
         },
@@ -97,16 +94,22 @@ import OfferNewsModal from '@/components/OfferNewsModal.vue';
         },
 
         methods: {
-            changeTab(name, component) {
+            changeTab(name) {
                 this.activeTab = name;
                 const NewsStore = useNewsStore()
                 NewsStore.activeTab = name
-                this.activeNewsBlock = component
             },
 
             openModal() {
-                this.showModal = true
+                this.showModal = true;
+                document.body.style.overflow = 'hidden';
+            },
+
+            closeModal() {
+                this.showModal = false;
+                document.body.style.overflow = 'auto'
             }
+
         },
 
 
