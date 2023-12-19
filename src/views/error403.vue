@@ -4,7 +4,7 @@
         <main>
             <section class="error-container error">
                 <div class="error__left flex">
-                    <h2 class="error__title">404</h2>
+                    <h2 class="error__title">403</h2>
                     <picture>
                         <source srcset="img/errores/girl_mobile.png" media="(max-width: 576px)">
                         <source srcset="img/errores/girl_tablet.png" media="(max-width: 1024px)">
@@ -15,9 +15,10 @@
                 <div class="error__right">
                     <div class="error__content flex">
                         <div class="error__info">
-                            <p class="error__subtitle">Страница не найдена</p>
-                            <p class="error__text">Запрашиваемой страницы не&nbsp;существует.
-                                Возможно, в&nbsp;запросе был указан неверный адрес страницы, или она была удалена.</p>
+                            <p class="error__subtitle">Доступ ограничен</p>
+                            <p class="error__text">Вы&nbsp;запросили страницу доступ к&nbsp;которой ограничен специальными
+                                правами. Возможно это закрытая группа или личные файлы пользователя. <a href="#"
+                                    class="error__text_link">Подробнее...</a></p>
                             <router-link :to="{ name: 'home' }" class="btn-reset error__btn">На главную</router-link>
                         </div>
                         <div class="error__footer">
@@ -78,7 +79,7 @@ import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
-    name: 'error404',
+    name: 'error403',
     components: { Header, Footer },
 }
 </script>
