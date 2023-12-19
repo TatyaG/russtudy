@@ -21,8 +21,8 @@
             </h5>
             <div class="list-reset footer__personal">
                 <h4 class="personal_item"><a class="footer_link link_personal"
-                        href="docs/Согласие_на_обработку_ПДн_на_сайте_учебник.pdf"
-                        target="_blank">Пользовательское соглашение</a></h4>
+                        href="docs/Согласие_на_обработку_ПДн_на_сайте_учебник.pdf" target="_blank">Пользовательское
+                        соглашение</a></h4>
                 <h4 class="personal_item"><a class="footer_link link_personal"
                         href="docs/политика_обработки_ПДн_на_сайте_учебник.pdf" target="_blank">Политика о
                         персональных данных</a></h4>
@@ -30,7 +30,8 @@
         </div>
 
         <div class="footer__right">
-            <router-link :to="{name: 'home'}" class="footer__logo_link"> <img src="img/logo_tablet.svg" alt="logo"></router-link>
+            <router-link :to="{ name: 'home' }" class="footer__logo_link"> <img src="img/logo_tablet.svg"
+                    alt="logo"></router-link>
             <ul class="footer_list footer_contacts list-reset">
                 <li class="footer__item flex">
                     <a class="footer_link flex" href="tel:=+79993333303"><svg width="22" height="23" viewBox="0 0 22 23"
