@@ -30,9 +30,9 @@
                             </router-link>
                         </li>
                         <li class="nav__item">
-                            <a href="#" class="nav__link">
+                            <router-link to="/error404" class="nav__link">
                                 Курсы для педагогов
-                            </a>
+                            </router-link>
                         </li>
                         <li class="nav__item">
                             <a href="#" class="nav__link">

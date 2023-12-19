@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '@/views/HomePage.vue'
 import BookPage from '@/views/BookPage.vue'
 import testPage from '@/views/v-testPage.vue'
+import error404 from '@/views/error404.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/textbook',
     name: 'book',
     component: BookPage
+  },
+  {
+    path: '/error404',
+    name: 'error404',
+    component: error404,
   }
 ]
 
