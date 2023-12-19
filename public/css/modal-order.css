@@ -117,7 +117,7 @@ input:focus {
     margin-bottom: 7px;
 }
 
-.error.order__input {
+.error.form__input {
     outline: 1px solid #FF1E1E;
 }
 

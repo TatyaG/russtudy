@@ -23,7 +23,7 @@
     props: ['item'],
     data() {
       return {
-        path: `https://rus.study${this.$route.path}`
+        path: window.location
       }
     },
     methods: {
