@@ -29,7 +29,7 @@
                             </router-link>
                         </li>
                         <li class="nav__item">
-                            <router-link to="/error404" class="nav__link">
+                            <router-link to="/error402" class="nav__link">
                                 Курсы для педагогов
                             </router-link>
                         </li>

@@ -64,6 +64,14 @@
   margin-bottom: auto;
 }
 
+.error__info_402 {
+  max-width: 800px;
+}
+
+.error__info_401 {
+  max-width: 868px;
+}
+
 .error__subtitle {
   margin-bottom: 20px;
   color: #0a2b49;
@@ -74,11 +82,47 @@
   line-height: 120%;
 }
 
+.error__subtitle_401402 {
+  max-width: 347px;
+  margin-bottom: 40px;
+}
+
+.error__wrap {
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.error__payment,
+.error__support {
+  max-width: calc((100% - 40px) / 2);
+}
+
+.error__payment_401 {
+  max-width: 402px;
+  display: flex;
+  flex-direction: column;
+}
+
+.error__support_401 {
+  max-width: 426px;
+  display: flex;
+  flex-direction: column;
+}
+
 .error__text {
   margin-bottom: 40px;
   color: #0a2b49;
   font-size: 20px;
   line-height: 120%;
+}
+
+.error__text_402 {
+  margin-bottom: 20px;
+}
+
+.error__text_401 {
+  margin-bottom: auto;
+  padding-bottom: 20px;
 }
 
 .error__text_link {
@@ -102,6 +146,7 @@
 }
 
 .error__btn {
+  width: fit-content;
   display: inline-block;
   padding: 12px 24px;
   border-radius: 16px;
@@ -182,6 +227,10 @@
     padding: 22px 28px 63px 28px;
   }
 
+  .error__wrap_401 {
+    gap: 16px;
+  }
+
   .error__link {
     margin-right: 5px;
   }
@@ -192,6 +241,15 @@
 }
 
 @media (max-width: 1200px) {
+  .error__text_402,
+  .error__text_401 {
+    font-size: 16px;
+  }
+
+  .error__btn {
+    font-size: 19px;
+  }
+
   .error__offer {
     font-size: 14px;
   }
@@ -230,6 +288,32 @@
     max-width: 500px;
   }
 
+  .error__info_401,
+  .error__info_402 {
+    max-width: 100%;
+  }
+
+  .error__wrap_401 {
+    gap: 40px;
+  }
+
+  .error__payment {
+    max-width: 402px;
+  }
+
+  .error__support {
+    max-width: 426px;
+  }
+
+  .error__text_402,
+  .error__text_401 {
+    font-size: 20px;
+  }
+
+  .error__btn {
+    font-size: 24px;
+  }
+
   .error__link {
     font-size: 24px;
   }
@@ -266,6 +350,15 @@
   .error__title {
     right: 0;
   }
+
+  .error__wrap {
+    gap: 26px;
+  }
+
+  .error__btn_support,
+  .error__btn_registration {
+    font-size: 23px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -286,6 +379,10 @@
     margin-bottom: 40px;
   }
 
+  .error__wrap {
+    flex-direction: column;
+  }
+
   .error__text {
     margin-bottom: 20px;
   }
@@ -294,6 +391,15 @@
     top: 5%;
     right: 0;
     font-size: 64px;
+  }
+
+  .error__btn_support,
+  .error__btn_registration {
+    font-size: 24px;
+  }
+
+  .error__text_401 {
+    padding-bottom: 0;
   }
 }
 
@@ -329,5 +435,9 @@
   .error__btn {
     width: 100%;
     text-align: center;
+  }
+
+  .error__btn_support {
+    padding: 12px;
   }
 }
