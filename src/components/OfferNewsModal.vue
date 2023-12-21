@@ -93,7 +93,7 @@
 
                         <div class="offer__btn">
                             <button type="submit" class="btn-reset btn-background">Далее</button>
-                            <p class="policy">Нажимая на кнопку «Далее», вы подтверждаете, что ознакомлены с <a class="policy__link" href="">Пользовательским соглашением</a>  и <a class="policy__link" href="">Политикой о персональных данных</a> </p>
+                            <p class="policy">Нажимая на кнопку «Далее», вы подтверждаете, что ознакомлены с <a class="policy__link" target="_blank" href="docs/Согласие_на_обработку_ПДн_на_сайте_учебник.pdf">Пользовательским соглашением</a>  и <a target="_blank" class="policy__link" href="docs/политика_обработки_ПДн_на_сайте_учебник.pdf">Политикой о персональных данных</a> </p>
                         </div>
                     </div>
 

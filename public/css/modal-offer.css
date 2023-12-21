@@ -166,6 +166,17 @@ font-weight: 700;
     color: rgba(10, 43, 73, 0.60);
 }
 
+.dropzone__error-mark {
+    padding: 2px;
+    border-radius: 50%;
+    background-color: white;   
+}
+
+.dropzone__item-control {
+    border-radius: 50%;
+    background-color: white;
+}
+
 @media (max-width: 1400px) {
     .offer .modal__window {
         margin-bottom: 0;
@@ -215,6 +226,7 @@ font-weight: 700;
     }
     
     .file {
+        gap: 8px;
         align-items: start;
         padding-top: 0;
         background-image: none;
@@ -223,6 +235,16 @@ font-weight: 700;
     .offer .dropzone__box {
         padding: 0;
         border: none;
+    }
+
+    .file .file__size {
+        display: block;
+        margin-bottom: 0;
+        font-size: 12px;
+    }
+
+    .file__btn {
+        order: -1;
     }
 }
 
@@ -243,7 +265,11 @@ font-weight: 700;
     }
 
     .offer textarea.form__input {
-        margin-bottom: 20px;
+        margin-bottom: 0;
+    }
+
+    .offer textarea.form__input ~ .form__error {
+        bottom: -20px;
     }
 
     .offer .modal__window {
