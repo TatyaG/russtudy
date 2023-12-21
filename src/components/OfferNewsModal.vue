@@ -288,7 +288,6 @@ configure({
             submitForm() {
                 
                 if (this.validate == true) {
-                    console.log('aa')
                 }
                
                 this.activeTab = 'Проверка'
