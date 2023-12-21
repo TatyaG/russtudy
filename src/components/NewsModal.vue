@@ -15,7 +15,8 @@
                     prevEl: prev,
                     nextEl: next,
                 }"
-                @swiper="onSwiper"   
+                @swiper="onSwiper"
+                :allowTouchMove="false"   
                 >
                 <swiper-slide class="new" v-for="item in filteredNews" :key="item.id" :id="item.id">
                     <div class="new__block">
@@ -131,14 +132,14 @@ import useNewsStore from '@/stores/NewsStore.js'
             },
 
             nextSlide() {
-                const slides = document.querySelector('.swiper-slide-active');
-                const id = (parseInt(slides.getAttribute('id')) + 1);
+                const slides = document.querySelector('.swiper-slide-next');
+                const id = slides.getAttribute('id');
                 window.history.replaceState('page2', 'Title', `/news/${id}`);
             },
 
             prevSlide() {
-                const slides = document.querySelector('.swiper-slide-active');
-                const id = (parseInt(slides.getAttribute('id')) - 1);
+                const slides = document.querySelector('.swiper-slide-prev');
+                const id = slides.getAttribute('id');
                 window.history.replaceState('page2', 'Title', `/news/${id}`);
             },
             

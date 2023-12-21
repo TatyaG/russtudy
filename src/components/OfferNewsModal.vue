@@ -4,11 +4,11 @@
             <div class="modal__window">
                 <button @click="$emit('close-modal')" class="modal__close btn-reset"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M37.5 2.5L2.5 37.5" stroke="#0A2B49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2.5 2.5L37.5 37.5" stroke="#0A2B49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
                 <ul class="offer__tabs tabs list-reset">
-                    <li :class="{active: activeTab == tab.name}" @click.prevent="changeTab(tab.name)" v-for="tab in tabs" :key="tab.id" class="tabs__item">
-                        <a href="" class="tabs__link">{{ tab.name }}</a>
+                    <li :class="{active: activeTab == tab.name, disabled: activeTab != tab.name}" v-for="tab in tabs" :key="tab.id" class="tabs__item">
+                        <a class="tabs__link">{{ tab.name }}</a>
                     </li>
                 </ul>
-                <Form @InvalidSubmit="onInvalidSubmit" class="offer__form form">
+                <Form @InvalidSubmit="onInvalidSubmit" @submit="submitForm" class="offer__form form">
                     <div v-if="activeTab == 'Информация'" class="form__information information">
                         <div class="information__left">
                         <div>
@@ -17,7 +17,7 @@
                                 
                                 <button class="modal__btn hidden" @click.prevent="clearInput"></button>
                                 
-                                <Field :class="{error: errorFio}" class="form__input" name="fio" v-model="fio" type="text" placeholder="Введите Ф.И.О" :rules="validateFio" @input="inputChange" @keydown="deleteNumber" @validateOnBlur="onBlur()"/>
+                                <Field :class="{'error-input': errorFio}" class="form__input" name="fio" v-model="fio" type="text" placeholder="Введите Ф.И.О" :rules="validateFio" @input="inputChange" @keydown="deleteNumber" @validateOnBlur="onBlur()"/>
                                 <span v-show="errorFio" class="error-icon"></span>
                                 <ErrorMessage class="form__error" name="fio" />
                             </label>
@@ -38,7 +38,7 @@
                                 
                                 <button class="modal__btn hidden" @click.prevent="clearInput"></button>
                                 
-                                <Field :class="{error: errorTitle}" class="form__input" name="title" v-model="title" type="text" placeholder="Введите название" :rules="validateTitle" @input="inputChange" @keydown="deleteNumber"/>
+                                <Field :class="{'error-input': errorTitle}" class="form__input" name="title" v-model="title" type="text" placeholder="Введите название" :rules="validateTitle" @input="inputChange" @keydown="deleteNumber"/>
                                 <span v-show="errorTitle" class="error-icon"></span>
                                 <ErrorMessage class="form__error" name="title" />
                             </label>
@@ -83,7 +83,7 @@
                                 
                                 <button class="modal__btn hidden" @click.prevent="clearInput"></button>
                                 
-                                <Field as="textarea" :class="{error: errorDescr}" class="form__input h-100" name="descr" v-model="descr" type="field" placeholder="Введите описание" :rules="validateDescr" @input="inputChange"/>
+                                <Field as="textarea" :class="{'error-input': errorDescr}" class="form__input h-100" name="descr" v-model="descr" type="field" placeholder="Введите описание" :rules="validateDescr" @input="inputChange"/>
                                 <span v-show="errorDescr" class="error-icon"></span>
                                 <ErrorMessage class="form__error" name="descr" />
                             </label>
@@ -92,13 +92,15 @@
                         </div>
 
                         <div class="offer__btn">
-                            <button @click.prevent="submitForm()" type="submit" class="btn-reset btn-background">Далее</button>
+                            <button type="submit" class="btn-reset btn-background">Далее</button>
                             <p class="policy">Нажимая на кнопку «Далее», вы подтверждаете, что ознакомлены с <a class="policy__link" href="">Пользовательским соглашением</a>  и <a class="policy__link" href="">Политикой о персональных данных</a> </p>
                         </div>
                     </div>
 
-                    <div v-if="activeTab == 'Проверка'">
-
+                    <div class="verification" v-if="activeTab == 'Проверка'">
+                        <p class="verification__title">Спасибо, что предложили новость! Мы ценим ваш вклад.</p>
+                        <p class="verification__text">Обратите внимание, что все новости проходят модерацию перед публикацией, чтобы гарантировать качество контента нашего сайта. Мы постараемся рассмотреть ваш материал как можно скорее и опубликовать его, если он соответствует нашим критериям. Спасибо за ваше терпение и понимание!</p>
+                        <button type="button" class="btn-reset btn-background verification__btn" @click.prevent="$emit('close-modal')">Готово</button>
                     </div>
                 </Form>
             </div>
@@ -116,6 +118,8 @@ configure({
   validateOnInput: true,
   validateOnModelUpdate: true,
 });
+
+           
     export default {
         components: {Form, Field, ErrorMessage, DropZone},
         data() {
@@ -146,6 +150,14 @@ configure({
                 errorFile: false,
        
             }
+        },
+
+        computed: {
+            validate() {
+                if (this.validateFio(this.fio) == true && this.validateTitle(this.title) == true && this.validateDescr(this.descr) == true) 
+                    return true
+                
+            },
         },
 
         methods: {
@@ -274,8 +286,11 @@ configure({
             },
 
             submitForm() {
-            
-                console.log('aa')
+                
+                if (this.validate == true) {
+                    console.log('aa')
+                }
+               
                 this.activeTab = 'Проверка'
             }
 

@@ -70,7 +70,7 @@ h5 {
 
 .form__error {
   position: absolute;
-  bottom: 0;
+  bottom: 15px;
   left: 0;
   font-size: 16px;
   color: var(--error);
