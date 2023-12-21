@@ -36,7 +36,7 @@ html *::-webkit-scrollbar-thumb {
     background-color: var(--violet);
     color: white;
     z-index: 10;
-    transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
 }
 
 .fixed__btn {

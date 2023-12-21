@@ -652,7 +652,6 @@ body {
   text-decoration-color: #056bf0;
 }
 
-
 /* partners */
 
 .partners {
@@ -666,9 +665,9 @@ body {
 
 .partners__item {
   /* количество отступов между карточками */
-  --offset: 5;
+  /* --offset: 5;
 
-  width: calc((100% - var(--gap) * var(--offset)) / (var(--offset) + 1));
+  width: calc((100% - var(--gap) * var(--offset)) / (var(--offset) + 1)); */
   border-radius: 26px;
   border: 1px solid #c6e0fc;
   background: #fff;
@@ -678,7 +677,7 @@ body {
 .partners__link {
   padding: 20px;
   width: 100%;
-  height: 100%;
+  min-height: 120px;
   align-items: center;
   justify-content: center;
 }
