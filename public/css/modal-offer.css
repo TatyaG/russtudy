@@ -53,6 +53,10 @@
     gap: 60px 20px;
 }
 
+.offer .form__input {
+    margin-bottom: 47px;
+}
+
 .offer__btn {
     display: flex;
     justify-content: center;
@@ -139,6 +143,29 @@ font-weight: 700;
     border-radius: 0 !important;
 }
 
+.verification {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.verification__title {
+    font-family: Perun;
+font-size: 32px;
+font-style: normal;
+font-weight: 700;
+}
+
+.verification__btn {
+    max-width: max-content;
+    align-self: center;
+}
+
+
+.offer .tabs__item.disabled:hover .tabs__link {
+    color: rgba(10, 43, 73, 0.60);
+}
+
 @media (max-width: 1400px) {
     .offer .modal__window {
         margin-bottom: 0;
@@ -156,6 +183,30 @@ font-weight: 700;
     .form__input {
         font-size: 16px;
     }
+
+    .policy {
+        font-size: 10px;
+    }
+
+    .offer__tabs {
+        padding-top: 60px;
+    }
+
+    .verification__title {
+        font-size: 20px;
+    }
+
+    .verification__text {
+        font-size: 14px;
+    }
+
+    .modal.offer {
+        background: #E7F0FF;
+    }
+
+    .file__btn {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -172,5 +223,30 @@ font-weight: 700;
     .offer .dropzone__box {
         padding: 0;
         border: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .form__information {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+
+    .offer textarea {
+        min-height: 473px;
+    }
+
+    .offer .form__input {
+        margin-bottom: 41px;
+    }
+
+    .offer textarea.form__input {
+        margin-bottom: 20px;
+    }
+
+    .offer .modal__window {
+        padding: 20px;
     }
 }
