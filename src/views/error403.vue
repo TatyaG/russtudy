@@ -17,7 +17,8 @@
                         <div class="error__info">
                             <p class="error__subtitle">Доступ ограничен</p>
                             <p class="error__text">Вы&nbsp;запросили страницу доступ к&nbsp;которой ограничен специальными
-                                правами. Возможно это закрытая группа или личные файлы пользователя. <a href="#"
+                                правами. Возможно это закрытая группа или личные файлы пользователя. <a
+                                    href="docs/Согласие_на_обработку_ПДн_на_сайте_учебник.pdf" target="_blank"
                                     class="error__text_link">Подробнее...</a></p>
                             <router-link :to="{ name: 'home' }" class="btn-reset error__btn">На главную</router-link>
                         </div>

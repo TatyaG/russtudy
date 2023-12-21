@@ -16,7 +16,6 @@
                     <div class="error__content flex">
                         <div class="error__info error__info_402">
                             <p class="error__subtitle error__subtitle_401402">Требуется оплата</p>
-
                             <div class="error__wrap flex">
                                 <div class="error__payment">
                                     <p class="error__text error__text_402">Для доступа к&nbsp;этому разделу необходимо
@@ -111,4 +110,5 @@ body {
 
 img {
     display: block;
-}</style>
+}
+</style>
