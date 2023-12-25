@@ -4,7 +4,7 @@
         <main>
             <section class="error-container error">
                 <div class="error__left flex">
-                    <h2 class="error__title">403</h2>
+                    <h2 class="error__title">402</h2>
                     <picture>
                         <source srcset="img/errores/girl_mobile.png" media="(max-width: 576px)">
                         <source srcset="img/errores/girl_tablet.png" media="(max-width: 1024px)">
@@ -14,13 +14,27 @@
 
                 <div class="error__right">
                     <div class="error__content flex">
-                        <div class="error__info">
-                            <p class="error__subtitle">Доступ ограничен</p>
-                            <p class="error__text">Вы&nbsp;запросили страницу доступ к&nbsp;которой ограничен специальными
-                                правами. Возможно это закрытая группа или личные файлы пользователя. <a
-                                    href="docs/Согласие_на_обработку_ПДн_на_сайте_учебник.pdf" target="_blank"
-                                    class="error__text_link">Подробнее...</a></p>
-                            <router-link :to="{ name: 'home' }" class="btn-reset error__btn">На главную</router-link>
+                        <div class="error__info error__info_402">
+                            <p class="error__subtitle error__subtitle_401402">Требуется оплата</p>
+                            <div class="error__wrap flex">
+                                <div class="error__payment">
+                                    <p class="error__text error__text_402">Для доступа к&nbsp;этому разделу необходимо
+                                        произвести оплату
+                                        на&nbsp;сайте</p>
+                                    <router-link :to="{ name: 'home' }" class="btn-reset error__btn">На
+                                        главную</router-link>
+                                </div>
+
+                                <div class="error__support">
+                                    <p class="error__text error__text_402">Вы&nbsp;уже оплатили, но&nbsp;все равно
+                                        не&nbsp;можете войти?
+                                        Обратитесь в&nbsp;техническую поддержку</p>
+                                    <router-link :to="{ name: 'home' }"
+                                        class="btn-reset error__btn error__btn_support">Написать в
+                                        поддержку</router-link>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="error__footer">
                             <ul class="list-reset error__list flex">
@@ -67,8 +81,8 @@
                             </ul>
                         </div>
                     </div>
-
                 </div>
+
             </section>
         </main>
         <Footer></Footer>
@@ -80,7 +94,7 @@ import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
-    name: 'error403',
+    name: 'error402',
     components: { Header, Footer },
 }
 </script>

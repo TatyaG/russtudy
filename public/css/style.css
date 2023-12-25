@@ -60,9 +60,8 @@ h5 {
 }
 
 @font-face {
-  font-family: "Perun";
-  src: url("../fonts/Perun-Bold.woff2") format("woff2"),
-    url("../fonts/Perun-Bold.woff") format("woff");
+  font-family: "Repo";
+  src: url("../fonts/Repo-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -121,7 +120,7 @@ body {
 .title__text {
   color: #162b54;
   text-align: center;
-  font-family: Perun;
+  font-family: Repo;
   font-size: 48px;
   font-weight: 700;
   line-height: 120%;
@@ -313,7 +312,7 @@ body {
 .card-title {
   margin-bottom: 14px;
   color: #fff;
-  font-family: "Perun";
+  font-family: "Repo";
   font-size: 32px;
   font-weight: 700;
   line-height: 38.4px;
@@ -645,6 +644,7 @@ body {
 
 .form_link {
   text-decoration-line: underline;
+  text-decoration-thickness: 1px;
   transition: text-decoration-color 0.3s ease-in-out;
 }
 
