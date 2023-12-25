@@ -1,10 +1,9 @@
 <template>
-
-<footer class="container footer flex">
+    <footer class="container footer flex">
         <div class="footer_left flex">
-            <a href="#" class="footer__logo">
+            <router-link :to="{ name: 'home' }" class="footer__logo">
                 <img src="img/logo_footer.svg" alt="logo">
-            </a>
+            </router-link>
             <div class="flex">
                 <small class="footer_small small_data">&copy;&nbsp;2023</small>
                 <small class="footer_small">Обрсоюз«Союз участников отношений в сфере образования»</small>
@@ -12,24 +11,27 @@
         </div>
 
         <div class="footer__center">
-            <p class="footer_text">
+            <h5 class="footer_text">
                 Сетевое издание &laquo;Учим русский язык&raquo;. Свидетельство о&nbsp;регистрации СМИ Эл &#8470;
                 ФС77&mdash;79469 выдано Федеральной службой по&nbsp;надзору в&nbsp;сфере связи, информационных
                 технологий и&nbsp;массовых коммуникаций (Роскомнадзор) 27&nbsp;ноября 2020&nbsp;года. Учредитель
                 (соучредитель): ООО СП&nbsp;&laquo;СОДРУЖЕСТВО&raquo;. Главный редактор: Мишина Н.Ю.,
                 тел.&nbsp;<span><a class="footer_text-link" href="tel:=+74962191213">+7 496 219-12-13</a></span>, email:
                 <span><a class="footer_text-link" href="mailto:mail@concord.education">mail@concord.education</a></span>
-            </p>
-            <ul class="list-reset footer__personal">
-                <li class="personal_item"><a class="footer_link link_personal" href="docs/Согласие_на_обработку_ПДн_на_сайте_учебник.pdf" target="_blank">Пользовательское соглашение</a>
-                </li>
-                <li class="personal_item"><a class="footer_link link_personal" href="docs/политика_обработки_ПДн_на_сайте_учебник.pdf" target="_blank">Политика о персональных
-                        данных</a></li>
-            </ul>
+            </h5>
+            <div class="list-reset footer__personal">
+                <h4 class="personal_item"><a class="footer_link link_personal"
+                        href="docs/Согласие_на_обработку_ПДн_на_сайте_учебник.pdf" target="_blank">Пользовательское
+                        соглашение</a></h4>
+                <h4 class="personal_item"><a class="footer_link link_personal"
+                        href="docs/политика_обработки_ПДн_на_сайте_учебник.pdf" target="_blank">Политика о
+                        персональных данных</a></h4>
+            </div>
         </div>
 
         <div class="footer__right">
-            <a class="footer__logo_link" href=""> <img src="img/logo_tablet.svg" alt="logo"></a>
+            <router-link :to="{ name: 'home' }" class="footer__logo_link"> <img src="img/logo_tablet.svg"
+                    alt="logo"></router-link>
             <ul class="footer_list footer_contacts list-reset">
                 <li class="footer__item flex">
                     <a class="footer_link flex" href="tel:=+79993333303"><svg width="22" height="23" viewBox="0 0 22 23"
@@ -79,7 +81,6 @@
 
         </div>
     </footer>
-
 </template>
 
 <script>

@@ -1,8 +1,7 @@
 <template>
-       
-       <header class="header">
+    <header class="header">
         <div class="flex header__container container">
-            <router-link :to="{name: 'home'}" class="logo flex">
+            <router-link :to="{ name: 'home' }" class="logo flex">
                 <picture>
                     <source srcset="img/logo_tablet.svg" media="(max-width: 1024px)">
                     <img class="logo__img" src="img/logo.svg" alt="Logo">
@@ -10,7 +9,7 @@
             </router-link>
 
             <div class="menu">
-                <router-link :to="{name: 'home'}" class="logo_burger logo flex">
+                <router-link :to="{ name: 'home' }" class="logo_burger logo flex">
                     <picture>
                         <source srcset="img/logo_tablet.svg" media="(max-width: 1024px)">
                         <img class="logo__img" src="img/logo.svg" alt="Logo">
@@ -30,14 +29,14 @@
                             </router-link>
                         </li>
                         <li class="nav__item">
-                            <a href="#" class="nav__link">
+                            <router-link to="/error404" class="nav__link">
                                 Курсы для педагогов
-                            </a>
+                            </router-link>
                         </li>
                         <li class="nav__item">
-                            <a href="#" class="nav__link">
+                            <router-link to="/news" class="nav__link">
                                 Анонсы и новости
-                            </a>
+                            </router-link>
                         </li>
                     </ul>
                 </nav>
@@ -69,19 +68,18 @@
 
         </div>
     </header>
-
 </template>
 
 <script>
-    export default {
-        methods: {
-            burger() {
-                let menuBtn = document.querySelector(".menu-btn");
-                let menu = document.querySelector(".menu");
-                menuBtn.classList.toggle("active");
-                menu.classList.toggle("active");
-                // document.body.classList.toggle("noscroll");
-            }
+export default {
+    methods: {
+        burger() {
+            let menuBtn = document.querySelector(".menu-btn");
+            let menu = document.querySelector(".menu");
+            menuBtn.classList.toggle("active");
+            menu.classList.toggle("active");
+            // document.body.classList.toggle("noscroll");
         }
     }
+}
 </script>
