@@ -1,7 +1,7 @@
 <template>
-     <label :class="{active: selectedProducts.includes(book.id)}" class="product">
+     <label :class="{active: selectedProducts.includes(book)}" class="product">
                                 <div class="order__product">
-                                   <input type="checkbox" class="visually-hidden product__input" name="product"  @change="addProduct(book.id)">
+                                   <input type="checkbox" class="visually-hidden product__input" name="product"  @change="addProduct(book)">
                                 <span class="product__checkbox"></span>
                                 <img :src="book.image" alt="">
                                 <div class="product__name">
@@ -13,9 +13,9 @@
                                 <div v-if="!book.isOnline" class="product__count count">
                                     <p class="count__text">Количество</p>
                                     <div class="count__block">
-                                        <button @click.prevent="decrementProduct(book.amount)" class="btn-reset product__btn product__btn--decrement" :disabled="!selectedProducts.includes(book.id)"></button>
+                                        <button @click.prevent="decrementProduct(book.amount)" class="btn-reset product__btn product__btn--decrement" :disabled="!selectedProducts.includes(book)"></button>
                                         <input type="number" class="count__num" :name="'count['+ book.id +']'" v-model="amount">
-                                        <button @click.prevent="incrementProduct(book.amount)" class="btn-reset product__btn product__btn--increment" :disabled="!selectedProducts.includes(book.id)"></button>
+                                        <button @click.prevent="incrementProduct(book.amount)" class="btn-reset product__btn product__btn--increment" :disabled="!selectedProducts.includes(book)"></button>
                                     </div>
                                 </div>
 
@@ -64,7 +64,6 @@ import { Form, Field, ErrorMessage   } from 'vee-validate';
     export default {
         data() {
             return {
-                // selectedProducts: []
             }
         },
 
@@ -95,12 +94,14 @@ import { Form, Field, ErrorMessage   } from 'vee-validate';
                 }
             },
 
-            addProduct(id) {
-                if (!this.selectedProducts.includes(id)) {
-                    this.selectedProducts.push(id)
+            addProduct(product) {
+                if (!this.selectedProducts.includes(product)) {
+                    this.selectedProducts.push(product)
+                    product.amount = 1
                 } else {
-                   const index = this.selectedProducts.indexOf(id);
+                   const index = this.selectedProducts.indexOf(product);
                    this.selectedProducts.splice(index, 1)
+                   product.amount = 0
                 } 
                 
             }

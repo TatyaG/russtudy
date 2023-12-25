@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "@toneflix-code/flickity-vue": "^1.0.1",
+    "axios": "^1.6.2",
     "core-js": "^3.8.3",
     "gsap": "^3.12.2",
+    "pinia": "^2.1.7",
     "swiper": "^11.0.4",
     "vee-validate": "^4.12.2",
     "vue": "^3.2.13",
@@ -17,6 +19,7 @@
     "vue-collapsed": "^1.2.9",
     "vue-router": "^4.0.3",
     "vue-tel-input": "^6.0.5",
+    "vue-yandex-maps": "^0.11.18",
     "vueperslides": "^2.16.0"
   },
   "devDependencies": {
