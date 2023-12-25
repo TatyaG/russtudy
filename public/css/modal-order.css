@@ -3,6 +3,10 @@ input:focus {
 
 }
 
+.vti__input:focus {
+    box-shadow: none;
+}
+
 .modal.order {
     overflow: auto;
     background-color: var(--cyan);
@@ -178,7 +182,8 @@ input:focus {
 .count__num::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 .product__btn--decrement::before,
@@ -233,7 +238,7 @@ input:focus {
     border-color: white;
 }
 
-.sub__label input:checked ~ span::before {
+.sub__label input:checked~span::before {
     content: '';
     position: absolute;
     top: 3px;
@@ -273,7 +278,7 @@ input:focus {
 .order__block {
     padding: 20px;
     border-radius: 26px;
-background: var(--blue);
+    background: var(--blue);
 }
 
 .order__block:first-child {
@@ -282,15 +287,16 @@ background: var(--blue);
 
 .between-block {
     margin-bottom: 20px;
-    display: flex;justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
 .order__title,
 .order__price--bold {
     font-family: Perun;
-font-size: 24px;
-font-weight: 700;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .between-block:first-child {
@@ -315,7 +321,7 @@ font-weight: 700;
     border: none;
     outline: none;
     font-family: Manrope;
-font-size: 20px;
+    font-size: 20px;
     background-color: white;
     border-radius: 12px;
 }
@@ -326,9 +332,9 @@ font-size: 20px;
     width: 100%;
     border-radius: 12px;
     font-size: 24px;
-font-weight: 600;
-background-color: var(--violet);
-color: white;
+    font-weight: 600;
+    background-color: var(--violet);
+    color: white;
 }
 
 .order__submit:disabled {
@@ -441,8 +447,8 @@ color: white;
     border-radius: 50%;
 }
 
-.payment__label input:checked ~ span::before,
-.delivery__label input:checked ~ span::before {
+.payment__label input:checked~span::before,
+.delivery__label input:checked~span::before {
     position: absolute;
     content: '';
     top: 3px;
@@ -486,7 +492,7 @@ color: white;
     max-width: max-content;
 }
 
-.tooltip svg:hover ~ .tooltip__block {
+.tooltip svg:hover~.tooltip__block {
     opacity: 1;
     visibility: visible;
 }
@@ -515,6 +521,107 @@ color: white;
     font-weight: 500;
 }
 
+.pochta__form {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.pochta__form .form__input {
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.form__btns {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: 2px solid var(--accent, #056BF0);
+}
+
+.pochta__btn {
+    padding: 12px 24px;
+    border-radius: 16px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    color: #056BF0;
+}
+
+.pochta__btn.active {
+    background-color: #056BF0;
+    color: white;
+}
+
+.pochta__map {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.balloon {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 52%;
+    border-radius: 20px;
+    background-color: white;
+    transform: translateX(100%);
+    transition: transform .3s ease-in-out;
+}
+
+.balloon.open {
+    transform: none;
+}
+
+.balloon__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    background-image: url(../img/close-balloon.svg);
+    cursor: pointer;
+}
+
+.balloon__title {
+    margin-bottom: 40px;
+    max-width: 246px;
+    font-family: Perun;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.balloon__btn {
+    width: 100%;
+    margin-top: auto;
+
+}
+
+.balloon__address {
+    margin-bottom: 20px;
+    line-height: 120%;
+}
+
+.balloon__time {
+    line-height: 120%;
+}
+
+.pochta__list {
+    max-height: 316px;
+    overflow-y: auto;
+}
+
 @media (max-width: 1400px) {
 
     .product {
@@ -525,7 +632,8 @@ color: white;
         font-size: 12px;
     }
 
-    .order__title, .order__price--bold {
+    .order__title,
+    .order__price--bold {
         font-size: 20px;
     }
 
@@ -582,7 +690,7 @@ color: white;
         margin-bottom: 16px;
     }
 
-    
+
 }
 
 @media (max-width: 992px) {
@@ -596,7 +704,7 @@ color: white;
         grid-column: 1;
     }
 
-   
+
 }
 
 @media (max-width: 768px) {
@@ -609,7 +717,7 @@ color: white;
     .order__product {
         grid-column: 2 span;
     }
-    
+
     .product img,
     .product__name,
     .product__checkbox {

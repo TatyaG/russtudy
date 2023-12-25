@@ -34,7 +34,7 @@
 
 import ReviewsModal from './ReviewsModal.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import 'swiper/css';
     export default {
         props: ['reviews'],
@@ -70,7 +70,6 @@ import 'swiper/css';
     watch: {
         index(value) {
             this.currentActiveSlide = value
-            console.log(value)
         }
     }
 
