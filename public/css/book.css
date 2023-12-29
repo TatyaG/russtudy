@@ -89,7 +89,7 @@ font-weight: 600;
 
 .title {
     text-align: center;
-    font-family: Perun;
+    font-family: Repo;
     font-size: 48px;
     font-style: normal;
     font-weight: 700;
@@ -118,7 +118,7 @@ font-weight: 600;
     margin-bottom: 25px;
     padding: 10px 20px;
     max-width: max-content;
-    font-family: Perun;
+    font-family: Repo;
     font-size: 76px;
     font-style: normal;
     font-weight: 700;
@@ -242,7 +242,7 @@ font-weight: 600;
     margin-bottom: 60px;
     padding: 20px 40px;
     max-width: max-content;
-    font-family: Perun;
+    font-family: Repo;
     font-size: 40px;
     font-style: normal;
     font-weight: 700;
@@ -352,7 +352,7 @@ font-weight: 600;
 
 .book__title {
     margin-bottom: 10px;
-    font-family: Perun;
+    font-family: Repo;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
@@ -442,7 +442,7 @@ font-weight: 600;
 
 .author__name {
     margin-bottom: 20px;
-    font-family: Perun;
+    font-family: Repo;
     font-size: 32px;
     font-weight: 700;
     text-align: left;
@@ -514,7 +514,7 @@ font-weight: 600;
 
 .num__count {
     margin-bottom: 20px;
-    font-family: Perun;
+    font-family: Repo;
     font-size: 64px;
     font-weight: 700;
     line-height: normal;
@@ -538,7 +538,7 @@ font-weight: 600;
 
 .advantages__title {
     margin-bottom: 40px;
-    font-family: Perun;
+    font-family: Repo;
     font-size: 32px;
     font-style: normal;
     font-weight: 700;
@@ -574,6 +574,10 @@ font-weight: 600;
 
 .game {
     padding: 60px 0;
+}
+
+.game input:focus {
+    box-shadow: none;
 }
 
 .game__title {
@@ -742,6 +746,7 @@ font-weight: 600;
     border-bottom: 1px solid var(--body-color);
     outline: none;
     width: 47px;
+    text-align: center;
 }
 
 .question__block:nth-child(4) .imageText {
@@ -1288,9 +1293,10 @@ audio::-moz-media-controls-panel {
     .fixed__btn {
         padding: 16px 24px;
         margin-right: 147px;
+        border-radius: 14px;
     }
 
-    .feedback svg {
+    .feedback-btn svg {
         width: 60px;
         height: 60px;
     }
@@ -1298,6 +1304,8 @@ audio::-moz-media-controls-panel {
     .fixed {
         padding: 30px 20px;
     }
+
+
 }
 
 @media (max-width: 992px) {
@@ -1484,7 +1492,7 @@ audio::-moz-media-controls-panel {
         margin-right: 0;
     }
 
-    .feedback svg {
+    .feedback-btn svg {
         width: 50px;
         height: 50px;
     }
