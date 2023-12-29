@@ -249,6 +249,11 @@ font-weight: 700;
 }
 
 @media (max-width: 768px) {
+    .offer .btn-close {
+        top: 20px;
+        right: 20px;
+    }
+    
     .form__information {
         display: flex;
         flex-direction: column;
