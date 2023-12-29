@@ -1,11 +1,6 @@
 <template>
     <div id="news" class="modal modal-news">
-        <router-link to="/news" class="modal__close btn-reset">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <path d="M37.5 2.5L2.5 37.5" stroke="#0A2B49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2.5 2.5L37.5 37.5" stroke="#0A2B49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </router-link>
+        <router-link to="/news" class="btn-reset btn-close"></router-link>
         <div class="modal__overlay">
             <div class="modal__window">
                 <swiper class="modal-slider"

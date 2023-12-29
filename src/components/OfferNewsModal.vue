@@ -2,7 +2,7 @@
     <div class="modal offer">
         <div class="modal__overlay">
             <div class="modal__window">
-                <button @click="$emit('close-modal')" class="modal__close btn-reset"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M37.5 2.5L2.5 37.5" stroke="#0A2B49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2.5 2.5L37.5 37.5" stroke="#0A2B49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+                <button @click="$emit('close-modal')" class="btn-reset btn-close"></button>
                 <ul class="offer__tabs tabs list-reset">
                     <li :class="{active: activeTab == tab.name, disabled: activeTab != tab.name}" v-for="tab in tabs" :key="tab.id" class="tabs__item">
                         <a class="tabs__link">{{ tab.name }}</a>
@@ -287,7 +287,6 @@ configure({
             submitForm() {
                 
                 if (this.validate == true) {
-                    console.log('aa')
                 }
                
                 this.activeTab = 'Проверка'
