@@ -1,35 +1,74 @@
 <template>
-    <div class="order__block pochta">
+    <div>
+    <div class="order__block pochta" v-show="!afterChoice">
         <form class="form pochta__form">
-            <input v-model="city" class="form__input" type="text" @input="onInput()" @change="onChange()">
+            <div class="form__search search">
+                <input v-model="city" class="form__input" id="search-city" type="text" @input="onInput()" placeholder="Найти">
+                <div class="search__block" v-show="showList">
+                    <ul v-if="listAddress.length > 0" class="pochta__list list-reset search__list">
+                        <li v-for="(address, index) in listAddress" :key="index" class="pochta__item item" @click="setActiveCity(address)">
+                            <p class="item__address">{{ address.address }}</p>
+                        </li>
+                </ul>
+                <p v-else>Ничего не найдено</p>
+                </div>
+                
+            </div>
+           
             <div class="form__btns">
-                <button :class="{active: activeTab == 'Карта'}" class="btn-background btn-reset pochta__btn" @click.prevent="activeTab = 'Карта'">Карта</button>
-                <button :class="{active: activeTab == 'Список'}" class="btn-background btn-reset pochta__btn" @click.prevent="activeTab = 'Список'">Список</button>
+                <a :class="{active: activeTab == tab.id}" class="btn-reset pochta__btn" v-for="tab in tabs" :key="tab.id" @click="changeTab(tab)">{{ tab.name }}</a>
             </div>
             
         </form>
 
-        <div class="pochta__map" v-show="activeTab == 'Карта'">
-            <div id="map" style="width: 100%; height: 500px"></div>
-            <div class="pochta__balloon balloon">
-            </div>
+        <div style="position: relative;">
+
+        <div class="pochta__map" v-show="activeTab == 1">
+            <div id="map" style="width: 100%; height: 454px"></div>
+
         </div>
 
-        <div v-show="activeTab == 'Список'">
-            <div class="flex">
-                <p>Адрес</p>
-                <p>Режим работы</p>
+        <div class="" v-show="activeTab == 2">
+               
+            <div class="pochta__addresses addresses">
+                <div class="addresses__block" :class="{open: activeList}">
+                    <div class="flex pochta__block">
+                        <p class="">Адрес</p>
+                        <p class="">Режим работы</p>
+                    </div>
+                    <ul class="pochta__list list-reset">
+                        <li v-for="(address, index) in listAddress" :key="index" class="pochta__item item" @click="openBalloon(address)">
+                            <p class="item__address">{{ address.address }}</p>
+                            <p class="item__time">{{ address.time[0] }}</p>
+                        </li>
+                    </ul>
+                </div>
+                
+           
             </div>
+            
 
-            <ul class="pochta__list list-reset">
-                <li v-for="(address, index) in listAddress" :key="index" class="pochta__item">
-                    <p>{{ address.address }}</p>
-                </li>
-            </ul>
         </div>
-
- 
+        <div class="pochta__balloon balloon">
+                <div class="flex flex-between">
+                    <p class="balloon__title">Отделения Почты России</p>
+                    <button class="balloon__close btn-reset" @click.prevent="closeBalloon()"></button>
+                </div>               
+                
+                <p class="balloon__address">{{ checkAddress.type }} №{{ checkAddress.postal_code }} {{ checkAddress.address }}</p>
+                
+                <p v-if="checkAddress.time" class="balloon__time">{{ checkAddress.time[0]}}</p>
+                <p v-else-if="!checkAddress.time" class="balloon__time"></p>
+                <button type="button" class="btn-reset btn-background balloon__btn" @click="setActiveCity(checkAddress)">Заберу отсюда</button>
+            </div>
+        </div>
     </div>
+
+    <mapAfter @back="backChoice()" :activeCity="activeCity" v-if="afterChoice"></mapAfter>
+</div>
+
+    
+
 </template>
 
 <script>
@@ -37,67 +76,243 @@ import axios from 'axios'
 import cities from '@/data/cities.json'
 import addressArray from '@/data/address.json'
 import postcodeArray from '@/data/postcode.json'
+import mapAfter from './mapAfter.vue'
+import usePostcodeStore from '@/stores/PostcodeStore.js'
 export default {
-    components: { },
+    components: { mapAfter },
 
     
   data() {
     return {
-        activeTab: 'Карта',
+        activeTab: 1,
         array: [],
         city: '',
         address: [],
         clientIp: '',
         citiesArray: [],
         showBalloon: false,
-        listAddress: []
+        listAddress: [],
+        activeAddress: [],
+        activeList: false,
+        showList: false,
+        afterChoice: false,
+        activeCity: {},
+        tabs: [
+            {
+                id: 1,
+                name: 'Карта',
+            },
+            {
+                id: 2,
+                name: 'Список',
+            },
+        ]
     }
   },
 
 
   mounted() {
-    ymaps.ready(this.init);
-    this.createList()
 
-   
-    // this.sourchAddress()
+    document.addEventListener('click', () => {
+        if (this.showList == true) this.showList = false
+    })
 
-    // let recaptchaScript = document.createElement('script')
-    //   recaptchaScript.setAttribute('src', 'https://api-maps.yandex.ru/2.1/?apikey=77132717-e8b0-4127-bc93-50a29572bb37&lang=ru_RU')
-    //   document.head.appendChild(recaptchaScript)
-    // this.getAddress()
-    if (!localStorage.city) {
-        this.getCity()
-    }
+
+    const myMap = new ymaps.Map("map", {
+            center: [55.751574, 37.573856],
+            zoom: 12,
+            controls: ['zoomControl', 'fullscreenControl']
+            });
+
+
+            cities.forEach(item => {
+                if (item.name == this.city) {
+                    this.center.push(item.coords[0].lat, item.coords[0].lon)
+                }
+            } )
+
+            var location = ymaps.geolocation.get({
+            autoReverseGeocode: false
+            })
+            .then(response => {
+                localStorage.lat = response.geoObjects.position[0]
+                localStorage.lon = response.geoObjects.position[1]
+                myMap.geoObjects.add(response.geoObjects)
+                myMap.setCenter(response.geoObjects.position)
+                console.log(response.geoObjects.position)
+                console.log(this.center)
+            })
+            .catch(err => console.log(err)); 
+
+            postcodeArray.forEach(postcode => {
+                var obj = {
+                                type: 'FeatureCollection',
+                                    features: postcode.map(function(item){
+                                        return {
+                                            type: 'Feature',
+                                            properties: {
+                                                lat: item.data.geo_lat,
+                                                lon: item.data.geo_lon,
+                                                type: item.data.type_code,
+                                                postal_code: item.data.postal_code,
+                                                address: item.data.address_str,
+                                                time: [
+                                                item.data.schedule_mon,
+                                                item.data.schedule_tue,
+                                                item.data.schedule_wed,
+                                                item.data.schedule_thu,
+                                                item.data.schedule_fri,
+                                                item.data.schedule_sat,
+                                                item.data.schedule_sun,
+                                                ] 
+                                            },
+                                            geometry: {
+                                                type: 'Point',
+                                                coordinates: [item.data.geo_lat, item.data.geo_lon]
+                                            }
+                                        }
+                                    })
+                            };
+
+
+                            var objects = ymaps.geoQuery(obj);
+
+objects.searchInside(myMap).addToMap(myMap);
+objects.setOptions({
+    iconLayout: 'default#image',
+    iconImageHref: 'img/map-icon.svg',
+    iconImageSize: [22, 28],
+})
+
+this.map = myMap
+
+myMap.events.add('boundschange', function () {
+    var visibleObjects = objects.searchInside(myMap).addToMap(myMap);
+    objects.remove(visibleObjects).removeFromMap(myMap);
+});
+
+objects.addEvents('mouseenter', function (e) {
+    e.get('target').options.set({
+        iconImageHref: 'img/active-map-icon.svg',
+        iconImageSize: [32, 40],
+    });
+    })
+objects.addEvents('mouseleave', function (e) {
+    e.get('target').options.set({
+        iconImageHref: 'img/map-icon.svg',
+        iconImageSize: [22, 28],
+    })
+});
+
+objects.addEvents('click', function (e) {
+    const mark = e.get('target')
+    mark.options.set({
+        iconImageHref: 'img/active-map-icon.svg',
+        iconImageSize: [32, 40],
+    })
+
+    const PostcodeStore = usePostcodeStore();
+    PostcodeStore.checkAddress = mark.properties._data
+
+    const balloon = document.querySelector('.pochta__balloon');
+    document.querySelector('.balloon__address').textContent = `${mark.properties._data.type} №${mark.properties._data.postal_code} ${mark.properties._data.address}`
+    document.querySelector('.balloon__time').textContent = `${mark.properties._data.time}`
+
+    balloon.classList.add('open')
+    const closeBalloon = document.querySelector('.balloon__close');
+    closeBalloon.addEventListener('click', (e) => {
+        e.preventDefault();
+        balloon.classList.remove('open')
+        mark.options.set({
+        iconImageHref: 'img/map-icon.svg',
+        iconImageSize: [22, 28],
+    })
+    })
+
+})
+
+})
+ 
     
-     
+    ymaps.ready();
+
+
+    this.createList()  
+    this.getCity()
+  
   },
+
+  computed: {
+            checkAddress() {
+                const PostcodeStore = usePostcodeStore()
+                return PostcodeStore.checkAddress 
+            }
+        },
 
   methods: {
 
+    changeTab(tab) {
+        this.activeTab = tab.id;
+        const balloon = document.querySelector('.balloon');
+        const addreesBlock = document.querySelector('.addresses__block')
+        balloon.classList.remove('open')   
+        if (addreesBlock.classList.contains('open')) addreesBlock.classList.remove('open')
+    },
+
+    backChoice() {
+        this.afterChoice = false;
+    },
+
+    openBalloon(item) {
+        const PostcodeStore = usePostcodeStore();
+        PostcodeStore.checkAddress = item
+        const balloon = document.querySelector('.pochta__balloon');
+        balloon.classList.add('open')
+        this.activeList = true
+    },
+
+    closeBalloon() {
+        const balloon = document.querySelector('.pochta__balloon');
+        balloon.classList.remove('open')
+        this.activeList = false
+    },
+
+    setActiveCity(item) {
+        this.afterChoice = true
+        this.activeCity = item
+   
+    },
+
+
     onInput() {
-        if (this.city != '') {
-            this.city = this.city[0].toUpperCase() + this.city.slice(1)
-        }
+        this.showList = true
 
         this.listAddress = []
 
+
         postcodeArray.forEach(postcode => {
             postcode.forEach(item => {
-                if (item.unrestricted_value.includes(this.city)) {
+                if (item.unrestricted_value.toLowerCase().includes(this.city)) {
                     this.listAddress.push({
+                        lat: item.data.geo_lat,
+                        lon: item.data.geo_lon,
+                        type: item.data.type_code,
+                        postal_code: item.data.postal_code,
                         address: item.unrestricted_value,
+                        time: [
+                            item.data.schedule_mon,
+                            item.data.schedule_tue,
+                            item.data.schedule_wed,
+                            item.data.schedule_thu,
+                            item.data.schedule_fri,
+                            item.data.schedule_sat,
+                            item.data.schedule_sun,
+                        ] 
                     })
                 }
                 
-                // console.log( item.unrestricted_value.includes(city))
-            })
-           
-           
-            
-        })
-
-        
+            })           
+        })   
         
     },
 
@@ -108,40 +323,26 @@ export default {
                 if (this.city == '') {
                     if (item.unrestricted_value.includes(city)) {
                     this.listAddress.push({
+                        lat: item.data.geo_lat,
+                        lon: item.data.geo_lon,
+                        type: item.data.type_code,
+                        postal_code: item.data.postal_code,
                         address: item.unrestricted_value,
+                        time: [
+                            item.data.schedule_mon,
+                            item.data.schedule_tue,
+                            item.data.schedule_wed,
+                            item.data.schedule_thu,
+                            item.data.schedule_fri,
+                            item.data.schedule_sat,
+                            item.data.schedule_sun,
+                        ] 
                     })
                 }  
                 }
-
-                
-                // console.log( item.unrestricted_value.includes(city))
             })
-           
-           
-            
+                              
         })
-    },
-
-    onChange() {
-
-        console.log('a')
-
-        // this.getAddress(this.city)
-        
-
-        // postcodeArray.forEach(item => {
-        //     console.log(item)
-        // })
-
-        // addressArray.forEach(address => {
-        //     // 
-        //     address.suggestions.forEach(item => {           
-        //         if (this.city == item.data.city) {
-        //             console.log(item.data)
-        //         }
-        //     })
-        // })
-        // this.sourchAddress()
     },
 
 
@@ -199,6 +400,7 @@ export default {
 
     // },
 
+
     getCity() {
 
         fetch('https://api.ipify.org?format=json')
@@ -225,111 +427,15 @@ export default {
     .then(response => response.text())
     .then(result => {
     const data =JSON.parse(result)
-    console.log(data.location.data.city)
     localStorage.city = data.location.data.city
 
 })
 .catch(error => console.log("error", error));
 
     },
-
-
-    map() {
-        var myMap = new ymaps.Map("map", {
-            center: [55.76, 37.64],
-            zoom: 10,
-            minZoom: 9,
-            maxZoom: 10,
-            controls: ['zoomControl', 'geolocationControl', 'fullscreenControl']
-            });
-
-            var location = ymaps.geolocation.get({
-            autoReverseGeocode: false
-            })
-            .then(response => {
-                localStorage.lat = response.geoObjects.position[0]
-                localStorage.lon = response.geoObjects.position[1]
-                myMap.geoObjects.add(response.geoObjects)
-                myMap.setCenter(response.geoObjects.position)
-            })
-            .catch(err => console.log(err)); 
-
-
-            postcodeArray.forEach(postcode => {
-                var obj = {
-                                type: 'FeatureCollection',
-                                    features: postcode.map(function(item){
-                                        return {
-                                            type: 'Feature',
-                                            properties: {
-                                                postal_code: item.data.postal_code,
-                                                address: item.data.address_str,
-                                                time: [
-                                                `пн ${item.data.schedule_mon}`,
-                                                `вт ${item.data.schedule_tue}`,
-                                                `ср ${item.data.schedule_wed}`,
-                                                `чт ${item.data.schedule_thu}`,
-                                                `пт ${item.data.schedule_fri}`,
-                                                `сб ${item.data.schedule_sat}`,
-                                                `вс ${item.data.schedule_sun}`,
-                                                ] 
-                                            },
-                                            geometry: {
-                                                type: 'Point',
-                                                coordinates: [item.data.geo_lat, item.data.geo_lon]
-                                            }
-                                        }
-                                    })
-                            };
-
-
-                            var objects = ymaps.geoQuery(obj);
-
-objects.searchInside(myMap).addToMap(myMap);
-
-
-
-
-
-myMap.events.add('boundschange', function () {
-    var visibleObjects = objects.searchInside(myMap).addToMap(myMap);
-    objects.remove(visibleObjects).removeFromMap(myMap);
-});
-
-objects.addEvents('click', function (e) {
-    console.log(e.originalEvent.target)
-    const balloon = document.querySelector('.pochta__balloon')
-
-    balloon.innerHTML = `<button class="balloon__close btn-reset"></button>
-                <p class="balloon__title">Отделения Почты России</p>
-                <p class="balloon__address">Отделение №${e.originalEvent.target.properties._data.postal_code} ${e.originalEvent.target.properties._data.address}</p>
-                
-                <p class="balloon__time">${e.originalEvent.target.properties._data.time}</p>
-                <button class="btn-reset btn-background balloon__btn">Заберу отсюда</button>`
-    balloon.classList.add('open')
-    const closeBalloon = document.querySelector('.balloon__close');
-    closeBalloon.addEventListener('click', (e) => {
-        e.preventDefault();
-        balloon.classList.remove('open')
-    })
-})
-
-
-
-            })
-        },
-
-
-
-        init() {
-            this.map()
-        }   
+ 
   },
 
-  created() {
-//    this.getAddress()
-// this.getCity()
-  }
 
 }
 

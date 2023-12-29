@@ -25,8 +25,7 @@
                             
                         <div>
                             <span class="form__text">Должность</span>
-                            <label for="" class="form__label">
-                                
+                            <label for="" class="form__label">                                
                                 <button class="modal__btn hidden" @click.prevent="clearInput"></button>
                                 <input class="form__input" name="job" v-model="job" type="text" placeholder="Введите должность" @input="inputChange" @keydown="deleteNumber"/>                                
                             </label>

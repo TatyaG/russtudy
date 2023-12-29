@@ -40,12 +40,12 @@
                                     </div>
                                     <div class="flex sub__block">
                                         <label class="sub__label">
-                                            <input type="radio" class="visually-hidden" :name="'sub['+ book.id +']'" value="year" :disabled="!selectedProducts.includes(book.id)" :checked="selectedProducts.includes(book.id)">
+                                            <input type="radio" class="visually-hidden" :name="'sub['+ book.id +']'" value="year" :disabled="!selectedProducts.includes(book)" :checked="selectedProducts.includes(book.id)">
                                             <span></span>
                                             1 год
                                         </label>
                                         <label class="sub__label">
-                                            <input type="radio" class="visually-hidden" :name="'sub['+ book.id +']'" value="always" :disabled="!selectedProducts.includes(book.id)" :checked="selectedProducts.includes(book.id)">
+                                            <input type="radio" class="visually-hidden" :name="'sub['+ book.id +']'" value="always" :disabled="!selectedProducts.includes(book)" :checked="selectedProducts.includes(book.id)">
                                             <span></span>
                                             Навсегда
                                         </label>

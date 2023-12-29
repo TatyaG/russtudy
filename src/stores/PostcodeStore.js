@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 const usePostcodeStore = defineStore('PostcodeStore', {
     state: () => {
         return {
+            checkAddress: {}
         }
     },
 
