@@ -1,6 +1,38 @@
+.w-100 {
+    width: 100%;
+}
+
+.order__form .form__error {
+    bottom: 0;
+}
+
+.currency-block .order__label {
+    padding: 0;
+    margin: 0;
+}
+
+.btn-close {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 40px;
+    height: 40px;
+    background-image: url(../img/close.svg);
+    background-size: 40px;
+    background-repeat: no-repeat;
+}
+
+.flex-between {
+    justify-content: space-between;
+}
+
 input:focus {
     box-shadow: 2px 2px 8px 0px #CCE0FF, -2px -2px 8px 0px #CCE0FF;
 
+}
+
+.vti__input:focus {
+    box-shadow: none;
 }
 
 .modal.order {
@@ -31,12 +63,25 @@ input:focus {
     grid-column: 6/9;
 }
 
-.feedback svg {
+.order__form .form__text {
+    margin-bottom: 8px;
+    display: block;
+    font-size: 20px;
+}
+
+
+.order__form .form__label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.feedback-btn svg {
     fill: transparent;
     transition: fill .3s ease-in-out;
 }
 
-.feedback:hover svg {
+.feedback-btn:hover svg {
     fill: rgba(255, 255, 255, 0.20);
 }
 
@@ -117,7 +162,7 @@ input:focus {
     margin-bottom: 7px;
 }
 
-.error.order__input {
+.error-input.form__input {
     outline: 1px solid #FF1E1E;
 }
 
@@ -178,7 +223,8 @@ input:focus {
 .count__num::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 .product__btn--decrement::before,
@@ -233,7 +279,7 @@ input:focus {
     border-color: white;
 }
 
-.sub__label input:checked ~ span::before {
+.sub__label input:checked~span::before {
     content: '';
     position: absolute;
     top: 3px;
@@ -273,7 +319,7 @@ input:focus {
 .order__block {
     padding: 20px;
     border-radius: 26px;
-background: var(--blue);
+    background: var(--blue);
 }
 
 .order__block:first-child {
@@ -282,15 +328,16 @@ background: var(--blue);
 
 .between-block {
     margin-bottom: 20px;
-    display: flex;justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
 .order__title,
 .order__price--bold {
-    font-family: Perun;
-font-size: 24px;
-font-weight: 700;
+    font-family: Repo;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .between-block:first-child {
@@ -315,7 +362,7 @@ font-weight: 700;
     border: none;
     outline: none;
     font-family: Manrope;
-font-size: 20px;
+    font-size: 20px;
     background-color: white;
     border-radius: 12px;
 }
@@ -326,9 +373,9 @@ font-size: 20px;
     width: 100%;
     border-radius: 12px;
     font-size: 24px;
-font-weight: 600;
-background-color: var(--violet);
-color: white;
+    font-weight: 600;
+    background-color: var(--violet);
+    color: white;
 }
 
 .order__submit:disabled {
@@ -384,6 +431,7 @@ color: white;
 }
 
 .vue-tel-input {
+    margin-bottom: 27px;
     padding: 12px 24px;
     border: none !important;
     outline: none;
@@ -441,8 +489,8 @@ color: white;
     border-radius: 50%;
 }
 
-.payment__label input:checked ~ span::before,
-.delivery__label input:checked ~ span::before {
+.payment__label input:checked~span::before,
+.delivery__label input:checked~span::before {
     position: absolute;
     content: '';
     top: 3px;
@@ -462,6 +510,10 @@ color: white;
 .delivery__block {
     display: flex;
     gap: 40px;
+}
+
+.payment__block {
+    flex-wrap: wrap;
 }
 
 .payment__label,
@@ -486,7 +538,7 @@ color: white;
     max-width: max-content;
 }
 
-.tooltip svg:hover ~ .tooltip__block {
+.tooltip svg:hover~.tooltip__block {
     opacity: 1;
     visibility: visible;
 }
@@ -515,7 +567,269 @@ color: white;
     font-weight: 500;
 }
 
+.pochta__form {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.pochta__form .form__input {
+    margin-bottom: 0;
+    width: 100%;
+    max-width: 382px;
+}
+
+.form__btns {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: 2px solid var(--accent, #056BF0);
+}
+
+.pochta__btn {
+    padding: 12px 24px;
+    width: 50%;
+    border-radius: 16px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    text-align: center;
+    color: #056BF0;
+}
+
+.pochta__btn.active {
+    background-color: #056BF0;
+    color: white;
+}
+
+.pochta__btn:first-child {
+    padding: 12px 33px;
+}
+
+.pochta__map {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.balloon {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 50%;
+    border-radius: 20px;
+    background-color: white;
+    transform: translateX(120%);
+    transition: transform .3s ease-in-out;
+}
+
+.balloon.open {
+    transform: none;
+}
+
+.balloon__close {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background-image: url(../img/close-balloon.svg);
+    cursor: pointer;
+}
+
+.balloon__title,
+.choice__title {
+    margin-right: 20px;
+    margin-bottom: 40px;
+    max-width: 246px;
+    font-family: Repo;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.balloon__btn {
+    width: 100%;
+    margin-top: auto;
+    font-size: 24px;
+
+}
+
+.balloon__address {
+    margin-bottom: 20px;
+    line-height: 120%;
+}
+
+.balloon__time {
+    line-height: 120%;
+}
+
+.pochta__list {
+    max-height: 316px;
+    overflow-y: auto;
+}
+
+.pochta__block {
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.pochta__block p {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.pochta__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    padding-right: 40px;
+    border-bottom: 1px solid var(--cyan);
+    background-image: url(../img/right-arrow.svg);
+    background-position: 99% center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.pochta__addresses {
+    position: relative;
+}
+
+
+.item__time {
+    text-wrap: nowrap;
+}
+
+.item__address {
+    margin-right: 10px;
+    overflow-wrap: anywhere;
+    line-height: 120%;
+}
+
+.pochta {
+    overflow: hidden;
+}
+
+.pochta__addresses .balloon.open {
+    width: 48%;
+}
+
+.addresses__block {
+    width: 100%;
+    transition: width .3s ease-in-out;
+}
+
+.addresses__block.open {
+    width: 48%;
+    transition: width .3s ease-in-out;
+}
+
+.form__search {
+    position: relative;
+    width: 100%;
+    max-width: 382px;
+}
+
+.search__block {
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    background-color: #F2F7FF;
+    border-radius: 16px;
+}
+
+.search__block .pochta__item {
+    background-image: none;
+}
+
+.choice__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.choice__btn {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: auto;
+    max-width: max-content;
+}
+
+.choice {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.choice__time {
+    margin-bottom: 40px;
+}
+
+.choice__map {
+    grid-column: 2;
+    grid-row: 2 span;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.modal-submit .modal__window {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    padding-bottom: 0;
+    max-width: 1000px;
+    border-radius: 40px;
+    background-image: url(../img/after-submit-desktop.webp);
+    left: calc(50% - 500px);
+    transform: translateY(35%);
+}
+
+
+.modal-submit .modal__title {
+    margin-bottom: 20px;
+    max-width: 450px;
+    font-family: Repo;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    text-align: center;
+}
+
+.modal-submit .modal__text {
+    margin-bottom: 40px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    text-align: center;
+}
+
 @media (max-width: 1400px) {
+
+    .form__error {
+        font-size: 12px;
+    }
+
+    .order__block {
+        border-radius: 24px;
+    }
+
+    .order__form .form__text {
+        font-size: 16px;
+    }
 
     .product {
         grid-template-columns: 280px 230px auto;
@@ -525,7 +839,8 @@ color: white;
         font-size: 12px;
     }
 
-    .order__title, .order__price--bold {
+    .order__title,
+    .order__price--bold {
         font-size: 20px;
     }
 
@@ -582,7 +897,37 @@ color: white;
         margin-bottom: 16px;
     }
 
-    
+    .pochta__item,
+    .balloon__address,
+    .balloon__time,
+    .choice__address,
+    .choice__time {
+        font-size: 12px;
+    }
+
+    .balloon__title,
+    .choice__title {
+        font-size: 20px;
+    }
+
+    .pochta__block p,
+    .balloon__btn,
+    .choice__btn {
+        font-size: 16px;
+    }
+
+    .pochta__addresses .balloon.open {
+        width: 38%;
+    }
+
+    .pochta__btn {
+        border-radius: 9px;
+    }
+
+    .form__btns {
+        border-radius: 12px;
+    }
+
 }
 
 @media (max-width: 992px) {
@@ -596,10 +941,18 @@ color: white;
         grid-column: 1;
     }
 
-   
+
 }
 
 @media (max-width: 768px) {
+
+    .order__block {
+        border-radius: 20px;
+    }
+
+    .product {
+        border-radius: 12px;
+    }
 
     .product {
         grid-template-columns: repeat(2, auto);
@@ -609,7 +962,7 @@ color: white;
     .order__product {
         grid-column: 2 span;
     }
-    
+
     .product img,
     .product__name,
     .product__checkbox {
@@ -624,6 +977,87 @@ color: white;
 
     .product__price {
         grid-row: 2;
+    }
+
+    .pochta__form {
+        flex-direction: column;
+    }
+
+    .pochta__form .form__input {
+        max-width: 100%;
+    }
+
+    .form__btns {
+        width: 100%;
+    }
+
+    .pochta__addresses .balloon.open {
+        width: 100%;
+    }
+
+    .addresses__block.open {
+        width: 0%;
+        visibility: hidden;
+    }
+
+    .pochta__btn {
+        font-size: 16px;
+    }
+
+    .balloon__title {
+        font-size: 16px;
+    }
+
+    .addresses__block {
+        transition: none;
+    }
+
+    .pochta .pochta__balloon {
+        width: 100%;
+    }
+
+    .pochta__map #map {
+        height: 400px !important;
+    }
+
+    .choice {
+        grid-template-columns: 1fr;
+    }
+
+    .form__search {
+        max-width: 100%;
+    }
+
+    .choice__container {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    #mapAfter {
+        height: 240px !important;
+    }
+
+    .choice__map {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .choice__time {
+        margin-bottom: 0;
+    }
+
+    .choice__btn {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .choice__title {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .btn-close {
+        background-image: url(../img/close-phone.svg);
     }
 }
 
@@ -653,5 +1087,18 @@ color: white;
 
     .product {
         padding: 8px 12px;
+    }
+
+    .info-block {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .vue-tel-input {
+        margin-bottom: 0;
+    }
+
+    .order__form .form__input {
+        margin-bottom: 20px;
     }
 }

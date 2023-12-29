@@ -1,5 +1,6 @@
 <template>
-    <div>
+<div>
+    <div v-if="!showOrder && !showFeedback">
         <Header></Header>
         <main>
             <div class="container">
@@ -513,7 +514,7 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5302 13.4371C20.6706 13.2964 20.7495 13.1058 20.7495 12.9071C20.7495 12.7083 20.6706 12.5177 20.5302 12.3771L14.5302 6.37707C14.4615 6.30339 14.3787 6.24428 14.2867 6.20329C14.1947 6.1623 14.0954 6.14026 13.9947 6.13848C13.894 6.13671 13.794 6.15523 13.7006 6.19295C13.6072 6.23067 13.5224 6.28682 13.4511 6.35804C13.3799 6.42925 13.3238 6.51409 13.286 6.60748C13.2483 6.70086 13.2298 6.80089 13.2316 6.9016C13.2334 7.0023 13.2554 7.10161 13.2964 7.19361C13.3374 7.28561 13.3965 7.36841 13.4702 7.43707L18.1902 12.1571H4.00017C3.80126 12.1571 3.61049 12.2361 3.46984 12.3767C3.32919 12.5174 3.25017 12.7082 3.25017 12.9071C3.25017 13.106 3.32919 13.2968 3.46984 13.4374C3.61049 13.5781 3.80126 13.6571 4.00017 13.6571H18.1902L13.4702 18.3771C13.3965 18.4457 13.3374 18.5285 13.2964 18.6205C13.2554 18.7125 13.2334 18.8118 13.2316 18.9126C13.2298 19.0133 13.2483 19.1133 13.286 19.2067C13.3238 19.3001 13.3799 19.3849 13.4511 19.4561C13.5224 19.5273 13.6072 19.5835 13.7006 19.6212C13.794 19.6589 13.894 19.6774 13.9947 19.6757C14.0954 19.6739 14.1947 19.6518 14.2867 19.6109C14.3787 19.5699 14.4615 19.5108 14.5302 19.4371L20.5302 13.4371Z" fill="white"/>
                         </svg>
                 </button>
-                <button class="feedback btn-reset">
+                <button @click.prevent="openFeedback()" class="feedback-btn btn-reset">
                     <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
   <path d="M1 40C1 18.4609 18.4609 1 40 1H79V40C79 61.5391 61.5391 79 40 79C18.4609 79 1 61.5391 1 40Z" fill=""/>
   <path d="M1 40C1 18.4609 18.4609 1 40 1H79V40C79 61.5391 61.5391 79 40 79C18.4609 79 1 61.5391 1 40Z" stroke="white" stroke-width="2"/>
@@ -522,10 +523,17 @@
                 </button>
             </div>
 
-            <Order :books="books" @close-order="closeOrder" :class="{active: showOrder}" v-show="showOrder"></Order>
+            
+
+            
         </main>
         <Footer></Footer>
     </div>
+
+
+    <Order :books="books" @close-order="closeOrder" :class="{active: showOrder}" v-if="showOrder"></Order>
+    <FeedbackModal @close-feedback="closeFeedback" v-if="showFeedback"></FeedbackModal>
+</div>
 </template>
 
 <script>
@@ -538,6 +546,7 @@ import AuthorsSlider from '@/components/AuthorsSlider.vue';
 import ReviewsSlider from '@/components/ReviewsSlider.vue';
 import FAQList from '@/components/FAQList.vue';
 import router from '@/router';
+import FeedbackModal from '@/components/FeedbackModal.vue';
 
 window.addEventListener('scroll', () => {
     const element = document.querySelector('.hide-on-scroll');
@@ -559,7 +568,7 @@ window.addEventListener('scroll', () => {
 
     export default {
         name: 'BookPage',
-        components: { Header, Footer, BookList, AuthorsSlider, ReviewsSlider, FAQList, router, Order },
+        components: { Header, Footer, BookList, AuthorsSlider, ReviewsSlider, FAQList, router, Order, FeedbackModal },
 
         
   
@@ -716,21 +725,31 @@ window.addEventListener('scroll', () => {
                 valueWater: '',
                 valueVase: '',
                 valueUmbrella: '',
-                valueFrost: ''
+                valueFrost: '',
+                showFeedback: false
 
               
             }
         },
 
         methods: {
+
+            openFeedback() {
+                this.showFeedback = true
+            },
+
+            closeFeedback() {
+                this.showFeedback = false
+            },
+
             openOrder() {
                 this.showOrder = true;
-                document.body.style.overflow = 'hidden';
+                // document.body.style.overflow = 'hidden';
             },
 
             closeOrder() {
                 this.showOrder = false;
-                document.body.style.overflow = 'auto'
+                // document.body.style.overflow = 'auto'
             },
 
             isWater(e) {

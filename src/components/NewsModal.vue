@@ -1,29 +1,28 @@
 <template>
     <div id="news" class="modal modal-news">
-        <router-link to="/news" class="modal__close btn-reset">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <path d="M37.5 2.5L2.5 37.5" stroke="#0A2B49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2.5 2.5L37.5 37.5" stroke="#0A2B49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </router-link>
+        <router-link to="/news" class="btn-reset btn-close"></router-link>
         <div class="modal__overlay">
             <div class="modal__window">
                 <swiper class="modal-slider"
                 :modules="modules"
                 :slides-per-view="1"
-                navigation
-                @swiper="onSwiper"      
+                :navigation="{
+                    prevEl: prev,
+                    nextEl: next,
+                }"
+                @swiper="onSwiper"
+                :allowTouchMove="false"   
                 >
-                <swiper-slide class="new" v-for="item in filteredNews" :key="item.id">
+                <swiper-slide class="new" v-for="item in filteredNews" :key="item.id" :id="item.id">
                     <div class="new__block">
                         
-                        <div class="new__left" v-show="item.video != ''">
+                        <div class="new__left" v-if="item.video != ''">
                             <p :class="{'new__tag--preview': item.tag == 'Анонсы', 'new__tag--event': item.tag == 'Мероприятия', 'new__tag--new': item.tag == 'Новости'}" class="new__tag">{{ item.tag }}</p>
-                            <iframe width="540" height="900" :src="item.video" 
+                            <iframe width="100%" height="900" :src="item.video" 
                             title="YouTube video player" frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
                         </div>
-                        <div v-show="item.video == ''" class="new__left">
+                        <div v-else-if="item.video == ''" class="new__left">
                             <p :class="{'new__tag--preview': item.tag == 'Анонсы', 'new__tag--event': item.tag == 'Мероприятия', 'new__tag--new': item.tag == 'Новости'}" class="new__tag">{{ item.tag }}</p>
                             <img :src="item.image" :alt="item.title">
                         </div>
@@ -46,12 +45,17 @@
 
                             <ShareModal @close-modal="closeModal()" :item="item" v-show="showModal"></ShareModal>
                         </div>
-                        <p class="new__title">{{ item.title }}</p>
-                        <p class="new__desc">{{ item.desc }}</p>
+                        <div class="new__text">
+                            <p class="new__title">{{ item.title }}</p>
+                            <p class="new__desc">{{ item.desc }}</p>
+                        </div>
+                        
                     </div>                   
                 </div>
                 </swiper-slide>
                 </swiper>
+                <div @click="prevSlide()" ref="prev" class="swiper-button-prev"></div>
+                <div @click="nextSlide()" ref="next" class="swiper-button-next"></div>
                 
             </div>
         </div>
@@ -59,6 +63,7 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 import { watch } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation } from 'swiper/modules';
@@ -94,14 +99,19 @@ import useNewsStore from '@/stores/NewsStore.js'
         },
 
         setup() {
+            const prev = ref(null);
+            const next = ref(null);
             const onSwiper = (swiper) => {
+                
                 const NewsStore = useNewsStore();
                 NewsStore.currentActiveSlide
-                    swiper.slideTo(NewsStore.currentActiveSlide)         
-            };
+                swiper.activeIndex = NewsStore.currentActiveSlide         
+            }; 
             
             return {
                 onSwiper,
+                prev,
+                next,
                 modules: [Navigation],
             };
      
@@ -114,7 +124,20 @@ import useNewsStore from '@/stores/NewsStore.js'
 
             closeModal() {
                 this.showModal = false;
-            }
+            },
+
+            nextSlide() {
+                const slides = document.querySelector('.swiper-slide-next');
+                const id = slides.getAttribute('id');
+                window.history.replaceState('page2', 'Title', `/news/${id}`);
+            },
+
+            prevSlide() {
+                const slides = document.querySelector('.swiper-slide-prev');
+                const id = slides.getAttribute('id');
+                window.history.replaceState('page2', 'Title', `/news/${id}`);
+            },
+            
         },
     }
 </script>

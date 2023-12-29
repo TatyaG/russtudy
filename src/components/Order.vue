@@ -1,16 +1,10 @@
 <template>
+    <div>
     <div class="modal order">
         <div class="modal__overlay">
             <div class="modal__window">
-                <button @click="$emit('close-order')" class="modal__close btn-reset">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-  <path d="M37.5 2.5L2.5 37.5" stroke="#0A2B49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M2.5 2.5L37.5 37.5" stroke="#0A2B49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-                </button>
-               
-            
-                    <Form @InvalidSubmit="onInvalidSubmit" class="order__form">
+                <button class="btn-reset btn-close" @click="$emit('close-order')"></button>
+          <Form @InvalidSubmit="onInvalidSubmit" @submit="onSubmit()" class="order__form">
                         <div class="flex currency-block">
                         <label class="order__label currency">
                             <input type="radio" class="visually-hidden" name="currency" value="rub" @change="selectedCurrency" checked>
@@ -46,34 +40,41 @@
                                 <OrderItem v-for="book in books" :key="book.id" :book="book" :currencyValue="currencyValue" :selectedProducts="selectedProducts"/>
                             </div>
                             <div class="order__info info">
-                            <label for="" class="order__label">
-                                <span class="info__text">Ф.И.О *</span>
-                                <button class="modal__btn hidden" @click.prevent="clearInput"></button>
-                                <span v-show="errorFio" class="error-icon"></span>
-                                <Field :class="{error: errorFio}" class="order__input" name="fio" v-model="fio" type="text" placeholder="Введите Ф.И.О" :rules="validateFio" @input="inputChange" @keydown="deleteNumber"/>
-                                <ErrorMessage class="form__error" name="fio" />
-                            </label>
-                            <label for="" class="order__label">
-                                <span class="info__text">Страна</span>
-                                <button class="modal__btn hidden" @click.prevent="clearInput"></button>
-                                <!-- <span v-show="errorCountry" class="error-icon"></span> -->
-                                <input class="order__input" name="country" v-model="country" type="text" placeholder="Введите страну" @keydown="deleteNumber"/>
-                                <!-- <ErrorMessage class="form__error" name="country" />                     -->
-                                
-                            </label>
+                                <div>
+                                    <span class="form__text">Ф.И.О *</span>
+                                    <label for="" class="form__label">                                       
+                                        <button class="modal__btn hidden" @click.prevent="clearInput"></button>                                
+                                        <Field :class="{'error-input': errorFio}" class="form__input" name="fio" v-model="fio" type="text" placeholder="Введите Ф.И.О" :rules="validateFio" @input="inputChange" @keydown="deleteNumber"/>
+                                        <span v-show="errorFio" class="error-icon"></span>
+                                        <ErrorMessage class="form__error" name="fio" />
+                                    </label>
+                                </div>
+
+                            <div>
+                                <span class="form__text">Страна</span>
+                                <label for="" class="form__label">                                    
+                                    <button class="modal__btn hidden" @click.prevent="clearInput"></button>
+                                    <input class="form__input" name="country" v-model="country" type="text" placeholder="Введите страну" @input="inputChange" @keydown="deleteNumber"/> 
+                                </label>
+                            </div>
+                            
+                            
                             <div class="info-block">
-                                <label for="" class="order__label">
-                                <span class="info__text">Email *</span>
-                                <button v-show="!errorEmail" class="modal__btn hidden" @click.prevent="clearInput"></button>
-                                <span v-show="errorEmail" class="error-icon"></span>
-                                <Field :class="{error: errorEmail}" class="order__input" name="email" v-model="email" type="text" placeholder="Введите email" :rules="validateEmail" @input="inputChange" @keydown="deleteNumber"/>
-                                <ErrorMessage class="form__error" name="email" />  
-                            </label>
-                            <label for="" class="order__label">
-                                <span class="info__text">Телефон *</span>
-                                <vue-tel-input v-model="phone" @country-changed="countryChanged" @validate="customValidate" @keydown="deleteLetter"></vue-tel-input>
-                          
-                            </label>
+                                <div class="w-100">
+                                    <span class="form__text">Email *</span>
+                                    <label for="" class="form__label">                                       
+                                        <button v-show="!errorEmail" class="modal__btn hidden" @click.prevent="clearInput"></button>                               
+                                        <Field :class="{'error-input': errorEmail}" class="form__input" name="email" v-model="email" type="text" placeholder="Введите email" :rules="validateEmail" @input="inputChange" @keydown="deleteNumber"/>
+                                        <span v-show="errorEmail" class="error-icon"></span>
+                                        <ErrorMessage class="form__error" name="email" />  
+                                    </label>
+                                </div>
+                                <div class="w-100">
+                                    <span class="form__text">Телефон *</span>
+                                    <label for="" class="form__label">                                       
+                                        <vue-tel-input v-model="phone" @country-changed="countryChanged" @validate="customValidate" @keydown="deleteLetter"></vue-tel-input>                          
+                                    </label>
+                                </div>                                                            
                             </div>
                             </div>
 
@@ -155,21 +156,32 @@
 
                         </div>
                     </Form>
-
+                    
             </div>
         </div>
+    </div>
+
+    <ModalAfterSubmit v-if="showModalSubmit"></ModalAfterSubmit>
     </div>
 </template>
 
 <script>
 import { VueTelInput } from 'vue-tel-input';
-import { Form, Field, ErrorMessage   } from 'vee-validate';
+import { Form, Field, ErrorMessage, configure } from 'vee-validate';
 import OrderItem from './OrderItem.vue';
 import Pochta from './Pochta.vue';
+import ModalAfterSubmit from './ModalAfterSubmit.vue';
+configure({
+  validateOnBlur: false,
+  validateOnChange: true,
+  validateOnInput: true,
+  validateOnModelUpdate: true,
+  
+});
 
     export default {
         props: ['books'],
-        components: {VueTelInput, Form, Field, ErrorMessage, OrderItem, Pochta },
+        components: {VueTelInput, Form, Field, ErrorMessage, OrderItem, Pochta, ModalAfterSubmit },
         data() {
             return {
                 phone: 0,
@@ -185,7 +197,8 @@ import Pochta from './Pochta.vue';
                 deliveryValue: '',
                 paymentValue: '',
                 currencyValue: 'rub',
-                delivery: ''
+                delivery: '',
+                showModalSubmit: false
      
             }
         },
@@ -233,17 +246,16 @@ import Pochta from './Pochta.vue';
 
             clearInput(e) {
                 e.target.classList.add('hidden');
-                console.log(e.target.nextSibling.nextSibling)
-                if (e.target.nextSibling.nextSibling.getAttribute('name') == 'fio')  {
+                if (e.target.nextSibling.getAttribute('name') == 'fio')  {
                     this.fio = '';
                     this.errorFio = true
                 }
-                if (e.target.nextSibling.nextSibling.getAttribute('name') == 'country')  {
+                if (e.target.nextSibling.getAttribute('name') == 'country')  {
                     this.country = '';
                     this.errorCountry = true
                 }
 
-                if (e.target.nextSibling.nextSibling.getAttribute('name') == 'email')  {
+                if (e.target.nextSibling.getAttribute('name') == 'email')  {
                     this.email = '';
                     this.errorEmail = true
                 }
@@ -252,9 +264,8 @@ import Pochta from './Pochta.vue';
             },
 
             inputChange(e) {
-                const btn = e.target.previousSibling.previousSibling;
+                const btn = e.target.previousSibling;
                 if (e.target.getAttribute('name') == 'fio') {
-                    console.log(this.fio)
                         this.errorFio = false
                     }
 
@@ -263,6 +274,7 @@ import Pochta from './Pochta.vue';
                         this.errorEmail = false                   
                     }
 
+                    console.log(e)
 
                 if (e.target.value != '') {
                     btn.classList.remove('hidden') 
@@ -273,7 +285,6 @@ import Pochta from './Pochta.vue';
 
             customValidate(value) {
                 if (value.valid == true) {
-                    console.log('aa')
                    this.phoneValid = true
                 }  else this.phoneValid = false
             },
@@ -298,11 +309,16 @@ import Pochta from './Pochta.vue';
                 this.currencyValue = e.target.value
             },
 
+            onSubmit(e) {
+                console.log(e)
+                this.showModalSubmit = true
+            }
+
         },
 
         computed: {
             validate() {
-                if (this.validateFio(this.fio) == true && this.validateEmail(this.email) == true && this.phoneValid == true) 
+                if (this.validateFio(this.fio) == true && this.validateEmail(this.email) == true && this.phoneValid == true && this.selectedProducts.length > 0) 
                     return true
                 
             },
