@@ -87,14 +87,19 @@
             и&nbsp;станьте частью нашего образовательного сообщества.</h3>
 
           <Form @InvalidSubmit="onInvalidSubmit" id="form" class="form flex">
-            <label class="form_item flex">
-              <span class="form_name">E-mail</span>
-              <Field id="emailForma" type="email" name="email" placeholder="Введите E-mail" class="form__input"
-                @input="inputChange" v-model="email" :rules="validateEmail" />
-              <ErrorMessage class="form__error" name="email" />
-              <button class="modal__btn hidden" @click.prevent="clearInput"></button>
-              <span v-show="errorIcon" class="error-icon"></span>
+            <div>
+              <span class="form_name form__text">E-mail</span>
+              <label class="form_item flex">
+                <button class="modal__btn hidden" @click.prevent="clearInput"></button>
+                <Field id="emailForma" type="email" name="email" placeholder="Введите E-mail" class="form__input"
+                  @input="inputChange" v-model="email" :rules="validateEmail" />
+                  <span v-show="errorEmail" class="error-icon"></span>
+                <ErrorMessage class="form__error" name="email" />
+                
+                
             </label>
+            </div>
+            
             <button class="btn-reset btn form-btn" type="submit">Подписаться</button>
             <p class="form_agree">Нажимая на&nbsp;кнопку &laquo;Подписаться&raquo; я&nbsp;даю своё согласие
               на&nbsp;обработку&nbsp;
@@ -141,7 +146,7 @@ export default {
   data() {
     return {
       email: '',
-      errorIcon: false,
+      errorEmail: false,
       affiche: [
         {
           id: 1,
@@ -216,28 +221,29 @@ export default {
 
   methods: {
     inputChange(e) {
-      const btn = e.target.nextSibling.nextSibling;
-      if (!btn.classList.contains("hidden")) {
-        this.errorIcon = false
+      const btn = e.target.previousSibling;
+
+      if (e.target.getAttribute('name') == 'email') {
+          this.errorEmail = false
       }
-      if (btn.classList.contains("hidden") && this.email !== '') {
-        btn.classList.remove('hidden')
-        this.errorIcon = false
-      }
+
+      if (e.target.value != '') {
+        btn.classList.remove('hidden') 
+
+      } else btn.classList.add('hidden') 
     },
 
     clearInput(e) {
       this.email = '';
       e.target.classList.add('hidden');
       if (this.email == '') {
-        this.errorIcon = true
+        this.errorEmail = true
       }
     },
 
     onInvalidSubmit(e) {
       if (e.errors) {
-        console.log(e.errors)
-        this.errorIcon = true
+        this.errorEmail = true
       }
     },
 
