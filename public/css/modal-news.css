@@ -351,6 +351,11 @@
 }
 
 @media (max-width: 768px) {
+    .modal.modal-news .btn-close {
+        top: 20px;
+        right: 20px;
+    } 
+    
     .modal.modal-news {
         background: #E7F0FF;
     }
