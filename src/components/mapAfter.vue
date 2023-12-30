@@ -3,7 +3,8 @@
             <div class="choice__container">
                 <p class="choice__title">Отделения Почты России</p>
                 <p class="choice__address">{{ checkAddress.address }}</p>
-                <p class="choice__time">{{ checkAddress.time.join(' ') }}</p>
+                <p v-if="checkAddress.time" class="choice__time">{{ checkAddress.time[0] }}</p>
+                <p v-else-if="!checkAddress.time" class="choice__time"></p>
                 
             </div>
             <button type="button" class="btn-reset btn-background choice__btn" @click="$emit('back')">Изменить отделение</button>

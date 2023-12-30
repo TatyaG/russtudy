@@ -280,6 +280,8 @@ objects.addEvents('click', function (e) {
     setActiveCity(item) {
         this.afterChoice = true
         this.activeCity = item
+        const PostcodeStore = usePostcodeStore();
+        PostcodeStore.checkAddress = item
    
     },
 
