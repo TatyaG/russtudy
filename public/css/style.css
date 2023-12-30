@@ -75,6 +75,10 @@ h5 {
   color: var(--error);
 }
 
+.form__text {
+  display: block;
+}
+
 body {
   background: #e7f0ff;
   color: var(--body-color);
