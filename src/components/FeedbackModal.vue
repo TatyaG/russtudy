@@ -69,16 +69,16 @@
                     <Form @InvalidSubmit="onInvalidSubmit" class="feedback__form form">
                         <p class="form__title">Задать вопрос</p>
                         <div>
-                            <span class="form__text">Ф.И.О *</span>
+                            <span class="form__text">Ф.И.О</span>
                             <label for="" class="form__label">                               
                                 <button class="modal__btn hidden" @click.prevent="clearInput"></button>                                
-                                <Field :class="{'error-input': errorFio}" class="form__input" name="fio" v-model="fio" type="text" placeholder="Введите Ф.И.О" :rules="validateFio" @input="inputChange" @keydown="deleteNumber" @validateOnBlur="onBlur()"/>
-                                <span v-show="errorFio" class="error-icon"></span>
-                                <ErrorMessage class="form__error" name="fio" />
+                                <Field class="form__input" name="fio" v-model="fio" type="text" placeholder="Введите Ф.И.О" @input="inputChange" @keydown="deleteNumber"/>
+                                <!-- <span v-show="errorFio" class="error-icon"></span> -->
+                                <!-- <ErrorMessage class="form__error" name="fio" /> -->
                             </label>
                         </div>
                         <label for="" class="form__label">
-                                <span class="form__text">Телефон *</span>
+                                <span class="form__text">Телефон</span>
                                 <vue-tel-input v-model="phone" @country-changed="countryChanged" @validate="customValidate" @keydown="deleteLetter"></vue-tel-input>
                           
                         </label>
@@ -91,7 +91,7 @@
                                 <ErrorMessage class="form__error" name="email" />
                             </label>
                         </div>
-
+                        <span class="form__text">Вопрос *</span>
                             <label for="" class="form__label">                                
                                     <button class="modal__btn hidden" @click.prevent="clearInput"></button>                                    
                                     <Field as="textarea" :class="{'error-input': errorQuestion}" class="form__input" name="question" v-model="question" type="field" placeholder="Ваш вопрос" :rules="validateQuestion" @input="inputChange"/>
@@ -128,7 +128,6 @@ configure({
                 fio: '',
                 email: '',
                 question: '',
-                errorFio: false,
                 errorEmail: false,
                 errorQuestion: false
             }
@@ -136,10 +135,6 @@ configure({
         components: {VueTelInput, Form, Field, ErrorMessage },
         methods: {
             onInvalidSubmit(e) {
-                console.log(e)
-                if (e.errors.fio) {
-                    this.errorFio = true
-                }
 
                 if (e.errors.email) {
                     this.errorEmail = true
@@ -193,14 +188,6 @@ configure({
                 }
             },
 
-            validateFio(value) {
-                if (!value) {
-                     return 'Введите Ф.И.О';
-                }
-
-                return true;
-            },
-
             validateEmail(value) {
                 if (!value) {  
                     return 'Введите E-mail!';
@@ -215,10 +202,14 @@ configure({
 
             validateQuestion(value) {
                 if (!value) {
-                     return 'Введите описание новости';
+                     return 'Введите вопрос';
                 }
 
                 return true;
+            },
+
+            deleteNumber(e) {
+                if( e.key.match(/[0-9]/) ) return e.preventDefault();
             },
         }
     }
