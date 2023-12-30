@@ -3,7 +3,8 @@
 }
 
 .modal.feedback .modal__window {
-    transform: translateY(15%);
+    margin-bottom: 40px;
+    transform: translateY(20px);
 }
 
 .feedback .modal__window {
@@ -97,6 +98,36 @@
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.contacts__link span {
+    position: relative;
+}
+
+.contacts__link span::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #0a2b49;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.contacts__item:hover span::before {
+    opacity: 1;
+}
+
+.contacts__link path {
+    fill: #0a2b49;
+    stroke: #0a2b49;
+    transition: fill .3s ease-in-out, stroke .3s ease-in-out;
+}
+
+.contacts__item:hover .contacts__link path {
+    fill: white;
 }
 
 .feedback__block {
