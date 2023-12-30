@@ -75,6 +75,11 @@ h5 {
   color: var(--error);
 }
 
+
+.subscription__content .form__error {
+  bottom: 0;
+}
+
 .form__text {
   display: block;
 }
