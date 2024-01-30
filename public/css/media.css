@@ -328,6 +328,12 @@
   }
 }
 
+@media (max-width: 1400px) {
+  .subscription__content .form__error {
+    bottom: 5px;
+  }
+}
+
 @media (max-width: 1300px) {
   .promo__btn {
     right: 7%;

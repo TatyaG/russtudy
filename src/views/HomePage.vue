@@ -91,7 +91,7 @@
               <span class="form_name form__text">E-mail</span>
               <label class="form_item flex">
                 <button class="modal__btn hidden" @click.prevent="clearInput"></button>
-                <Field id="emailForma" type="email" name="email" placeholder="Введите E-mail" class="form__input"
+                <Field id="emailForma" type="email" name="email" placeholder="Введите E-mail" class="form__input" :class="{'error-input': errorEmail}"
                   @input="inputChange" v-model="email" :rules="validateEmail" />
                   <span v-show="errorEmail" class="error-icon"></span>
                 <ErrorMessage class="form__error" name="email" />
