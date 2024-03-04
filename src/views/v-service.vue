@@ -4,7 +4,7 @@
   </v-create-material>
   <div class="container " v-if="!createMaterial">
     <Header/>
-    <h4 class="service_title">{{ selectedService.label }}</h4>
+    <h4 class="service_title">{{ (selectedService.title) ? selectedService.title :selectedService.label }}</h4>
     <div class="flex serv">
       <div class="service_item_mob">
         <v-service-tabs :service-name="serviceName"
@@ -26,7 +26,9 @@
               @openModal="createMaterial = !createMaterial">
           </v-material>
         </div>
-        <div class="" v-if="selectedService.name==='Game'">Game</div>
+        <div class="" v-if="selectedService.name==='Game'">
+          <v-game/>
+        </div>
         <div class="test_box__wrap" v-if="selectedService.name==='Tests'">
           <test v-for="item of tests"
                 :nameTest="item" :key="item.id"
@@ -49,6 +51,7 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import VMaterial from "@/components/v-material.vue";
 import VCreateMaterial from "@/components/v-create-material.vue";
+import VGame from "@/components/v-game.vue";
 
 
 const changeServiceName = (serviceName) => {
@@ -58,7 +61,7 @@ const changeServiceName = (serviceName) => {
 const createMaterial = ref(false)
 const serviceName = [
   {name: 'Material', label: 'Учебно-методические материалы',},
-  {name: 'Game', label: 'Игра',},
+  {name: 'Game', label: 'Игра', title: 'Игра РКИ онлайн'},
   {name: 'Tests', label: 'Тесты'},
   {name: 'Kalinka', label: 'Kalinka - Russian Fast & Easy'},
   {name: 'Course', label: 'Курсы'},

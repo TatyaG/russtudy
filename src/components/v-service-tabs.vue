@@ -1,35 +1,45 @@
 <template>
+  <div class=" service_item_mob">
+    <Swiper slides-per-view="auto">
+      <swiper-slide
+          v-for="(item,index ) of serviceName"
+          :key="index"
+          :class="{active_tab: item.name === props.selected_service.name}"
+          @click="emit('changeServiceTabs',item)"
+          class=""
+      >
+        <span>{{ (item.label) }}</span>
+
+      </swiper-slide>
+    </Swiper>
+  </div>
   <div class="service_item__wrap">
     <div class="service_item__label">
         <span
             v-for="item of serviceName"
             @click="emit('changeServiceTabs',item)"
             class="service_item"
-            :class="{active_tab: item.name === props.selected_service.name}"
+            :class="{active_tab:   item.name === props.selected_service.name}"
         >
           {{ item.label }}
         </span>
-      <div class="">
-
-      </div>
-
-
-      <!--      <div class="horizontal-scroll service_item_mob">
-              <ul class="scrollable-list service_item_mob">
-                <li v-for="(item,index ) of serviceName"
-                    :key="index"
-                    :class="{active_tab: item.name === props.selected_service.name}"
-                    @click="emit('changeServiceTabs',item)"
-                >
-                  {{ item.label }}
-                </li>
-              </ul>
-            </div>-->
     </div>
   </div>
 
 </template>
 <script setup>
+
+// Import Swiper Vue.js components
+import {Swiper, SwiperSlide} from 'swiper/vue';
+
+// Import Swiper styles
+import 'swiper/css';
+
+import 'swiper/css/navigation';
+
+
+// import required modules
+import {Navigation, Pagination} from 'swiper/modules';
 
 
 const props = defineProps({
@@ -42,16 +52,12 @@ const props = defineProps({
     required: true,
   }
 })
+
 const emit = defineEmits(["changeServiceTabs"])
 /*Slick slider */
+const modules = [Navigation, Pagination]
 
-const items = [
-  { id: 1, text: 'Item 1' },
-  { id: 2, text: 'Item 2' },
-  { id: 3, text: 'Item 3' },
-  { id: 4, text: 'Item 4' },
-  { id: 5, text: 'Item 5' },
-];
+
 </script>
 <style scoped>
 .active_tab {
@@ -59,23 +65,31 @@ const items = [
 }
 
 /* Стили для листающегося списка по горизонтали */
-.horizontal-scroll {
-  overflow-x: auto; /* Добавляет горизонтальную полосу прокрутки при необходимости */
+.swiper {
+  max-width: 100%;
+  margin: 0 auto;
 }
 
-.scrollable-list {
-  white-space: nowrap; /* Предотвращает перенос текста на новую строку */
-  padding: 10px; /* Добавляет отступы вокруг списка */
-}
-
-.scrollable-list li {
-  display: inline-block; /* Размещает элементы списка в ряд */
-  margin-right: 8px; /* Отступ между элементами списка */
-}
-
-.slider-item {
+.swiper-slide {
+  padding: 12px;
+  margin: 40px 20px 40px;;
+  color: #0A2B49;
+  cursor: pointer;
+  width: fit-content !important;
   text-align: center;
-  padding: 20px;
-  background: #ddd;
+  font-size: 18px;
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
 </style>

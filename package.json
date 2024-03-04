@@ -13,23 +13,26 @@
     "core-js": "^3.8.3",
     "dropzone-vue": "^0.1.11",
     "gsap": "^3.12.2",
+    "jquery": "^3.7.1",
     "pinia": "^2.1.7",
-    "swiper": "^11.0.4",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^11.0.6",
     "vee-validate": "^4.12.2",
-    "vue": "^3.2.13",
+    "vue": "^3.4.18",
     "vue-axios": "^3.5.2",
     "vue-collapsed": "^1.2.9",
     "vue-router": "^4.0.3",
-    "vue-slick-carousel": "^1.0.5",
+    "vue-slick-carousel": "^1.0.6",
     "vue-socials": "^2.0.4",
     "vue-tel-input": "^6.0.5",
+    "vue-upload-component": "^2.8.23",
     "vue-yandex-maps": "^0.11.18",
     "vueperslides": "^2.16.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-service": "^3.3.1"
+    "@vue/cli-service": "~5.0.0"
   },
   "browserslist": [
     "> 1%",

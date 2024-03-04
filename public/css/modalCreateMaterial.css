@@ -176,3 +176,17 @@ button{
     background: #056BF0;
     margin-bottom: 20px;
 }
+.checking_title{
+    font-family: Repo;
+    font-size: 32px;
+    line-height: 38px;
+    font-weight: 700;
+    padding: 40px 0;
+}
+.checking_subtitle{
+    font-family: Manrope;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    padding-bottom: 40px;
+}

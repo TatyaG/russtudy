@@ -20,7 +20,7 @@
         <p class="modal_tab__title " :class="{modal_material_tab__active: statusCreated === 'checking'}">Проверка</p>
       </div>
     </div>
-    <div class="modal_material_form">
+    <div class="modal_material_form" v-if="statusCreated=== 'info'">
       <div class="modal_form_wrap">
         <div class="modal_form__input">
           <div class="modal_form__input_user fg">
@@ -73,7 +73,9 @@
             </div>
           </div>
         </div>
-        <div class="modal_form_attach">
+        <div class="modal_form_attach" id="drop-area"
+             @dragover.prevent="allowDrop"
+             @drop.prevent="handleDrop">
           <p class="modal_label pb">Загрузите файлы, которые хотите прикрепить к Вашему материалу</p>
           <div class="modal_form_attach_border">
             <div class="modal_form_attach_img">
@@ -94,18 +96,24 @@
               </svg>
             </div>
             <div class="modal_form_attach__title">Загрузка файлов</div>
-            <div class="modal_form_attach__subtitle_text">
+            <p v-if="selectedFile">Выбранный файл: {{ selectedFile.name }}</p>
+            <img v-if="isImage" :src="filePreview" alt="Preview" style="max-width: 100%; max-height: 200px"/>
+            <pre v-if="!isImage">{{ filePreview }}</pre>
+
+            <div class="modal_form_attach__subtitle_text" v-if="!selectedFile">
               <p class="modal_form_attach__subtitle">Чтобы начать загрузку, выберите файлы на компьютере или перетащите
                 их в это окно.</p>
               <p class="modal_form_attach__subtitle">Максимальный размер файлов 125 MB</p>
             </div>
             <div class="">
-              <button class="modal_form_attach__btn">Выбрать файлы</button>
+              <input type="file" ref="fileInput" class="modal_form_attach__btn" @change="handleFileInput"
+                     style="display: none"/>
+              <button class="modal_form_attach__btn" @click="openFileInput">Выбрать файлы</button>
             </div>
           </div>
         </div>
         <div class="d-flex">
-          <button class="modal_form_next">Далее</button>
+          <button class="modal_form_next" @click="uploadFile">Далее</button>
         </div>
         <div class="d-flex">
           <p class="form_link_bottom">
@@ -118,13 +126,21 @@
 
       </div>
     </div>
-    <div class="modal_material_checking">
+    <div class="modal_material_checking" v-if="statusCreated=== 'checking'">
+      <p class="checking_title"> Спасибо, что поделились своими полезными материалами! Мы ценим ваш вклад.</p>
 
+      <p class="checking_subtitle">Обратите внимание, что все материалы проходят модерацию перед публикацией, чтобы гарантировать качество
+        контента нашего сайта. Мы постараемся рассмотреть ваш материал как можно скорее и опубликовать его,
+        если он соответствует нашим критериям. Спасибо за ваше терпение и понимание!
+      </p>
+      <div class="d-flex">
+        <button class="modal_form_next" @click="emit('closemodal',false)">Готово</button>
+      </div>
     </div>
   </div>
 </template>
 <script setup>
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import VModalSelect from "@/components/v-modal-select.vue";
 
 const emit = defineEmits(['closemodal'])
@@ -135,7 +151,6 @@ const levelFilter = [
   {id: 2, value: 'B1',},
   {id: 3, value: 'B2',},
   {id: 4, value: 'C1',},
-  {id: 5, value: 'C2',},
 ]
 const themeFilter = [
   {id: 6, value: 'Алфавит'},
@@ -149,5 +164,70 @@ const themeFilter = [
   {id: 81, value: 'Глаголы служебные'},
 ]
 const statusCreated = ref('info')
+
+
+const allowDrop = (event) => {
+  event.preventDefault();
+  event.target.style.backgroundColor = '#f0f0f0';
+};
+
+const handleDrop = (event) => {
+  event.preventDefault();
+  event.target.style.backgroundColor = '';
+
+  selectedFile.value = event.dataTransfer.files[0];
+};
+const isImage = ref(false);
+const filePreview = ref(null);
+const uploadedFiles = ref([]);
+const selectedFile = ref(null);
+
+const handleFileInput = () => {
+  selectedFile.value = fileInput.value.files[0];
+  updateFilePreview();
+};
+
+const uploadFile = async () => {
+  if (selectedFile.value) {
+    const formData = new FormData();
+    formData.append('file', selectedFile.value);
+    statusCreated.value = 'checking'
+
+  } else {
+    console.warn('Нет выбранного файла.');
+  }
+};
+const fileInput = ref(null);
+const openFileInput = () => {
+  selectedFile.value = null; // Reset selected file when opening the file input
+  fileInput.value.click();
+};
+watch(selectedFile, () => {
+  updateFilePreview();
+});
+const updateFilePreview = () => {
+  if (selectedFile.value) {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (isImage.value) {
+        filePreview.value = reader.result;
+        reader.readAsDataURL(selectedFile.value);
+        console.log(reader.readAsDataURL(selectedFile.value))
+      } else {
+        filePreview.value = reader.result.toString(); // Read as text
+      }
+    };
+
+    if (isImage.value) {
+      reader.readAsDataURL(new Blob([new Uint8Array(reader.result)], {type: selectedFile.value.type}));
+    } else {
+      reader.readAsText(new Blob([new Uint8Array(reader.result)], {type: selectedFile.value.type}));
+    }
+  } else {
+    filePreview.value = null;
+    isImage.value = false;
+  }
+};
 </script>
 

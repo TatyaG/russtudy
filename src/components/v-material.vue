@@ -149,7 +149,7 @@
       <div class="active_material_wrap">
         <div class="active_material_info">
           <div class="active_material_img">
-            <img :src="activeMaterialInfo.img" alt="Logo" class="img">
+            <img :src="activeMaterialInfo.img" alt="Logo" class="img  ">
             <p class="material_list__first_img_title">{{ activeMaterialInfo.title }}</p>
           </div>
           <div class="active_material_text">
@@ -182,8 +182,8 @@
         <div class="active_material_list">
           <div class="active_material_list_item" v-for="materialItem of materialList" :key="materialItem.id"
                :class="{active_material_show: activeMaterialInfo.id === materialItem.id}">
-            <div class="active_material_list__img cursor" @click="showActiveMaterial(materialItem)">
-              <img :src="materialItem.img" alt="Logo">
+            <div class="active_material_list__img cursor " @click="showActiveMaterial(materialItem)">
+              <img :src="materialItem.img" alt="Logo" class="active_material_img__item">
               <p class="active_material_list_item__title">{{ materialItem.title }}</p>
             </div>
             <div class="active_material_list__text">
