@@ -74,6 +74,7 @@ h3 {
     background: #FFF;
     max-width: 445px;
     flex-grow: 1;
+    width: 100%;
 }
 .service_wrap_second{
     flex-grow: 1;
