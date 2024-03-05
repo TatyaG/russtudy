@@ -70,7 +70,7 @@
             </swiper-slide>
           </Swiper>
 
-          <a class="card-link flex" href="#">
+          <a class="card-link flex" href="/news">
             Все новости
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 1L22.6667 22.6667M22.6667 22.6667V1.86667M22.6667 22.6667H1.86667" stroke="white"
@@ -137,6 +137,8 @@ import Footer from '@/components/Footer.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Form, Field, ErrorMessage } from 'vee-validate';
+import {getPartners} from "@/dbquery/getPartners";
+
 
 
 export default {
@@ -220,6 +222,16 @@ export default {
   },
 
   methods: {
+    async getPartners() {
+      try {
+        data = await getPartners();
+        console.log(data) // Надо проверить что приходит и опдставить правильные данные
+        // this.partners = data
+        console.log('Data from API:', data);
+      } catch (error) {
+        console.log(error)
+      }
+    },
     inputChange(e) {
       const btn = e.target.previousSibling;
 
@@ -261,6 +273,9 @@ export default {
       return true;
     },
 
+  },
+  mounted() {
+    getPartners()
   },
 }
 

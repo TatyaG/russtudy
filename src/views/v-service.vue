@@ -62,11 +62,13 @@ const createMaterial = ref(false)
 const serviceName = [
   {name: 'Material', label: 'Учебно-методические материалы',},
   {name: 'Game', label: 'Игра', title: 'Игра РКИ онлайн'},
+/*
   {name: 'Tests', label: 'Тесты'},
+*/
   {name: 'Kalinka', label: 'Kalinka - Russian Fast & Easy'},
-  {name: 'Course', label: 'Курсы'},
+ /* {name: 'Course', label: 'Курсы'},
   {name: 'Teacher', label: 'База учителей'},
-  {name: 'Vacancy', label: 'Вакансии'},
+  {name: 'Vacancy', label: 'Вакансии'},*/
 
 ]
 const tests = ref([
