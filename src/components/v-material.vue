@@ -1,6 +1,42 @@
 <template>
   <div class="material_wrap">
-    <section class="create_material">
+    <section class="create_material" :class="{'justify-between': isWidthOK}">
+      <div id="v-model-select" class="demo" v-if="isWidthOK">
+        <div class="" @click="listShow = !listShow" >
+          <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M20.0013 32.167H6.66797M33.3346 8.83366H28.3346M33.3346 32.167H26.668M21.668 8.83366H6.66797M11.668 20.5003H6.66797M33.3346 20.5003H18.3346"
+                stroke="#056BF0" stroke-width="2" stroke-linecap="round"/>
+            <path
+                d="M26.6667 32.1667C26.6667 30.3257 25.1743 28.8333 23.3333 28.8333C21.4924 28.8333 20 30.3257 20 32.1667C20 34.0076 21.4924 35.5 23.3333 35.5C25.1743 35.5 26.6667 34.0076 26.6667 32.1667Z"
+                stroke="#056BF0" stroke-width="2" stroke-linecap="round"/>
+            <path
+                d="M18.3346 20.4997C18.3346 18.6587 16.8423 17.1663 15.0013 17.1663C13.1604 17.1663 11.668 18.6587 11.668 20.4997C11.668 22.3406 13.1604 23.833 15.0013 23.833C16.8423 23.833 18.3346 22.3406 18.3346 20.4997Z"
+                stroke="#056BF0" stroke-width="2" stroke-linecap="round"/>
+            <path
+                d="M28.3346 8.83366C28.3346 6.99271 26.8423 5.50033 25.0013 5.50033C23.1604 5.50033 21.668 6.99271 21.668 8.83366C21.668 10.6746 23.1604 12.167 25.0013 12.167C26.8423 12.167 28.3346 10.6746 28.3346 8.83366Z"
+                stroke="#056BF0" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <ul v-if="listShow" class="list_filters">
+          <p class="list_title">Выберите уровень владения языком</p>
+          <li
+              v-for="item of levelFilter"
+              :key="item.id"
+              class="list_items">
+            <input type="checkbox" :value="item.value" :id="item.id" v-model="checkedLevelFilter"/>
+            <label :for="item.id" class="activeFilter__label">{{ item.value }}</label>
+          </li>
+          <p class="list_title">Выберите тему учебно-методического материала</p>
+          <li
+              v-for="item of themeFilter"
+              :key="item.id"
+              class="list_items">
+            <input type="checkbox" :value="item.value" :id="item.id" v-model="checkedTheme"/>
+            <label :for="item.id" class="activeFilter__label">{{ item.value }}</label>
+          </li>
+        </ul>
+      </div>
       <button class="create_material__btn" @click=" emit('openModal', true)">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none"
              class="create_btn__icon">
@@ -12,7 +48,7 @@
       </button>
     </section>
     <div class="" v-if="!activeMaterialShow">
-      <section class="material_filter">
+      <section class="material_filter" v-show="isWidthOK === false">
         <p class="material_learn_title">Выберите уровень владения языком </p>
         <div class="material_learn_check">
           <div v-for="level of levelFilter" :key="level.id">
@@ -113,7 +149,7 @@
       <div class="active_material_wrap">
         <div class="active_material_info">
           <div class="active_material_img">
-            <img :src="activeMaterialInfo.img" alt="Logo" class="img">
+            <img :src="activeMaterialInfo.img" alt="Logo" class="img  ">
             <p class="material_list__first_img_title">{{ activeMaterialInfo.title }}</p>
           </div>
           <div class="active_material_text">
@@ -146,8 +182,8 @@
         <div class="active_material_list">
           <div class="active_material_list_item" v-for="materialItem of materialList" :key="materialItem.id"
                :class="{active_material_show: activeMaterialInfo.id === materialItem.id}">
-            <div class="active_material_list__img cursor" @click="showActiveMaterial(materialItem)">
-              <img :src="materialItem.img" alt="Logo">
+            <div class="active_material_list__img cursor " @click="showActiveMaterial(materialItem)">
+              <img :src="materialItem.img" alt="Logo" class="active_material_img__item">
               <p class="active_material_list_item__title">{{ materialItem.title }}</p>
             </div>
             <div class="active_material_list__text">
@@ -164,7 +200,7 @@
 
 
 <script setup>
-import {computed, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 
 const props = defineProps({})
 const emit = defineEmits(['openModal'])
@@ -203,13 +239,13 @@ const clearFilter = () => {
 }
 const checkedTheme = ref([])
 const checkedLevel = ref([])
+const checkedLevelFilter = ref([])
 const levelFilter = [
   {id: 0, value: 'A1',},
   {id: 1, value: 'A2',},
   {id: 2, value: 'B1',},
   {id: 3, value: 'B2',},
   {id: 4, value: 'C1',},
-  {id: 5, value: 'C2',},
 ]
 const themeFilter = [
   {id: 6, value: 'Алфавит'},
@@ -324,6 +360,15 @@ const materialList = [
     likes: '',
   },
 ]
+const listShow = ref(false)
+const isWidthOK = ref(false)
+onMounted(() => {
+  const mql = window.matchMedia('(max-width: 1100px)');
+  const onChange = () => isWidthOK.value = mql.matches;
+  onChange();
+  mql.addEventListener('change', onChange);
+})
+
 
 /* ---- Show more ------*/
 const currentPage = ref(1);
@@ -338,6 +383,13 @@ const showMore = () => {
 }
 const showLess = () => {
   currentPage.value = currentPage.value - 1 || 1
+}
+/*
+* ************************** list item ***************************
+*/
+let isActiveFilter = ref(false)
+let toggleClass = () => {
+  isActiveFilter.value = !isActiveFilter.value
 }
 </script>
 

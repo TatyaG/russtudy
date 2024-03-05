@@ -23,16 +23,16 @@ h3 {
 
 .active_tab {
     color: #0A2B49;
-    background: #E4EFFF;;
-    text-decoration: underline;
-    border-radius: 20px;
+    background: #d1e1f7!important;
+    text-decoration: none!important;
+    border-radius: 20px!important;
 
 }
 
 .service_item {
     cursor: pointer;
     max-width: 445px;
-    color:  #0A2B49 ;
+    color: #0A2B49;
     font-family: Manrope;
     font-size: 24px;
     font-style: normal;
@@ -40,18 +40,22 @@ h3 {
     line-height: 120%; /* 28.8px */
     padding: 20px;
 }
-.service_item__label{
+
+.service_item__label {
     display: flex;
     flex-direction: column;
 }
-.service_item:hover{
+
+.service_item:hover {
     text-decoration: underline;
 }
-.service_item__wrap{
+
+.service_item__wrap {
     display: flex;
 
 }
-.service_title{
+
+.service_title {
     font-family: Perun;
     font-size: 48px;
     font-style: normal;
@@ -60,7 +64,8 @@ h3 {
     text-align: center;
     color: #0A2B49;
 }
-.service_nav_title{
+
+.service_nav_title {
     color: #0A2B49;
     font-family: Perun;
     font-size: 40px;
@@ -68,14 +73,17 @@ h3 {
     font-weight: 700;
     line-height: normal;
 }
-.service_wrap{
+
+.service_wrap {
     padding: 40px 20px 20px 20px;
     border-radius: 20px;
     background: #FFF;
     max-width: 445px;
     flex-grow: 1;
+    width: 100%;
 }
-.service_wrap_second{
+
+.service_wrap_second {
     flex-grow: 1;
     background: #E7F0FF;
 }

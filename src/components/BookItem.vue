@@ -1,6 +1,6 @@
 <template>
     <li class="about__item">
-        <a href="" class="about__link book">
+        <a :href="book.url" class="about__link book">
             <img :src="book.image" :alt="book.type">
             <div class="about__content">
             <p class="book__title">{{ book.type }}</p>

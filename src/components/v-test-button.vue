@@ -1,5 +1,5 @@
 <template>
-<button class="test_btn">Пройти</button>
+  <button class="test_btn">Пройти</button>
 </template>
 <style scoped>
 .test_btn{
@@ -25,3 +25,5 @@
   background: #0A2B49;
 }
 </style>
+<script setup>
+</script>
