@@ -137,7 +137,9 @@ import Footer from '@/components/Footer.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Form, Field, ErrorMessage } from 'vee-validate';
+/*
 import {getPartners} from "@/dbquery/getPartners";
+*/
 
 
 
@@ -224,10 +226,10 @@ export default {
   methods: {
     async getPartners() {
       try {
-        data = await getPartners();
+       /* data = await getPartners();
         console.log(data) // Надо проверить что приходит и опдставить правильные данные
-        // this.partners = data
-        console.log('Data from API:', data);
+         this.partners = data
+        console.log('Data from API:', data);*/
       } catch (error) {
         console.log(error)
       }
@@ -275,7 +277,7 @@ export default {
 
   },
   mounted() {
-    getPartners()
+    /*getPartners()*/
   },
 }
 
