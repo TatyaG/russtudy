@@ -34,7 +34,9 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-service": "~5.0.0"
+    "@vue/cli-service": "~5.0.0",
+    "html-loader": "^5.0.0",
+    "raw-loader": "^4.0.2"
   },
   "browserslist": [
     "> 1%",
