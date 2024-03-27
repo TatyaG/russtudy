@@ -138,6 +138,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import {getPartners} from "@/dbquery/getPartners";
+import { useHead } from "unhead";
 
 
 
@@ -275,6 +276,23 @@ export default {
 
   },
   mounted() {
+    useHead({
+      meta: [
+        { 
+          name: 'title', 
+          content: 'Обучение русскому как иностранному | Привет, Россия! | Rus.Study' 
+        },
+        { 
+          name: 'keywords',
+          content: 'Rus.Study, рки, Привет, Россия, русский язык как иностранный, учебники, уроки РКИ, преподавание русского языка как иностранного, преподаватели рки, онлайн, A1, B1, C1, учебник русского языка для иностранцев'
+        },
+        {
+          name: 'description', 
+          content: 'Готовые уроки русского языка как иностранного (РКИ) всех уровней (А1-С2). Учебные и методические материалы, тесты, видео, новости, мероприятия, курсы для учителей.'
+        }
+      ],
+      
+    })
     getPartners()
   },
 }

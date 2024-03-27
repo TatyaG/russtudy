@@ -575,6 +575,7 @@ import ReviewsSlider from '@/components/ReviewsSlider.vue';
 import FAQList from '@/components/FAQList.vue';
 import router from '@/router';
 import FeedbackModal from '@/components/FeedbackModal.vue';
+import { useHead } from "unhead";
 
 window.addEventListener('scroll', () => {
   const element = document.querySelector('.hide-on-scroll');
@@ -819,6 +820,27 @@ export default {
 
     },
 
+  },
+
+  mounted() {
+    
+    useHead({
+      meta: [
+        { 
+          name: 'title', 
+          content: 'Бумажные и онлайн-учебники РКИ по методике Нахабиной М.М.' 
+        },
+        { 
+          name: 'keywords',
+          content: 'Нахабина М.М., Rus.Study, рки, Привет Россия, русский язык как иностранный, учебник, уроки РКИ, обучение русскому языку иностранцев, преподаватели рки, методика преподавания, онлайн, A1, B1, C1, учебник русского языка для иностранцев'
+        },
+        {
+          name: 'description', 
+          content: 'Методика преподавания русского языка как иностранного, тесты и готовые уроки для всех уровней с погружением в культуру и традиции России | Разработка Нахабиной Марии Михайловны'
+        }
+      ],
+      
+    })
   }
 }
 </script>

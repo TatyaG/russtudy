@@ -53,6 +53,8 @@ import VMaterial from "@/components/v-material.vue";
 import VCreateMaterial from "@/components/v-create-material.vue";
 import VGame from "@/components/v-game.vue";
 
+import { useHead } from "unhead";
+
 
 const changeServiceName = (serviceName) => {
   selectedService.value = serviceName

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useHead } from "unhead";
 import HomePage from "@/views/HomePage.vue";
 import BookPage from "@/views/BookPage.vue";
 import testPage from "@/views/v-testPage.vue";
@@ -68,6 +69,10 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   // history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from) => {
+  document.title = to.meta?.title ?? 'Default Title';
 });
 
 export default router;
