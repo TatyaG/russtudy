@@ -14,6 +14,9 @@ const routes = [
     path: "/",
     name: "home",
     component: HomePage,
+    meta: {
+      title: 'Обучение русскому как иностранному | Привет, Россия! | Rus.Study'
+    }
   },
   {
     path: "/service",
@@ -29,11 +32,17 @@ const routes = [
     path: "/textbook",
     name: "book",
     component: BookPage,
+    meta: {
+      title: 'Бумажные и онлайн-учебники РКИ по методике Нахабиной М.М.'
+    }
   },
   {
     path: "/news",
     name: "news",
     component: NewsPage,
+    meta: {
+      title: 'Актуальные события и новости в РКИ | Rus.Study'
+    }
   },
 
   {
