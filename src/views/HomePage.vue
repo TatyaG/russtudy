@@ -17,7 +17,7 @@
 
               <picture>
                 <source srcset="img/books_tablet.png" media="(max-width: 1415px)">
-                <img class="card-img_desktop" src="img/books_desktop.png" alt="Учебники">
+                <img class="card-img_desktop" src="img/books_desktop.png" alt='Учебники "Привет, Россия!"'>
               </picture>
 
             </div>
@@ -101,8 +101,7 @@
             </div>
             
             <button class="btn-reset btn form-btn" type="submit">Подписаться</button>
-            <p class="form_agree">Нажимая на&nbsp;кнопку &laquo;Подписаться&raquo; я&nbsp;даю своё согласие
-              на&nbsp;обработку&nbsp;
+            <p class="form_agree">Нажимая на&nbsp;кнопку &laquo;Подписаться&raquo;, я&nbsp;даю своё согласие на&nbsp;обработку
               <a class="form_link" href="docs/политика_обработки_ПДн_на_сайте_учебник.pdf" target="_blank">персональных
                 данных</a>
             </p>
