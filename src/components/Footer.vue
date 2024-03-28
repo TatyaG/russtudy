@@ -57,11 +57,11 @@
             </ul>
 
             <div class="footer_list  list-reset flex">
-                <a class="footer_social" href="#" target="_blank">
+                <a class="footer_social" href="https://youtube.com/@user-qp6ev7cm2m?si=6pAt1rugMDojUgKx" target="_blank">
                     <img class="social_img youtube" src="img/YouTube.svg" alt="YouTube">
                     <img class="social_img youtube_hover" src="img/YouTube_hover.svg" alt="YouTube">
                 </a>
-                <a class="footer_social" href="#" target="_blank">
+                <a class="footer_social" href="https://t.me/privetrki" target="_blank">
                     <img class="social_img telegram" src="img/telegramm.svg" alt="Telegramm">
                     <img class="social_img telegram_hover" src="img/telegram_hover.svg" alt="Telegramm">
                 </a>
