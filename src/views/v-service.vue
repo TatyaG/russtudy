@@ -4,7 +4,7 @@
   </v-create-material>
   <div class="container " v-if="!createMaterial">
     <Header/>
-    <h4 class="service_title">{{ (selectedService.title) ? selectedService.title :selectedService.label }}</h4>
+    <h4 class="service_title">{{ (selectedService.title) ? selectedService.title : selectedService.label }}</h4>
     <div class="flex serv">
       <div class="service_item_mob">
         <v-service-tabs :service-name="serviceName"
@@ -21,13 +21,16 @@
         </v-service-tabs>
       </div>
       <div class="service_wrap_second">
-        <div class="" v-if="selectedService.name==='Material'">
+        <div class="" v-if="selectedService.name === 'material'">
           <v-material
               @openModal="createMaterial = !createMaterial">
           </v-material>
+          <!-- Здесь будет отображаться контент в зависимости от текущего маршрута -->
+          <router-view></router-view>
         </div>
-        <div class="" v-if="selectedService.name==='Game'">
+        <div class="" v-if="selectedService.name==='game'">
           <v-game/>
+          <router-view></router-view>
         </div>
         <div class="test_box__wrap" v-if="selectedService.name==='Tests'">
           <test v-for="item of tests"
@@ -38,6 +41,22 @@
         <div class="" v-if="selectedService.name==='Teacher'">Teacher</div>
         <div class="" v-if="selectedService.name==='Vacancy'">Vacancy</div>
         <div class="" v-if="selectedService.name==='Course'">Course</div>
+        <div class="" v-if="selectedService.name==='kalinka'">
+
+          <div class="game_wrapper app_promo" v-if="!gameStart">
+            <div class="game_wrapper_box app_promo_box">
+              <div class="">
+                <p>Скачайте наше приложение для эффективного изучения русского языка!</p>
+                <span>
+          Подходит для всех, кто хочет изучать русский язык с нуля или улучшить языковые навыки
+        </span>
+              </div>
+              <div class="">
+                <button @click="startGame()">Играть бесплатно</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -45,41 +64,48 @@
 </template>
 <script setup>
 import VServiceTabs from "@/components/v-service-tabs.vue";
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import Test from "@/components/v-test.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import VMaterial from "@/components/v-material.vue";
 import VCreateMaterial from "@/components/v-create-material.vue";
-import VGame from "@/components/v-game.vue";
+import {useRoute} from "vue-router";
 
+const route = useRoute();
 
-const changeServiceName = (serviceName) => {
-  selectedService.value = serviceName
-
-}
 const createMaterial = ref(false)
 const serviceName = [
-  {name: 'Material', label: 'Учебно-методические материалы',},
-  {name: 'Game', label: 'Игра', title: 'Игра РКИ онлайн'},
-/*
-  {name: 'Tests', label: 'Тесты'},
-*/
-  {name: 'Kalinka', label: 'Kalinka - Russian Fast & Easy'},
- /* {name: 'Course', label: 'Курсы'},
-  {name: 'Teacher', label: 'База учителей'},
-  {name: 'Vacancy', label: 'Вакансии'},*/
+  {name: 'material', label: 'Учебно-методические материалы',},
+  {name: 'game', label: 'Игра', title: 'Игра РКИ онлайн'},
+  /*
+    {name: 'Tests', label: 'Тесты'},
+  */
+  {name: 'kalinka', label: 'Kalinka - Russian Fast & Easy'},
+  /* {name: 'Course', label: 'Курсы'},
+   {name: 'Teacher', label: 'База учителей'},
+   {name: 'Vacancy', label: 'Вакансии'},*/
 
 ]
 const tests = ref([
-  {id: 1, name: 'Уровень A1', image: '../img/tests/a1.svg'},
-  {id: 2, name: 'Уровень A2', image: '../img/tests/a2.svg'},
-  {id: 3, name: 'Уровень B1', image: '../img/tests/b1.svg'},
-  {id: 4, name: 'Уровень B2', image: '../img/tests/b2.svg'},
-  {id: 5, name: 'Уровень C1', image: '../img/tests/c1.svg'},
+  {id: 1, name: 'Уровень A1', image: 'img/tests/a1.svg'},
+  {id: 2, name: 'Уровень A2', image: 'img/tests/a2.svg'},
+  {id: 3, name: 'Уровень B1', image: 'img/tests/b1.svg'},
+  {id: 4, name: 'Уровень B2', image: 'img/tests/b2.svg'},
+  {id: 5, name: 'Уровень C1', image: 'img/tests/c1.svg'},
 ])
-const selectedService = ref({name: 'Material', label: 'Учебно-методические материалы'})
-</script>
-<style scoped>
+const selectedService = ref({name: 'material', label: 'Учебно-методические материалы'})
+const changeServiceName = (serviceName) => {
+  selectedService.value = serviceName
+};
+watch(selectedService, () => {
+  changeServiceName(selectedService.value)
+})
 
+
+</script>
+<style>
+@import "../../public/css/service.css";
+@import "../../public/css/style.css";
+@import "../../public/css/material.css";
 </style>
+

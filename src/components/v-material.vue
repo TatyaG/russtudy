@@ -183,7 +183,8 @@
           <div class="active_material_list_item" v-for="materialItem of materialList" :key="materialItem.id"
                :class="{active_material_show: activeMaterialInfo.id === materialItem.id}">
             <div class="active_material_list__img cursor " @click="showActiveMaterial(materialItem)">
-              <img :src="materialItem.img" alt="Logo" class="active_material_img__item">
+              <img :src="'../../public/img/material/' + materialItem.img" alt="Logo" class="img">
+
               <p class="active_material_list_item__title">{{ materialItem.title }}</p>
             </div>
             <div class="active_material_list__text">
@@ -263,7 +264,7 @@ const materialList = [
     id: 0,
     title: 'Новый учебник по РКИ какой он должен быть',
     subtitle: 'Новый учебник по РКИ какой он должен быть',
-    img: './img/material/material-7.png',
+    img: 'img/material/material-7.png',
     body: 'Вебинар «Новый учебник по РКИ: какой он должен быть?»' +
         'Цель: экспертная поддержка разработки и апробации учебно-методического обеспечения Задачи: определение стратегических ориентиров в разработке учебного пособия, ознакомление с особенностями и преимуществами разработки, консультация разработчиков, ответы на вопросы участников апробации, обратная связь участников по материалам апробации. Участники апробации УМО из Австрии, Франции, Вьетнама, Словении, Словакии.',
     date: '24.08.23',
@@ -273,7 +274,7 @@ const materialList = [
     id: 1,
     title: 'Модель Здравствуйте Привет',
     subtitle: 'Модель Здравствуйте Привет',
-    img: './img/material/material-1.png',
+    img: 'img/material/material-1.png',
     body: 'Отмечается, что фонд создаётся с целью представления в виртуальном пространстве информации о нормах современного русского литературного языка.',
     date: '24.08.23',
     likes: '',
@@ -282,7 +283,7 @@ const materialList = [
     id: 2,
     title: 'Модель Здравствуйте Привет',
     subtitle: 'Модель Здравствуйте Привет',
-    img: './img/material/material-2.png',
+    img: 'img/material/material-2.png',
     body: 'Отмечается, что фонд создаётся с целью представления в виртуальном пространстве информации о нормах современного русского литературного языка. ',
     date: '24.08.23',
     likes: '',
@@ -291,7 +292,7 @@ const materialList = [
     id: 3,
     title: 'Модель Здравствуйте Привет',
     subtitle: 'Модель Здравствуйте Привет',
-    img: './img/material/material-3.png',
+    img: 'img/material/material-3.png',
     body: 'Отмечается, что фонд создаётся с целью представления в виртуальном пространстве информации о нормах современного русского литературного языка. ',
     date: '24.08.23',
     likes: '',
@@ -300,7 +301,7 @@ const materialList = [
     id: 4,
     title: 'Модель Здравствуйте Привет',
     subtle: 'Модель Здравствуйте Привет',
-    img: './img/material/material-4.png',
+    img: 'img/material/material-4.png',
     body: 'Отмечается, что фонд создаётся с целью представления в виртуальном пространстве информации о нормах современного русского литературного языка. ',
     date: '24.08.23',
     likes: '',
@@ -309,7 +310,7 @@ const materialList = [
     id: 6,
     title: 'Модель Здравствуйте Привет',
     subtitle: 'Модель Здравствуйте Привет',
-    img: './img/material/material-5.png',
+    img: 'img/material/material-5.png',
     body: 'Отмечается, что фонд создаётся с целью представления в виртуальном пространстве информации о нормах современного русского литературного языка. ',
     date: '24.08.23',
     likes: '',
@@ -318,7 +319,7 @@ const materialList = [
     id: 5,
     title: 'Модель Здравствуйте Привет',
     subtitle: 'Модель Здравствуйте Привет',
-    img: './img/material/material-6.png',
+    img: 'img/material/material-6.png',
     body: 'Отмечается, что фонд создаётся с целью представления в виртуальном пространстве информации о нормах современного русского литературного языка. ',
     date: '24.08.23',
     likes: '',
@@ -327,7 +328,7 @@ const materialList = [
     id: 7,
     title: 'Модель Здравствуйте Привет',
     subtitle: 'Модель Здравствуйте Привет',
-    img: './img/material/material-2.png',
+    img: 'img/material/material-2.png',
     body: 'Отмечается, что фонд создаётся с целью представления в виртуальном пространстве информации о нормах современного русского литературного языка. ',
     date: '24.08.23',
     likes: '',
@@ -336,7 +337,7 @@ const materialList = [
     id: 8,
     title: 'Модель Здравствуйте Привет',
     subtitle: 'Модель Здравствуйте Привет',
-    img: './img/material/material-5.png',
+    img: 'img/material/material-5.png',
     body: 'Отмечается, что фонд создаётся с целью представления в виртуальном пространстве информации о нормах современного русского литературного языка. ',
     date: '24.08.23',
     likes: '',
@@ -345,7 +346,7 @@ const materialList = [
     id: 9,
     title: 'Модель Здравствуйте Привет',
     subtitle: 'Модель Здравствуйте Привет',
-    img: './img/material/material-1.png',
+    img: 'img/material/material-1.png',
     body: 'Отмечается, что фонд создаётся с целью представления в виртуальном пространстве информации о нормах современного русского литературного языка. ',
     date: '24.08.23',
     likes: '',

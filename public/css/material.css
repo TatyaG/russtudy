@@ -348,7 +348,6 @@ input[type="checkbox"]:checked + label {
     object-position: 0;
 }
 
-}
 .active_material_img__item {
     width: 100%; /* Изображение занимает 100% ширины контейнера */
     height: auto; /* Высота автоматически рассчитывается для сохранения соотношения сторон */
@@ -802,7 +801,7 @@ input[type="checkbox"]:checked + label {
 
     .disabledBtn {
         cursor: not-allowed;
-        padding: 12px
+        padding: 12px;
         border-radius: 16px;
         border: none;
         color: rgba(255, 255, 255, 0.37);

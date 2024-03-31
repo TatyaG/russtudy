@@ -8,8 +8,9 @@
           @click="emit('changeServiceTabs',item)"
           class=""
       >
-        <span>{{ (item.label) }}</span>
-
+        <router-link :to="service/item.label">
+          <span>{{ item.label }}</span>
+        </router-link>
       </swiper-slide>
     </Swiper>
   </div>
@@ -19,9 +20,13 @@
             v-for="item of serviceName"
             @click="emit('changeServiceTabs',item)"
             class="service_item"
-            :class="{active_tab:   item.name === props.selected_service.name}"
+            :class="{active_tab: item.name === props.selected_service.name}"
         >
-          {{ item.label }}
+       <router-link :to="{name: item.name}">
+          <span>{{ item.label }}</span>
+        </router-link>
+
+
         </span>
     </div>
   </div>
@@ -40,6 +45,7 @@ import 'swiper/css/navigation';
 
 // import required modules
 import {Navigation, Pagination} from 'swiper/modules';
+import router from "@/router";
 
 
 const props = defineProps({

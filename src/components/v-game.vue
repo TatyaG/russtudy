@@ -37,7 +37,7 @@ import {onMounted, ref} from "vue";
 let gameStart = ref(false)
 let initGame = () => {
   const hideFullScreenButton = "true";
-  const buildUrl = "RKI_games/Build";
+  const buildUrl = "../RKI_games/Build";
   const loaderUrl = buildUrl + "/RKI_games.loader.js";
   const config = {
     dataUrl: buildUrl + "/RKI_games.data",
