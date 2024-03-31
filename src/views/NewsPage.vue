@@ -39,6 +39,7 @@ import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import News from '@/components/News.vue';
 import OfferNewsModal from '@/components/OfferNewsModal.vue';
+import { useHead } from "unhead";
 
     export default {
         components: {Header, Footer, News, OfferNewsModal},
@@ -109,6 +110,26 @@ import OfferNewsModal from '@/components/OfferNewsModal.vue';
             }
 
         },
+
+        mounted() {
+            useHead({
+                meta: [
+                    { 
+                    name: 'title', 
+                    content: 'Актуальные события и новости в РКИ | Rus.Study' 
+                    },
+                    { 
+                    name: 'keywords',
+                    content: 'актуальные события, новости РКИ, новые технологии, открытия в образовании, акции, скидки, культурные мероприятия, международная конференция, научно-практическая конференция'
+                    },
+                    {
+                    name: 'description', 
+                    content: 'Самое интересное и актуальное в мире РКИ: новые технологии и открытия в образовании, культурные мероприятия, научно-практические конференции, конкурсы, акции и скидки'
+                    }
+                ],
+      
+    })
+        }
 
 
     }

@@ -17,7 +17,7 @@
 
               <picture>
                 <source srcset="img/books_tablet.png" media="(max-width: 1415px)">
-                <img class="card-img_desktop" src="img/books_desktop.png" alt="Учебники">
+                <img class="card-img_desktop" src="img/books_desktop.png" alt='Учебники "Привет, Россия!"'>
               </picture>
 
             </div>
@@ -101,8 +101,7 @@
             </div>
             
             <button class="btn-reset btn form-btn" type="submit">Подписаться</button>
-            <p class="form_agree">Нажимая на&nbsp;кнопку &laquo;Подписаться&raquo; я&nbsp;даю своё согласие
-              на&nbsp;обработку&nbsp;
+            <p class="form_agree">Нажимая на&nbsp;кнопку &laquo;Подписаться&raquo;, я&nbsp;даю своё согласие на&nbsp;обработку
               <a class="form_link" href="docs/политика_обработки_ПДн_на_сайте_учебник.pdf" target="_blank">персональных
                 данных</a>
             </p>
@@ -137,9 +136,9 @@ import Footer from '@/components/Footer.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Form, Field, ErrorMessage } from 'vee-validate';
-/*
+
 import {getPartners} from "@/dbquery/getPartners";
-*/
+import { useHead } from "unhead";
 
 
 
@@ -277,7 +276,24 @@ export default {
 
   },
   mounted() {
-    /*getPartners()*/
+    useHead({
+      meta: [
+        { 
+          name: 'title', 
+          content: 'Обучение русскому как иностранному | Привет, Россия! | Rus.Study' 
+        },
+        { 
+          name: 'keywords',
+          content: 'Rus.Study, рки, Привет, Россия, русский язык как иностранный, учебники, уроки РКИ, преподавание русского языка как иностранного, преподаватели рки, онлайн, A1, B1, C1, учебник русского языка для иностранцев'
+        },
+        {
+          name: 'description', 
+          content: 'Готовые уроки русского языка как иностранного (РКИ) всех уровней (А1-С2). Учебные и методические материалы, тесты, видео, новости, мероприятия, курсы для учителей.'
+        }
+      ],
+      
+    })
+    getPartners()
   },
 }
 
