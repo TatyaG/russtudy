@@ -72,7 +72,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import cities from '@/data/cities.json'
 import addressArray from '@/data/address.json'
 import postcodeArray from '@/data/postcode.json'
@@ -84,6 +83,7 @@ export default {
     
   data() {
     return {
+        center: [],
         activeTab: 1,
         array: [],
         city: '',
@@ -409,9 +409,11 @@ objects.addEvents('click', function (e) {
         .then(response => response.json())
         .then(response => {
         this.clientIp = response.ip;
-        });
+        console.log(this.clientIp)
+        })
+        .catch(error => console.log(error))
         
-    var url = "http://suggestions.dadata.ru/suggestions/api/4_1/rs/iplocate/address?ip=";
+    var url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/iplocate/address?ip=";
     var token = "8c890d6b252427b1a024b544d3b501fc8a618a8c";
     var query = this.clientIp;
 
@@ -428,8 +430,8 @@ objects.addEvents('click', function (e) {
     fetch(url + query, options)
     .then(response => response.text())
     .then(result => {
-    const data =JSON.parse(result)
-    localStorage.city = data.location.data.city
+        const data =JSON.parse(result)
+        localStorage.city = data.location.data.city
 
 })
 .catch(error => console.log("error", error));
