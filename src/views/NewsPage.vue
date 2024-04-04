@@ -113,6 +113,7 @@ import { useHead } from "unhead";
 
         mounted() {
             useHead({
+                title: 'Актуальные события и новости в РКИ | Rus.Study',
                 meta: [
                     { 
                     name: 'title', 
